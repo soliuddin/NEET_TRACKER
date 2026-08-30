@@ -1,1025 +1,2628 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="hydrated">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biology NCERT Master Tracker</title>
-<meta name="description" content="A highly secure, beautiful, biology-themed NCERT Master Tracker with customizable focus timer and screen wake lock.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>NEET 2027 Master Tracker | Aesthetic High-Performance PCB Suite</title>
 
-<!-- 🧬 Biology SVG Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23064e3b' stroke='%2334d399' stroke-width='4'/><path d='M30,30 C45,45 55,55 70,70 M30,70 C45,55 55,45 70,30' stroke='%2334d399' stroke-width='6' stroke-linecap='round'/><circle cx='30' cy='30' r='6' fill='%2310b981'/><circle cx='70' cy='30' r='6' fill='%233b82f6'/><circle cx='30' cy='70' r='6' fill='%233b82f6'/><circle cx='70' cy='70' r='6' fill='%2310b981'/><line x1='38' y1='38' x2='62' y2='38' stroke='%23f8fafc' stroke-width='3'/><line x1='38' y1='62' x2='62' y2='62' stroke='%23f8fafc' stroke-width='3'/></svg>">
+<!-- 🌐 Enterprise SEO Optimization -->
+<meta name="description" content="Ultimate NEET 2027 PCB Master Tracker with real-time countdown to May 2, 2027, Pomodoro focus timer with automatic mobile landscape mode, custom note cards, and NCERT unit-wise syllabus checklist.">
+<meta name="keywords" content="NEET 2027, NEET tracker, NEET study planner, NEET countdown, Biology NCERT tracker, Physics formula tracker, Chemistry syllabus NEET, NEET PWA, NCERT checklist">
+<meta name="author" content="NEET Master Prep Suite">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://neetmastertracker.app/">
 
-<!-- 🛡️ PROTOCOL 4: CSP Firewall -->
-<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'none';">
+<!-- Open Graph / Social Meta -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://neetmastertracker.app/">
+<meta property="og:title" content="NEET 2027 Master Tracker | Aesthetic High-Performance PCB Suite">
+<meta property="og:description" content="Complete NCERT Class 11 & 12 PCB syllabus tracker, real-time timer, automatic mobile landscape focus mode, and countdown for NEET 2027 aspirants.">
+<meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%233b0764' stroke='%23f472b6' stroke-width='4'/><path d='M30,30 C45,45 55,55 70,70 M30,70 C45,55 55,45 70,30' stroke='%23f472b6' stroke-width='6' stroke-linecap='round'/><circle cx='30' cy='30' r='6' fill='%23fb7185'/><circle cx='70' cy='30' r='6' fill='%23c084fc'/><circle cx='30' cy='70' r='6' fill='%23c084fc'/><circle cx='70' cy='70' r='6' fill='%23fb7185'/></svg>">
 
-<!-- Modern Typography -->
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NEET 2027 Master Tracker | Aesthetic High-Performance PCB Suite">
+<meta name="twitter:description" content="Complete NCERT Class 11 & 12 PCB syllabus tracker, real-time timer, and countdown for NEET 2027 aspirants.">
+
+<!-- Structured JSON-LD SEO Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "NEET 2027 Master Tracker",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "description": "Secure, tamper-proof study tracker and timer for NEET 2027 PCB syllabus.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  }
+}
+</script>
+
+<!-- PWA & Mobile Web App Meta Tags -->
+<meta name="theme-color" content="#ec4899">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NEET Tracker">
+
+<!-- 🌸 PWA Web Manifest -->
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22NEET%202027%20Master%20Tracker%22%2C%22short_name%22%3A%22NEET%20Tracker%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23180527%22%2C%22theme_color%22%3A%22%23ec4899%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'48'%20fill%3D'%233b0764'%20stroke%3D'%23f472b6'%20stroke-width%3D'4'%2F%3E%3Cpath%20d%3D'M30%2C30%20C45%2C45%2055%2C55%2070%2C70%20M30%2C70%20C45%2C55%2055%2C45%2070%2C30'%20stroke%3D'%23f472b6'%20stroke-width%3D'6'%20stroke-linecap%3D'round'%2F%3E%3Ccircle%20cx%3D'30'%20cy%3D'30'%20r%3D'6'%20fill%3D'%23fb7185'%2F%3E%3Ccircle%20cx%3D'70'%20cy%3D'30'%20r%3D'6'%20fill%3D'%23c084fc'%2F%3E%3Ccircle%20cx%3D'30'%20cy%3D'70'%20r%3D'6'%20fill%3D'%23c084fc'%2F%3E%3Ccircle%20cx%3D'70'%20cy%3D'70'%20r%3D'6'%20fill%3D'%23fb7185'%2F%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%20512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%233b0764' stroke='%23f472b6' stroke-width='4'/><path d='M30,30 C45,45 55,55 70,70 M30,70 C45,55 55,45 70,30' stroke='%23f472b6' stroke-width='6' stroke-linecap='round'/><circle cx='30' cy='30' r='6' fill='%23fb7185'/><circle cx='70' cy='30' r='6' fill='%23c084fc'/><circle cx='30' cy='70' r='6' fill='%23c084fc'/><circle cx='70' cy='70' r='6' fill='%23fb7185'/></svg>">
+
+<!-- 🛡️ Enhanced CSP Firewall -->
+<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' blob:; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'none';">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* Biology & Modern CSS Variables */
+/* 🎨 12 High-Performance Dynamic UI Themes */
 :root {
---bio-dark: #064e3b;
---bio-light: #10b981;
---bio-accent: #34d399;
---bg-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #0f172a 100%);
---glass-bg: rgba(255, 255, 255, 0.07);
---glass-border: rgba(255, 255, 255, 0.15);
---text-main: #f8fafc;
---text-muted: #94a3b8;
---success: #10B981;
---danger: #ef4444;
---radius: 20px;
---shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
---digit-color: #38bdf8;
+  --theme-name: "Sakura Dream";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #300a40 0%, #170424 50%, #0c0214 100%);
+  --bio-accent: #f472b6;
+  --bio-glow: #f9a8d4;
+  --bio-subtext: #fbcfe8;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(244, 114, 182, 0.22);
+  --header-gradient: linear-gradient(135deg, #fbcfe8 0%, #f472b6 40%, #c084fc 80%, #a78bfa 100%);
+  --btn-primary-grad: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(88, 28, 135, 0.45) 0%, rgba(131, 24, 67, 0.35) 100%);
+  --text-main: #fff1f2;
+  --text-muted: #94a3b8;
+  --success: #34d399;
+  --danger: #fb7185;
+  --radius: 20px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(244, 114, 182, 0.1);
+  --btn-border-glow: 0 0 14px rgba(244, 114, 182, 0.35);
+}
+
+body.theme-cyber-lilac {
+  --theme-name: "Cyber Lilac";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #240f4e 0%, #120629 50%, #060214 100%);
+  --bio-accent: #c084fc;
+  --bio-glow: #e9d5ff;
+  --bio-subtext: #e9d5ff;
+  --glass-border: rgba(192, 132, 252, 0.25);
+  --header-gradient: linear-gradient(135deg, #e9d5ff 0%, #c084fc 40%, #818cf8 80%, #38bdf8 100%);
+  --btn-primary-grad: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(76, 29, 149, 0.45) 0%, rgba(49, 46, 129, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(192, 132, 252, 0.35);
+}
+
+body.theme-midnight-amethyst {
+  --theme-name: "Midnight Amethyst";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #20083b 0%, #0f031e 50%, #07010f 100%);
+  --bio-accent: #a855f7;
+  --bio-glow: #d8b4fe;
+  --bio-subtext: #d8b4fe;
+  --glass-border: rgba(168, 85, 247, 0.25);
+  --header-gradient: linear-gradient(135deg, #f3e8ff 0%, #d8b4fe 40%, #a855f7 80%, #7e22ce 100%);
+  --btn-primary-grad: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(59, 7, 100, 0.5) 0%, rgba(30, 27, 75, 0.4) 100%);
+  --btn-border-glow: 0 0 14px rgba(168, 85, 247, 0.35);
+}
+
+body.theme-neon-candy {
+  --theme-name: "Neon Candy";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #132448 0%, #160a2d 50%, #0b0217 100%);
+  --bio-accent: #22d3ee;
+  --bio-glow: #67e8f9;
+  --bio-subtext: #a5f3fc;
+  --glass-border: rgba(34, 211, 238, 0.25);
+  --header-gradient: linear-gradient(135deg, #a5f3fc 0%, #22d3ee 40%, #f472b6 80%, #ec4899 100%);
+  --btn-primary-grad: linear-gradient(135deg, #06b6d4 0%, #ec4899 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(88, 28, 135, 0.45) 0%, rgba(131, 24, 67, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(34, 211, 238, 0.35);
+}
+
+body.theme-mint-emerald {
+  --theme-name: "Mint Emerald";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #063c30 0%, #032019 50%, #01120e 100%);
+  --bio-accent: #34d399;
+  --bio-glow: #6ee7b7;
+  --bio-subtext: #a7f3d0;
+  --glass-border: rgba(52, 211, 153, 0.25);
+  --header-gradient: linear-gradient(135deg, #a7f3d0 0%, #34d399 40%, #38bdf8 80%, #818cf8 100%);
+  --btn-primary-grad: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(6, 78, 59, 0.45) 0%, rgba(15, 118, 110, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(52, 211, 153, 0.35);
+}
+
+body.theme-celestial-rose {
+  --theme-name: "Celestial Rose";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #460f29 0%, #280617 50%, #12010a 100%);
+  --bio-accent: #fb7185;
+  --bio-glow: #fda4af;
+  --bio-subtext: #ffe4e6;
+  --glass-border: rgba(251, 113, 133, 0.25);
+  --header-gradient: linear-gradient(135deg, #ffe4e6 0%, #fb7185 40%, #f43f5e 80%, #c084fc 100%);
+  --btn-primary-grad: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(136, 19, 55, 0.45) 0%, rgba(76, 29, 149, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(251, 113, 133, 0.35);
+}
+
+body.theme-nordic-twilight {
+  --theme-name: "Nordic Twilight";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #162442 0%, #0d1627 50%, #050a12 100%);
+  --bio-accent: #38bdf8;
+  --bio-glow: #7dd3fc;
+  --bio-subtext: #bae6fd;
+  --glass-border: rgba(56, 189, 248, 0.25);
+  --header-gradient: linear-gradient(135deg, #bae6fd 0%, #38bdf8 40%, #818cf8 80%, #c084fc 100%);
+  --btn-primary-grad: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(30, 58, 138, 0.45) 0%, rgba(30, 27, 75, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(56, 189, 248, 0.35);
+}
+
+body.theme-sunset-coral {
+  --theme-name: "Sunset Coral";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #461414 0%, #28080f 50%, #120206 100%);
+  --bio-accent: #fb923c;
+  --bio-glow: #fdba74;
+  --bio-subtext: #ffedd5;
+  --glass-border: rgba(251, 146, 60, 0.25);
+  --header-gradient: linear-gradient(135deg, #ffedd5 0%, #fb923c 40%, #f43f5e 80%, #ec4899 100%);
+  --btn-primary-grad: linear-gradient(135deg, #ea580c 0%, #e11d48 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(154, 52, 18, 0.45) 0%, rgba(136, 19, 55, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(251, 146, 60, 0.35);
+}
+
+body.theme-lavender-velvet {
+  --theme-name: "Lavender Velvet";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #301e56 0%, #1b0f34 50%, #0c0519 100%);
+  --bio-accent: #a5b4fc;
+  --bio-glow: #c7d2fe;
+  --bio-subtext: #e0e7ff;
+  --glass-border: rgba(165, 180, 252, 0.25);
+  --header-gradient: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 40%, #c084fc 80%, #f472b6 100%);
+  --btn-primary-grad: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(67, 56, 202, 0.45) 0%, rgba(109, 40, 217, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(165, 180, 252, 0.35);
+}
+
+body.theme-emerald-forest {
+  --theme-name: "Emerald Forest";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #0a3a2d 0%, #052119 50%, #010d0a 100%);
+  --bio-accent: #10b981;
+  --bio-glow: #6ee7b7;
+  --bio-subtext: #d1fae5;
+  --glass-border: rgba(16, 185, 129, 0.25);
+  --header-gradient: linear-gradient(135deg, #d1fae5 0%, #10b981 40%, #14b8a6 80%, #06b6d4 100%);
+  --btn-primary-grad: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(6, 78, 59, 0.45) 0%, rgba(17, 94, 89, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(16, 185, 129, 0.35);
+}
+
+body.theme-solar-amber {
+  --theme-name: "Solar Amber";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #462806 0%, #2b1702 50%, #120800 100%);
+  --bio-accent: #fbbf24;
+  --bio-glow: #fde68a;
+  --bio-subtext: #fef3c7;
+  --glass-border: rgba(251, 191, 36, 0.25);
+  --header-gradient: linear-gradient(135deg, #fef3c7 0%, #fbbf24 40%, #f97316 80%, #ef4444 100%);
+  --btn-primary-grad: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(146, 64, 14, 0.45) 0%, rgba(154, 52, 18, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(251, 191, 36, 0.35);
+}
+
+body.theme-electric-berry {
+  --theme-name: "Electric Berry";
+  --bg-gradient: radial-gradient(circle at 50% 0%, #450c37 0%, #25041f 50%, #0f000c 100%);
+  --bio-accent: #e879f9;
+  --bio-glow: #f0abfc;
+  --bio-subtext: #fae8ff;
+  --glass-border: rgba(232, 121, 249, 0.25);
+  --header-gradient: linear-gradient(135deg, #fae8ff 0%, #e879f9 40%, #f43f5e 80%, #fb7185 100%);
+  --btn-primary-grad: linear-gradient(135deg, #c026d3 0%, #db2777 100%);
+  --unit-header-grad: linear-gradient(90deg, rgba(134, 25, 143, 0.45) 0%, rgba(157, 23, 77, 0.35) 100%);
+  --btn-border-glow: 0 0 14px rgba(232, 121, 249, 0.35);
 }
 
 * {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', 'Poppins', sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Scrollbar Lock class applied when fullscreen overlay is open */
 html.no-scroll, body.no-scroll {
-overflow: hidden !important;
-height: 100% !important;
+  overflow: hidden !important;
+  height: 100% !important;
 }
 
 body {
-background: var(--bg-gradient);
-color: var(--text-main);
-line-height: 1.6;
-padding: 20px;
-min-height: 100vh;
-position: relative;
-overflow-x: hidden;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.4s ease;
 }
 
 body::before, body::after {
-content: '';
-position: fixed;
-border-radius: 50%;
-background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(0,0,0,0) 70%);
-z-index: -1;
-animation: float 20s infinite ease-in-out alternate;
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,114,182,0.08) 0%, rgba(192,132,252,0.05) 50%, rgba(0,0,0,0) 70%);
+  z-index: -1;
+  pointer-events: none;
+  animation: float 22s infinite ease-in-out alternate;
 }
 
 body::before { width: 600px; height: 600px; top: -100px; left: -100px; }
-body::after { width: 400px; height: 400px; bottom: 10%; right: -50px; animation-duration: 25s; animation-delay: -5s; }
+body::after { width: 450px; height: 450px; bottom: 5%; right: -50px; animation-duration: 26s; animation-delay: -5s; }
 
 @keyframes float {
-0% { transform: translate(0, 0) scale(1); }
-100% { transform: translate(50px, 50px) scale(1.1); }
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(25px, 30px) scale(1.05); }
 }
+
+/* 🌟 TOP NAVBAR */
+.app-top-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 990;
+  background: rgba(18, 4, 28, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1.5px solid var(--glass-border);
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.navbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-icon {
+  font-size: 1.7rem;
+  filter: drop-shadow(0 0 8px rgba(244, 114, 182, 0.6));
+}
+
+.brand-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  background: var(--header-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.brand-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--bio-accent);
+}
+
+.nav-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.header-action-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  border: 1.5px solid var(--bio-accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--bio-subtext);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--btn-border-glow);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.header-action-pill:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.badge-tag-pill {
+  background: var(--btn-primary-grad);
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: default;
+  box-shadow: var(--btn-border-glow);
+}
+.badge-tag-pill:hover { transform: none; }
 
 .container {
-max-width: 1050px;
-margin: 0 auto;
-position: relative;
-z-index: 1;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Header */
-header {
-text-align: center;
-margin-bottom: 30px;
-padding-top: 20px;
-position: relative;
+.hero-header {
+  text-align: center;
+  margin: 6px 0 24px 0;
 }
 
 h1 {
-font-size: clamp(1.8rem, 5vw, 3.2rem);
-font-weight: 800;
-background: linear-gradient(to right, #6ee7b7, #3b82f6);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-letter-spacing: -1px;
-margin-bottom: 5px;
+  font-size: clamp(1.9rem, 5.2vw, 3.1rem);
+  font-weight: 800;
+  background: var(--header-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
 }
 
-.subtitle { font-size: clamp(0.9rem, 2.5vw, 1.1rem); color: var(--bio-accent); font-weight: 300; }
+.subtitle { font-size: clamp(0.9rem, 2.3vw, 1.08rem); color: var(--bio-glow); font-weight: 600; }
 
-/* Glassmorphism Cards */
+/* Real-Time Clock & Countdown Grid */
+.live-dashboard-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.live-widget-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.live-widget-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.4));
+}
+
+.live-widget-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.live-widget-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--bio-accent);
+}
+
+.live-clock-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+  font-weight: 800;
+  color: #fff1f2;
+  letter-spacing: 1px;
+}
+
+.live-clock-date {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.countdown-digits-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.cd-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--glass-border);
+  padding: 4px 8px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 48px;
+}
+
+.cd-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--bio-accent);
+  line-height: 1;
+}
+
+.cd-lbl {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Glass Cards */
 .glass-card {
-background: var(--glass-bg);
-backdrop-filter: blur(16px);
--webkit-backdrop-filter: blur(16px);
-border: 1px solid var(--glass-border);
-border-radius: var(--radius);
-box-shadow: var(--shadow);
-margin-bottom: 30px;
-overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 22px;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
 }
 
-/* Info Section */
+.glass-card:hover {
+  border-color: rgba(244, 114, 182, 0.45);
+}
+
+/* Hub Grid */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.hub-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hub-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--bio-accent);
+  background: rgba(244, 114, 182, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.hub-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hub-card-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.4));
+}
+
+.hub-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff1f2;
+}
+
+.hub-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.hub-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hub-card-actions .btn-hub {
+  flex: 1 1 calc(50% - 5px);
+  padding: 10px 14px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--bio-subtext);
+  border: 1.5px solid var(--bio-accent);
+  box-shadow: var(--btn-border-glow);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.hub-card-actions .btn-hub:hover {
+  transform: translateY(-2px);
+  background: rgba(244, 114, 182, 0.2);
+  color: #ffffff;
+}
+
 .info-card {
-padding: clamp(18px, 3vw, 30px);
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 20px;
+  padding: clamp(18px, 3vw, 25px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
 }
 
-.input-group { display: flex; flex-direction: column; gap: 8px; }
+.input-group { display: flex; flex-direction: column; gap: 6px; }
 
-label { font-weight: 600; color: var(--bio-accent); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+label { font-weight: 700; color: var(--bio-glow); font-size: 0.88rem; text-transform: uppercase; letter-spacing: 1px; }
 
 input[type="text"], input[type="number"], textarea {
-width: 100%;
-padding: 12px 18px;
-background: rgba(0, 0, 0, 0.2);
-border: 1px solid var(--glass-border);
-border-radius: 12px;
-color: white;
-font-size: 1rem;
-transition: all 0.3s;
-outline: none;
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(18, 5, 30, 0.5);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 14px;
+  color: white;
+  font-size: 0.96rem;
+  transition: all 0.25s;
+  outline: none;
 }
 
 input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
-border-color: var(--bio-accent);
-background: rgba(0, 0, 0, 0.4);
+  border-color: var(--bio-accent);
+  background: rgba(18, 5, 30, 0.8);
+  box-shadow: 0 0 12px rgba(244, 114, 182, 0.3);
 }
 
-textarea { resize: vertical; font-family: inherit; line-height: 1.5; }
+textarea { resize: vertical; font-family: inherit; }
 
 input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type="number"] {
-  -moz-appearance: textfield;
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
+
+/* 📅 DIRECT & RESPONSIVE NATIVE DATE PICKER INPUT */
+input[type="date"] {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(18, 5, 30, 0.6);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--bio-subtext);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color-scheme: dark;
 }
 
-/* Hybrid Date Control */
-.hybrid-date-wrapper {
-position: relative;
-display: flex;
-align-items: center;
-width: 100%;
-min-width: 150px;
+input[type="date"]:hover, input[type="date"]:focus {
+  border-color: var(--bio-accent);
+  background: rgba(18, 5, 30, 0.85);
+  box-shadow: 0 0 12px rgba(244, 114, 182, 0.35);
 }
 
-.hybrid-date-wrapper input[type="text"] {
-padding-right: 42px;
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.8) sepia(100%) saturate(300%) hue-rotate(290deg);
+  opacity: 0.9;
+  transition: transform 0.2s ease;
 }
 
-.native-calendar-btn {
-position: absolute;
-right: 8px;
-width: 28px;
-height: 28px;
-opacity: 0;
-cursor: pointer;
-z-index: 2;
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  transform: scale(1.15);
 }
 
-.calendar-icon-overlay {
-position: absolute;
-right: 12px;
-pointer-events: none;
-font-size: 1.1rem;
-z-index: 1;
-filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
-transition: transform 0.2s;
-}
-
-.hybrid-date-wrapper:hover .calendar-icon-overlay {
-transform: scale(1.15);
-}
-
-/* Target Timer Panel */
 .timer-panel {
-padding: clamp(18px, 3vw, 25px) clamp(18px, 3vw, 30px);
-background: rgba(6, 78, 59, 0.2);
-border-bottom: 1px solid var(--glass-border);
-display: flex;
-flex-direction: column;
-gap: 20px;
+  padding: clamp(18px, 3vw, 25px);
+  background: rgba(45, 8, 65, 0.3);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.timer-title-group {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 4px;
-text-align: center;
-}
-
-.timer-title-group h3 {
-font-size: clamp(1.1rem, 3vw, 1.35rem);
-font-weight: 700;
-color: var(--bio-accent);
-transition: all 0.4s ease;
-}
+.timer-title-group { text-align: center; }
+.timer-title-group h3 { font-size: clamp(1.15rem, 3vw, 1.35rem); font-weight: 800; color: var(--bio-subtext); }
 
 .timer-controls-row {
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 15px;
-width: 100%;
-padding-top: 15px;
-border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  padding-top: 15px;
+  border-top: 1px solid rgba(244, 114, 182, 0.15);
 }
 
-.timer-inputs-group {
-display: flex;
-align-items: center;
-gap: 10px;
-}
+.timer-inputs-group { display: flex; align-items: center; gap: 8px; }
+.timer-buttons-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-.timer-buttons-group {
-display: flex;
-align-items: center;
-gap: 10px;
-flex-wrap: wrap;
-}
-
-/* Clean Single Input Box */
 .single-timer-box {
-width: clamp(60px, 12vw, 78px);
-height: 48px;
-background: rgba(0, 0, 0, 0.3);
-border: 1px solid var(--glass-border);
-border-radius: 12px;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: border-color 0.3s ease;
-overflow: hidden;
+  width: clamp(60px, 12vw, 76px);
+  height: 46px;
+  background: rgba(18, 5, 30, 0.6);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .single-timer-box.running {
-border-color: var(--bio-accent);
+  border-color: var(--bio-accent);
+  box-shadow: 0 0 12px rgba(244, 114, 182, 0.35);
 }
 
 .single-timer-box input {
-width: 100%;
-height: 100%;
-background: transparent;
-border: none;
-text-align: center;
-font-family: 'JetBrains Mono', monospace;
-font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-font-weight: 800;
-color: var(--bio-accent);
-outline: none;
-cursor: text;
-padding: 0;
-margin: 0;
-transition: color 0.3s ease;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 800;
+  color: var(--bio-accent);
+  outline: none;
 }
 
-/* Unit Sections */
+.subject-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+}
+
+.subject-top-nav h2 {
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  font-weight: 800;
+  color: var(--bio-subtext);
+}
+
 .unit-header {
-padding: 18px 24px;
-background: rgba(0, 0, 0, 0.3);
-border-bottom: 1px solid var(--glass-border);
-display: flex;
-align-items: center;
-gap: 12px;
+  padding: 14px 20px;
+  background: var(--unit-header-grad);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.unit-icon { font-size: 1.6rem; }
-.unit-title { font-size: clamp(1.05rem, 2.5vw, 1.3rem); font-weight: 600; color: #f8fafc; }
+.unit-icon { font-size: 1.5rem; }
+.unit-title { font-size: clamp(0.95rem, 2.2vw, 1.15rem); font-weight: 700; color: #fff1f2; }
 
-.table-responsive { overflow-x: auto; padding: 10px; -webkit-overflow-scrolling: touch; }
+.table-responsive { overflow-x: auto; padding: 8px; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: separate; border-spacing: 0 6px; white-space: nowrap; }
 
-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; white-space: nowrap; }
+th, td { padding: 12px 14px; text-align: center; }
+th { font-weight: 700; color: var(--bio-glow); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
 
-th, td { padding: 14px 16px; text-align: center; }
+td { background: rgba(255, 255, 255, 0.03); border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
+td:first-child { border-radius: 12px 0 0 12px; }
+td:last-child { border-radius: 0 12px 12px 0; }
+tr:hover td { background: rgba(244, 114, 182, 0.08); border-color: rgba(244, 114, 182, 0.3); }
 
-th { font-weight: 600; color: var(--bio-accent); text-transform: uppercase; font-size: 0.82rem; letter-spacing: 1px; padding-bottom: 8px; }
+td.chapter-name { text-align: left; font-weight: 600; font-size: 0.95rem; color: #fdf2f8; white-space: normal; min-width: 230px; }
 
-td { background: rgba(255,255,255,0.03); border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
-td:first-child { border-radius: 12px 0 0 12px; border-left: 1px solid transparent; }
-td:last-child { border-radius: 0 12px 12px 0; border-right: 1px solid transparent; }
-
-tr:hover td { background: rgba(255,255,255,0.06); border-color: var(--glass-border); }
-
-td.chapter-name { text-align: left; font-weight: 400; font-size: 1rem; white-space: normal; min-width: 220px; }
-
-/* Modern Checkboxes */
 input[type="checkbox"] {
-appearance: none; width: 26px; height: 26px;
-border: 2px solid var(--text-muted); border-radius: 50%;
-background-color: rgba(0,0,0,0.2); cursor: pointer;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-display: inline-flex; align-items: center; justify-content: center; position: relative;
+  appearance: none; width: 24px; height: 24px;
+  border: 2px solid var(--bio-accent); border-radius: 50%;
+  background-color: rgba(18, 5, 30, 0.4); cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex; align-items: center; justify-content: center; position: relative;
 }
 
-input[type="checkbox"]:hover { border-color: var(--bio-accent); transform: scale(1.1); }
-input[type="checkbox"]:checked { background-color: var(--success); border-color: var(--success); }
-input[type="checkbox"]:checked::after { content: '✓'; color: #022c22; font-size: 15px; font-weight: 800; position: absolute; }
+input[type="checkbox"]:hover { transform: scale(1.12); border-color: var(--bio-subtext); }
+input[type="checkbox"]:checked { background: var(--btn-primary-grad); border-color: var(--bio-accent); }
+input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; position: absolute; }
 
-/* Buttons */
+/* 🌟 Buttons */
 .btn {
-padding: 10px 18px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer;
-transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.92rem; letter-spacing: 0.5px;
-white-space: nowrap;
+  padding: 10px 20px;
+  border: 1.5px solid var(--bio-accent);
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: var(--btn-border-glow);
 }
 
-.btn-primary { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
-.btn-primary:hover { transform: translateY(-2px); }
+.btn:hover { transform: translateY(-2px); }
 
-.btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 1px solid var(--glass-border); }
-.btn-secondary:hover { background: rgba(255,255,255,0.2); }
+.btn-primary { background: var(--btn-primary-grad); color: white; border-color: var(--bio-accent); }
+.btn-secondary { background: rgba(255, 255, 255, 0.08); color: var(--bio-subtext); border-color: var(--bio-accent); }
+.btn-secondary:hover { background: rgba(244, 114, 182, 0.2); }
 
-.btn-warning { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; }
-.btn-warning:hover { transform: translateY(-2px); }
-
-.btn-danger { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; }
-.btn-danger:hover { transform: translateY(-2px); }
+.btn-warning { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; border-color: #fbbf24; box-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
+.btn-danger { background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%); color: white; border-color: #f43f5e; box-shadow: 0 0 12px rgba(244, 63, 94, 0.35); }
 
 .btn-alarm {
-background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-color: white;
-animation: alarmPulse 0.8s infinite alternate ease-in-out;
+  background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+  color: white;
+  border-color: #fda4af;
+  animation: alarmPulse 0.8s infinite alternate ease-in-out;
+  box-shadow: 0 0 16px rgba(244, 63, 94, 0.5);
 }
 
 @keyframes alarmPulse {
-0% { transform: scale(1); }
-100% { transform: scale(1.08); }
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
 }
 
-.btn-theme {
-background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
-color: white;
-}
-
-.btn-export { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
-.btn-export:hover { transform: translateY(-3px); }
-.btn-import { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; }
-.btn-import:hover { transform: translateY(-3px); }
-
+.btn-theme { background: linear-gradient(135deg, #c084fc 0%, #ec4899 100%); color: white; border-color: var(--bio-accent); }
+.btn-import { background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); color: white; border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.35); }
+.btn-export { background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%); color: white; border-color: #c084fc; box-shadow: 0 0 12px rgba(192, 132, 252, 0.35); }
+.btn-log { background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); color: white; border-color: #f472b6; box-shadow: 0 0 12px rgba(244, 114, 182, 0.35); }
 .file-input-hidden { display: none; }
 
-/* FULLSCREEN FOCUS OVERLAY & 12 HIGH-TECH THEMES */
-.fullscreen-timer-overlay {
-position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-background: radial-gradient(circle at center, #064e3b 0%, #022c22 60%, #020617 100%);
-color: #f8fafc;
-z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center;
-visibility: hidden; opacity: 0; transition: background 0.5s ease, opacity 0.3s ease, visibility 0.3s ease;
-will-change: opacity, visibility;
-padding: 20px;
-overflow: hidden !important;
+/* Quotes Card */
+.quotes-card {
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(135deg, rgba(88, 28, 135, 0.3) 0%, rgba(244, 114, 182, 0.15) 100%);
+  border: 1.5px solid var(--bio-accent);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  margin-top: 30px;
+  margin-bottom: 22px;
 }
 
-/* 🎨 12 COLOR THEMES */
-.fullscreen-timer-overlay.theme-emerald { background: radial-gradient(circle at center, #064e3b 0%, #022c22 60%, #020617 100%); --fs-digit-color: #38bdf8; --fs-glow: rgba(56, 189, 248, 0.75); }
-.fullscreen-timer-overlay.theme-cyan { background: radial-gradient(circle at center, #0c4a6e 0%, #082f49 60%, #030712 100%); --fs-digit-color: #22d3ee; --fs-glow: rgba(34, 211, 238, 0.75); }
-.fullscreen-timer-overlay.theme-purple { background: radial-gradient(circle at center, #4c1d95 0%, #2e1065 60%, #030712 100%); --fs-digit-color: #c084fc; --fs-glow: rgba(192, 132, 252, 0.75); }
-.fullscreen-timer-overlay.theme-crimson { background: radial-gradient(circle at center, #881337 0%, #4c0519 60%, #090003 100%); --fs-digit-color: #f43f5e; --fs-glow: rgba(244, 63, 94, 0.75); }
-.fullscreen-timer-overlay.theme-amber { background: radial-gradient(circle at center, #78350f 0%, #451a03 60%, #0c0400 100%); --fs-digit-color: #fbbf24; --fs-glow: rgba(251, 191, 36, 0.75); }
-.fullscreen-timer-overlay.theme-navy { background: radial-gradient(circle at center, #1e3a8a 0%, #172554 60%, #020617 100%); --fs-digit-color: #60a5fa; --fs-glow: rgba(96, 165, 250, 0.75); }
-.fullscreen-timer-overlay.theme-rose { background: radial-gradient(circle at center, #831843 0%, #500724 60%, #0d0006 100%); --fs-digit-color: #f472b6; --fs-glow: rgba(244, 114, 182, 0.75); }
-.fullscreen-timer-overlay.theme-lime { background: radial-gradient(circle at center, #14532d 0%, #052e16 60%, #000a03 100%); --fs-digit-color: #a3e635; --fs-glow: rgba(163, 230, 53, 0.75); }
-.fullscreen-timer-overlay.theme-tokyo { background: radial-gradient(circle at center, #3b0764 0%, #1e1b4b 60%, #030712 100%); --fs-digit-color: #ff70a6; --fs-glow: rgba(255, 112, 166, 0.75); }
-.fullscreen-timer-overlay.theme-monochrome { background: radial-gradient(circle at center, #18181b 0%, #09090b 60%, #000000 100%); --fs-digit-color: #ffffff; --fs-glow: rgba(255, 255, 255, 0.85); }
-.fullscreen-timer-overlay.theme-lavender { background: radial-gradient(circle at center, #312e81 0%, #1e1b4b 60%, #030712 100%); --fs-digit-color: #a5b4fc; --fs-glow: rgba(165, 180, 252, 0.75); }
-.fullscreen-timer-overlay.theme-volcano { background: radial-gradient(circle at center, #7c2d12 0%, #431407 60%, #0a0200 100%); --fs-digit-color: #ff6b35; --fs-glow: rgba(255, 107, 53, 0.75); }
+.quote-icon { font-size: 2.4rem; filter: drop-shadow(0 0 8px rgba(244, 114, 182, 0.5)); }
+.quote-content { display: flex; flex-direction: column; gap: 4px; }
+.quote-title { font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bio-accent); }
+.quote-text { font-size: 1.05rem; font-weight: 700; color: #fff1f2; font-style: italic; min-height: 28px; transition: opacity 0.3s ease; }
+.quote-author { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+
+/* 🌟 STANDALONE BOXED PROFESSIONAL FOOTER */
+.app-footer-master {
+  max-width: 1140px;
+  margin: 50px auto 30px auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-boxed-wrapper {
+  background: rgba(14, 3, 22, 0.95);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 34px 28px 24px 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.footer-action-panel {
+  padding: 22px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  border: 1.5px solid var(--glass-border);
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+}
+
+.footer-actions-btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.footer-column h4 {
+  color: var(--bio-accent);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-column ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-column li {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+}
+
+.footer-column a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.footer-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(244, 114, 182, 0.2);
+  color: var(--bio-glow);
+  font-weight: 700;
+}
+
+.footer-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(244, 114, 182, 0.15);
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+/* Custom Notes Modal */
+.custom-notes-modal {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  background: var(--bg-gradient);
+  color: #fff1f2;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-notes-modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.notes-hub-container {
+  max-width: 950px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notes-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--glass-border);
+}
+
+.notes-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--glass-bg);
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--glass-border);
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.note-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--bio-accent);
+  box-shadow: var(--btn-border-glow);
+}
+
+.note-card-text {
+  font-size: 0.95rem;
+  color: #fff1f2;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.note-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(244, 114, 182, 0.15);
+  padding-top: 8px;
+}
+
+.note-card-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--bio-accent);
+}
+
+.note-del-btn {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+
+.note-del-btn:hover { transform: scale(1.2); }
+
+/* 🌟 FULLSCREEN FOCUS OVERLAY (16 ZERO-GLOW THEMES & MOBILE LANDSCAPE STYLES) */
+.fullscreen-timer-overlay {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease;
+  padding: 20px;
+  overflow: hidden !important;
+}
+
+.fullscreen-timer-overlay.fst-obsidian { background: #000000; --fs-digit-color: #f8fafc; --fs-card-bg: #111827; --fs-card-border: #334155; }
+.fullscreen-timer-overlay.fst-sakura { background: #1c0a1a; --fs-digit-color: #f472b6; --fs-card-bg: #2b0e27; --fs-card-border: #701a61; }
+.fullscreen-timer-overlay.fst-lilac { background: #110926; --fs-digit-color: #c084fc; --fs-card-bg: #1c103b; --fs-card-border: #581c87; }
+.fullscreen-timer-overlay.fst-cyan { background: #04131d; --fs-digit-color: #38bdf8; --fs-card-bg: #072233; --fs-card-border: #0369a1; }
+.fullscreen-timer-overlay.fst-mint { background: #031713; --fs-digit-color: #34d399; --fs-card-bg: #072922; --fs-card-border: #047857; }
+.fullscreen-timer-overlay.fst-sunset { background: #1f0b08; --fs-digit-color: #fb923c; --fs-card-bg: #30130d; --fs-card-border: #9a3412; }
+.fullscreen-timer-overlay.fst-slate { background: #0f172a; --fs-digit-color: #94a3b8; --fs-card-bg: #1e293b; --fs-card-border: #475569; }
+.fullscreen-timer-overlay.fst-terracotta { background: #1c0f0e; --fs-digit-color: #f87171; --fs-card-bg: #2b1716; --fs-card-border: #7f1d1d; }
+.fullscreen-timer-overlay.fst-rose { background: #1f0714; --fs-digit-color: #fb7185; --fs-card-bg: #310c21; --fs-card-border: #881337; }
+.fullscreen-timer-overlay.fst-galaxy { background: #070717; --fs-digit-color: #818cf8; --fs-card-bg: #0e0e29; --fs-card-border: #3730a3; }
+.fullscreen-timer-overlay.fst-matcha { background: #0e1708; --fs-digit-color: #a3e635; --fs-card-bg: #17240f; --fs-card-border: #3f6212; }
+.fullscreen-timer-overlay.fst-mocha { background: #18120c; --fs-digit-color: #d6d3d1; --fs-card-bg: #261d15; --fs-card-border: #574131; }
+.fullscreen-timer-overlay.fst-solar { background: #1c1303; --fs-digit-color: #fbbf24; --fs-card-bg: #2b1d06; --fs-card-border: #b45309; }
+.fullscreen-timer-overlay.fst-arctic { background: #081a24; --fs-digit-color: #e0f2fe; --fs-card-bg: #0c2736; --fs-card-border: #0284c7; }
+.fullscreen-timer-overlay.fst-ruby { background: #1a040b; --fs-digit-color: #f43f5e; --fs-card-bg: #2b0813; --fs-card-border: #be123c; }
+.fullscreen-timer-overlay.fst-cyberpunk { background: #060312; --fs-digit-color: #22d3ee; --fs-card-bg: #180829; --fs-card-border: #ec4899; }
 
 .fullscreen-timer-overlay.active { visibility: visible; opacity: 1; pointer-events: auto; }
 
 .fs-content-deck {
-position: relative;
-z-index: 10;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-width: 100%;
-max-width: 1200px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
 }
 
 .fs-subtext {
-font-size: clamp(0.9rem, 2.5vw, 1.25rem);
-font-weight: 700;
-color: #94a3b8;
-letter-spacing: 2px;
-text-transform: uppercase;
-margin-bottom: 20px;
-text-align: center;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-weight: 800;
+  color: var(--fs-digit-color, #fbcfe8);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* 📲 Dynamic Tilt Banner */
-.tilt-hint-banner {
-position: absolute;
-top: 25px;
-left: 50%;
-transform: translateX(-50%) translateY(-20px);
-background: rgba(15, 23, 42, 0.92);
-border: 1px solid var(--bio-accent);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-color: #38bdf8;
-padding: 10px 22px;
-border-radius: 30px;
-font-weight: 700;
-font-size: 0.88rem;
-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-z-index: 200;
-opacity: 0;
-pointer-events: none;
-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-display: flex;
-align-items: center;
-gap: 10px;
-text-align: center;
-white-space: nowrap;
-}
-
-.tilt-hint-banner.show {
-opacity: 1;
-transform: translateX(-50%) translateY(0);
-}
-
-.tilt-icon-anim {
-display: inline-block;
-font-size: 1.1rem;
-animation: tiltPhoneLoop 1.5s infinite ease-in-out;
-}
-
-@keyframes tiltPhoneLoop {
-0%, 100% { transform: rotate(0deg); }
-50% { transform: rotate(-90deg); }
-}
-
-/* Flip Clock Container */
 .flip-clock-container {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: clamp(8px, 1.5vw, 16px);
-margin: 10px 0 25px 0;
-perspective: 1000px;
-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 16px);
+  margin: 10px 0 25px 0;
+  width: 100%;
 }
 
-.flip-unit {
-display: flex;
-gap: clamp(4px, 1vw, 10px);
-}
+.flip-unit { display: flex; gap: clamp(4px, 1vw, 10px); }
 
 .flip-card {
-position: relative;
-width: clamp(65px, 12vw, 140px);
-height: clamp(90px, 18vw, 180px);
-background: rgba(2, 26, 20, 0.85);
-border-radius: 16px;
-border: 2px solid var(--glass-border);
-box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-display: flex;
-align-items: center;
-justify-content: center;
-overflow: hidden;
-cursor: pointer;
-transition: border-color 0.25s ease;
+  position: relative;
+  width: clamp(65px, 12vw, 135px);
+  height: clamp(90px, 18vw, 175px);
+  background: var(--fs-card-bg, #1e1138);
+  border-radius: 18px;
+  border: 2px solid var(--fs-card-border, #701a61);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
 }
 
-.flip-card:hover {
-border-color: var(--fs-digit-color, #38bdf8);
-}
+.flip-card:hover { border-color: var(--fs-digit-color, #f472b6); }
 
-/* STABLE GLOWING DIGIT TEXT */
 .flip-digit-span {
-display: inline-block;
-font-family: 'JetBrains Mono', monospace;
-font-size: clamp(3.8rem, 14vw, 11rem);
-font-weight: 800;
-color: var(--fs-digit-color, #38bdf8);
-text-shadow: 0 0 14px var(--fs-glow, rgba(56, 189, 248, 0.75)), 0 0 30px var(--fs-glow, rgba(56, 189, 248, 0.4));
-backface-visibility: hidden;
-pointer-events: none;
-user-select: none;
-line-height: 0.8;
-transform: translateZ(0);
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(3.6rem, 13vw, 10.5rem);
+  font-weight: 800;
+  color: var(--fs-digit-color, #f472b6);
+  text-shadow: none !important;
+  user-select: none;
+  line-height: 0.8;
 }
 
 .flip-colon {
-font-family: 'JetBrains Mono', monospace;
-font-size: clamp(2.5rem, 8vw, 8rem);
-font-weight: 800;
-color: var(--fs-digit-color, #38bdf8);
-opacity: 0.9;
-margin: 0 2px;
-text-shadow: 0 0 14px var(--fs-glow, rgba(56, 189, 248, 0.75));
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(2.5rem, 8vw, 7.5rem);
+  font-weight: 800;
+  color: var(--fs-digit-color, #f472b6);
+  opacity: 0.85;
+  margin: 0 2px;
+  text-shadow: none !important;
 }
 
 .fs-preset-btns {
-display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; width: 100%;
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; width: 100%;
 }
 
 .fs-preset-btns button {
-padding: 10px 20px;
-background: rgba(255, 255, 255, 0.08);
-border: 1px solid rgba(255, 255, 255, 0.15);
-color: #f8fafc;
-border-radius: 30px;
-cursor: pointer;
-font-weight: 600;
-font-size: clamp(0.8rem, 1.8vw, 0.95rem);
-backdrop-filter: blur(10px);
-transition: all 0.25s ease;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid var(--fs-card-border, #f472b6);
+  color: #fdf2f8;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.8vw, 0.92rem);
+  transition: all 0.2s ease;
 }
 
 .fs-preset-btns button:hover {
-background: var(--fs-digit-color, #38bdf8);
-color: #030712;
-border-color: var(--fs-digit-color, #38bdf8);
+  background: var(--fs-digit-color, #f472b6);
+  color: #1a0425;
 }
 
 .fs-controls-group {
-display: flex;
-gap: 12px;
-flex-wrap: wrap;
-justify-content: center;
-width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
 
 .fs-controls-group .btn {
-font-size: clamp(0.85rem, 2vw, 1rem);
-padding: 12px 24px;
-border-radius: 14px;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  padding: 10px 20px;
+  border-radius: 14px;
 }
 
-#btn-fs-toggle { background: #10b981; color: white; border: none; }
-#btn-fs-stop { background: #ef4444; color: white; border: none; }
-.btn-fullscreen-exit { background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border); color: white; }
+#btn-fs-toggle { background: var(--btn-primary-grad); color: white; border: 1.5px solid var(--bio-accent); }
+#btn-fs-stop { background: #fb7185; color: white; border: 1.5px solid #f43f5e; }
+.btn-fullscreen-exit { background: rgba(255, 255, 255, 0.1); border: 1.5px solid var(--bio-accent); color: white; }
 
-/* Footer & Action Bar */
-.footer-section { margin-top: 50px; margin-bottom: 40px; }
-.action-bar { padding: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-top: 2px solid var(--bio-accent); }
-.action-bar-text h3 { color: var(--bio-accent); margin-bottom: 5px; display: flex; align-items: center; gap: 8px;}
-.action-bar-text p { font-size: 0.95rem; color: var(--text-muted); max-width: 500px;}
+/* 📱 Fallback CSS rotation for browsers that disallow JS Orientation Lock */
+@media (max-width: 900px) and (orientation: portrait) {
+  .fullscreen-timer-overlay.active .fs-content-deck {
+    transform: rotate(90deg);
+    max-width: 88vh;
+    width: 88vh;
+  }
+  .fullscreen-timer-overlay.active .flip-card {
+    width: clamp(48px, 12vh, 85px);
+    height: clamp(65px, 16vh, 115px);
+  }
+  .fullscreen-timer-overlay.active .flip-digit-span {
+    font-size: clamp(2.5rem, 10vh, 5.5rem);
+  }
+  .fullscreen-timer-overlay.active .flip-colon {
+    font-size: clamp(1.8rem, 6vh, 3.8rem);
+  }
+  .fullscreen-timer-overlay.active .fs-preset-btns {
+    margin-bottom: 12px;
+  }
+  .fullscreen-timer-overlay.active .fs-preset-btns button {
+    padding: 5px 12px;
+    font-size: 0.76rem;
+  }
+  .fullscreen-timer-overlay.active .fs-controls-group .btn {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+}
 
-/* Modals & Activity Log */
+.view-panel { display: none; }
+.view-panel.active-view { display: block; }
+
+/* 🌟 POPUP MODALS */
 .modal-overlay {
-position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
-z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 2, 18, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
-.modal-overlay.active { opacity: 1; pointer-events: auto; }
-.security-modal { background: var(--bg-gradient); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 30px; width: 90%; max-width: 450px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: center; transform: translateY(20px); transition: transform 0.3s; }
-.modal-overlay.active .security-modal { transform: translateY(0); }
-.modal-icon { font-size: 3rem; margin-bottom: 15px; }
-.modal-title { font-size: 1.4rem; font-weight: 600; color: #f8fafc; margin-bottom: 10px; }
-.modal-text { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
-.modal-buttons { display: flex; gap: 15px; justify-content: center; }
 
-.floating-log-btn {
-position: fixed; bottom: 25px; right: 25px; background: var(--bio-dark); border: 2px solid var(--bio-accent);
-color: white; padding: 12px 20px; border-radius: 30px; cursor: pointer; z-index: 9998;
-box-shadow: var(--shadow); display: flex; align-items: center; gap: 8px; font-weight: 600; transition: all 0.3s;
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
-.floating-log-btn:hover { transform: translateY(-3px); }
+
+.security-modal {
+  background: radial-gradient(circle at 50% 0%, #2e083d 0%, #150324 100%);
+  border: 1.5px solid var(--bio-accent);
+  border-radius: var(--radius);
+  padding: 28px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), var(--btn-border-glow);
+  text-align: center;
+  position: relative;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-icon { font-size: 2.8rem; margin-bottom: 10px; }
+.modal-title { font-size: 1.35rem; font-weight: 800; color: var(--bio-subtext); margin-bottom: 8px; }
+.modal-text { font-size: 0.94rem; color: #e2e8f0; margin-bottom: 20px; line-height: 1.5; }
+.modal-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
 .log-content-area {
-max-height: 300px; overflow-y: auto; text-align: left; background: rgba(0,0,0,0.3);
-padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass-border);
+  max-height: 320px;
+  overflow-y: auto;
+  text-align: left;
+  background: rgba(8, 2, 15, 0.7);
+  padding: 14px;
+  border-radius: 14px;
+  margin: 12px 0 20px 0;
+  border: 1px solid var(--glass-border);
+  flex: 1;
 }
-.log-entry { padding: 10px 5px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 12px; align-items: start; }
-.log-entry:last-child { border-bottom: none; }
-.log-time { color: var(--bio-accent); font-size: 0.8rem; white-space: nowrap; font-family: monospace; }
 
-/* Dark Glass Edit Overlay */
+.log-entry {
+  padding: 10px 6px;
+  border-bottom: 1px solid rgba(244, 114, 182, 0.12);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.86rem;
+}
+
+.log-entry:last-child { border-bottom: none; }
+.log-time { color: var(--bio-accent); font-size: 0.76rem; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+
+/* 🌟 DOCKED FLOATING "BACK TO TOP" BUTTON */
+.floating-dock {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9980;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-top {
+  width: 50px;
+  height: 50px;
+  background: rgba(48, 10, 64, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid var(--bio-accent);
+  color: #fff1f2;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), var(--btn-border-glow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+}
+
+.btn-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.btn-top:hover {
+  transform: translateY(-4px) scale(1.1);
+  background: var(--btn-primary-grad);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
 .fs-edit-overlay {
-position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-background: rgba(2, 26, 20, 0.96);
-backdrop-filter: blur(16px);
--webkit-backdrop-filter: blur(16px);
-z-index: 100;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 18px;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.3s ease;
-border-radius: 28px;
-padding: 15px;
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  background: rgba(25, 6, 35, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  border-radius: 24px;
+  padding: 15px;
 }
 .fs-edit-overlay.active { opacity: 1; pointer-events: auto; }
-
-.fs-edit-box-row {
-display: flex;
-gap: 12px;
-align-items: center;
-}
+.fs-edit-box-row { display: flex; gap: 10px; align-items: center; }
 .fs-edit-input {
-width: clamp(55px, 15vw, 75px);
-height: clamp(44px, 10vw, 52px);
-background: #0b1329;
-border: 1.5px solid #38bdf8;
-border-radius: 12px;
-color: #38bdf8;
-font-family: 'JetBrains Mono', monospace;
-font-size: clamp(1.1rem, 3vw, 1.5rem);
-font-weight: 800;
-text-align: center;
-outline: none;
-}
-.fs-edit-input::selection {
-background: rgba(56, 189, 248, 0.3);
-color: #38bdf8;
+  width: clamp(52px, 14vw, 70px);
+  height: clamp(42px, 9vw, 50px);
+  background: #140420;
+  border: 1.5px solid var(--bio-accent);
+  border-radius: 12px;
+  color: var(--bio-accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: 800;
+  text-align: center;
+  outline: none;
 }
 
-/* Toasts */
-.toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.toast-container { position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 100002; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
 .custom-message-box {
-background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); color: white; padding: 14px 28px; border-radius: 50px;
-border: 1px solid var(--glass-border); font-weight: 600; font-size: 0.95rem;
-display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(-20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(30, 8, 42, 0.96); backdrop-filter: blur(10px); color: white; padding: 12px 24px; border-radius: 50px;
+  border: 1.5px solid var(--glass-border); font-weight: 700; font-size: 0.9rem;
+  display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(-20px); transition: all 0.35s ease;
 }
 .custom-message-box.show { opacity: 1; transform: translateY(0); }
-.custom-message-box.success { border-left: 4px solid var(--success); }
-.custom-message-box.error { border-left: 4px solid var(--danger); background: rgba(127, 29, 29, 0.95); }
+.custom-message-box.success { border-left: 5px solid #34d399; }
+.custom-message-box.error { border-left: 5px solid var(--danger); background: rgba(70, 8, 25, 0.96); }
 
-/* 📱 PERFECT MOBILE ALIGNMENTS FOR FULLSCREEN BUTTONS */
-@media (max-width: 900px) {
-body { padding: 12px; }
-.info-card { grid-template-columns: 1fr; }
-.timer-controls-row { flex-direction: column; justify-content: center; gap: 15px; }
-.timer-inputs-group { justify-content: center; width: 100%; }
-.timer-buttons-group { justify-content: center; width: 100%; }
-.timer-buttons-group .btn { flex: 1 1 auto; min-width: 130px; }
-}
-
-/* PORTRAIT MOBILE FIXES */
-@media (max-width: 600px) and (orientation: portrait) {
-body { padding: 8px; }
-header { margin-bottom: 20px; }
-.timer-panel { padding: 18px 15px; }
-.glass-card { margin-bottom: 18px; border-radius: 16px; }
-.action-bar { flex-direction: column; align-items: stretch; text-align: center; }
-.action-bar button { width: 100%; }
-
-.fullscreen-timer-overlay { padding: 15px 10px; justify-content: center; }
-.fs-subtext { font-size: 0.8rem; margin-bottom: 15px; }
-
-.flip-clock-container { width: 100%; max-width: 100%; gap: 1.2vw; margin-bottom: 20px;}
-.flip-unit { gap: 1vw; }
-.flip-card { width: 13.5vw; height: 21vw; border-radius: 10px; }
-.flip-digit-span { font-size: 16vw; }
-.flip-colon { font-size: 12vw; margin: 0; }
-
-/* Even 2x2 Grid for Preset Buttons */
-.fs-preset-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-bottom: 15px;}
-.fs-preset-btns button { padding: 10px 4px; font-size: 0.75rem; width: 100%; border-radius: 10px; }
-
-/* Balanced 2-Column Grid for Control Buttons in Mobile Portrait */
-.fs-controls-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
-.fs-controls-group .btn { padding: 12px 6px; font-size: 0.85rem; width: 100%; text-align: center; justify-content: center; }
-.btn-fullscreen-exit { grid-column: span 2; }
-.floating-log-btn { bottom: 15px; right: 15px; padding: 8px 14px; font-size: 0.8rem; }
-}
-
-/* LANDSCAPE MOBILE FIXES */
-@media (max-height: 600px) and (orientation: landscape) {
-.fullscreen-timer-overlay { padding: 6px 12px; justify-content: center; }
-.fs-content-deck { max-height: 98vh; justify-content: space-between; }
-.fs-subtext { display: none; }
-
-.flip-clock-container { margin: 2px 0 6px 0; gap: 1.5vw; width: auto; }
-.flip-unit { gap: 0.8vw; }
-.flip-card { height: 42vh; width: 11vw; min-width: 42px; border-radius: 10px; border-width: 1px; }
-.flip-digit-span { font-size: 34vh; }
-.flip-colon { font-size: 28vh; margin: 0; }
-
-.fs-preset-btns { margin-bottom: 6px; gap: 6px; flex-wrap: nowrap; width: auto; }
-.fs-preset-btns button { padding: 4px 10px; font-size: 0.7rem; border-radius: 8px; white-space: nowrap; }
-
-.fs-controls-group { gap: 6px; width: auto; flex-direction: row; flex-wrap: nowrap; }
-.fs-controls-group .btn { padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; flex: 0 1 auto; white-space: nowrap; }
-.floating-log-btn { display: none; }
-
-.fs-edit-overlay { gap: 10px; padding: 10px; }
-.fs-edit-input { height: 40px; width: 55px; font-size: 1.2rem; }
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .app-top-navbar { padding: 10px 14px; }
+  .navbar-inner { justify-content: center; }
+  .header-action-pill { padding: 6px 12px; font-size: 0.78rem; }
+  .live-dashboard-bar { grid-template-columns: 1fr; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .quotes-card { flex-direction: column; text-align: center; padding: 18px; }
+  .footer-boxed-wrapper { padding: 22px 16px; }
+  .footer-action-panel { flex-direction: column; text-align: center; }
+  .footer-actions-btn-row { width: 100%; justify-content: center; }
+  .floating-dock { bottom: 16px; right: 16px; }
+  .btn-top { width: 44px; height: 44px; font-size: 1.1rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- 🌟 DEDICATED TOP NAVBAR -->
+<nav class="app-top-navbar">
+  <div class="navbar-inner">
+    <div class="brand-section" onclick="showOnlyView('view-home')">
+      <span class="brand-icon">🩺</span>
+      <div>
+        <div class="brand-title">NEET Master Prep</div>
+        <div class="brand-tag">2027 PCB Target AIIMS</div>
+      </div>
+    </div>
+
+    <div class="nav-actions-group">
+      <div class="header-action-pill badge-tag-pill" id="header-main-badge" tabindex="-1">✨ PCB Suite 2027 ✨</div>
+      <div class="header-action-pill" onclick="openNotesModal()">💌 Custom Notes</div>
+      <div class="header-action-pill" id="btn-theme-switcher" onclick="cycleGlobalTheme()">🎨 Theme: <span id="current-theme-name">Sakura Dream</span></div>
+    </div>
+  </div>
+</nav>
+
 <main class="container">
-<header>
-<h1>BIOLOGY MASTER TRACKER</h1>
-<p class="subtitle">Securely master the NCERT syllabus, cell by cell.</p>
-</header>
-
-<!-- TARGETED SET TIMER CONTROL CARD -->
-<section class="glass-card timer-panel">
-<div class="timer-title-group">
-<h3 id="timer-header-title">⏳TARGETED STUDY SET TIMER </h3>
-<p style="font-size: 0.88rem; color: var(--text-muted);">Set target time for your active chapter study session.</p>
-</div>
-
-<div class="timer-controls-row">
-  <div class="timer-inputs-group">
-    <div class="single-timer-box" id="box-hrs"><input type="number" id="in-hrs" min="0" max="23" value="00"></div>
-    <span style="font-weight: 700; color: var(--bio-accent);">:</span>
-    <div class="single-timer-box" id="box-mins"><input type="number" id="in-mins" min="0" max="59" value="00"></div>
-    <span style="font-weight: 700; color: var(--bio-accent);">:</span>
-    <div class="single-timer-box" id="box-secs"><input type="number" id="in-secs" min="0" max="59" value="00"></div>
+  <div class="hero-header">
+    <h1>NEET MASTER TRACKER</h1>
+    <p class="subtitle">Unit-by-Unit NCERT Checklist with Study Sprint Timer & Real-Time Telemetry 🌸</p>
   </div>
 
-  <div class="timer-buttons-group">
-    <button class="btn btn-primary" id="btn-start-target-timer">▶️ Start Set</button>
-    <button class="btn btn-warning" id="btn-pause-target-timer" style="display: none;">⏸️ Pause</button>
-    <button class="btn btn-danger" id="btn-reset-target-timer">⏹️ Stop / Reset</button>
-    <button class="btn btn-alarm" id="btn-alarm-stop-target" style="display: none;">🔔 Stop Ringtone</button>
-    <button class="btn btn-secondary" id="btn-open-fullscreen-timer" title="Launch Fullscreen Focus Mode">📺 Fullscreen</button>
+  <!-- REAL-TIME DIGITAL WATCH & NEET 2027 COUNTDOWN -->
+  <div class="live-dashboard-bar">
+    <div class="live-widget-card">
+      <div class="live-widget-icon">⏰</div>
+      <div class="live-widget-info">
+        <span class="live-widget-label">Current Real Time</span>
+        <div class="live-clock-time" id="live-clock-time">--:--:-- --</div>
+        <div class="live-clock-date" id="live-clock-date">Loading date...</div>
+      </div>
+    </div>
+
+    <div class="live-widget-card">
+      <div class="live-widget-icon">🎯</div>
+      <div class="live-widget-info">
+        <span class="live-widget-label">NEET 2027 Countdown (2nd May 2027)</span>
+        <div class="countdown-digits-row">
+          <div class="cd-box"><div class="cd-num" id="cd-days">--</div><div class="cd-lbl">Days</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-hours">--</div><div class="cd-lbl">Hours</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-mins">--</div><div class="cd-lbl">Mins</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-secs">--</div><div class="cd-lbl">Secs</div></div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-</section>
 
-<section class="glass-card info-card">
-<div class="input-group"><label for="student-name">Student Name</label><input type="text" id="student-name" placeholder="Enter your full name"></div>
-<div class="input-group"><label for="target-score">Target Exam & Score</label><input type="text" id="target-score" placeholder="e.g., NEET 360/360"></div>
-<div class="input-group">
-  <label for="start-date">Start Date</label>
-  <div class="hybrid-date-wrapper">
-    <input type="text" class="date-mask" id="start-date" placeholder="DD/MM/YYYY" maxlength="10">
-    <input type="date" class="native-calendar-btn" id="start-date-picker" title="Select date from calendar">
-    <span class="calendar-icon-overlay">📅</span>
+  <!-- ================= 🏠 HOMEPAGE / DASHBOARD HUB ================= -->
+  <div id="view-home" class="view-panel active-view">
+
+    <section class="glass-card timer-panel">
+      <div class="timer-title-group">
+        <h3 id="timer-header-title">⏳ TARGETED STUDY SET TIMER</h3>
+        <p style="font-size: 0.86rem; color: var(--bio-subtext);">Set sprint durations for active NCERT question solving or chapter revision sessions.</p>
+      </div>
+
+      <div class="timer-controls-row">
+        <div class="timer-inputs-group">
+          <div class="single-timer-box" id="box-hrs"><input type="number" id="in-hrs" min="0" max="23" value="00"></div>
+          <span style="font-weight: 700; color: var(--bio-accent);">:</span>
+          <div class="single-timer-box" id="box-mins"><input type="number" id="in-mins" min="0" max="59" value="00"></div>
+          <span style="font-weight: 700; color: var(--bio-accent);">:</span>
+          <div class="single-timer-box" id="box-secs"><input type="number" id="in-secs" min="0" max="59" value="00"></div>
+        </div>
+
+        <div class="timer-buttons-group">
+          <button class="btn btn-primary" id="btn-start-target-timer">▶️ Start Set</button>
+          <button class="btn btn-warning" id="btn-pause-target-timer" style="display: none;">⏸️ Pause</button>
+          <button class="btn btn-danger" id="btn-reset-target-timer">⏹️ Stop / Reset</button>
+          <button class="btn btn-alarm" id="btn-alarm-stop-target" style="display: none;">🔔 Stop Ringtone</button>
+          <button class="btn btn-secondary" id="btn-open-fullscreen-timer" title="Launch Fullscreen Focus Mode">📺 Fullscreen Focus</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass-card info-card">
+      <div class="input-group"><label for="student-name">Aspirant Name 🩺</label><input type="text" id="student-name" placeholder="Enter your full name"></div>
+      <div class="input-group"><label for="target-score">Target NEET Score 🎯</label><input type="text" id="target-score" placeholder="e.g., 720/720 (AIIMS New Delhi)"></div>
+      <div class="input-group">
+        <label for="start-date-picker">Prep Start Date 🗓️</label>
+        <input type="date" id="start-date-picker" aria-label="Select Prep Start Date">
+      </div>
+    </section>
+
+    <!-- Subject Launch Grid -->
+    <div class="hub-grid">
+      <div class="hub-card">
+        <div class="hub-card-header">
+          <div class="hub-card-icon">🧬</div>
+          <div>
+            <div class="hub-card-title">Biology</div>
+            <div class="hub-card-desc">Botany + Zoology (360 Marks)</div>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--bio-subtext);">Class 11 (5 Units) | Class 12 (5 Units)</p>
+        <div class="hub-card-actions">
+          <button class="btn-hub" onclick="showOnlyView('view-c11-bio')">🌱 Class 11 Bio</button>
+          <button class="btn-hub" onclick="showOnlyView('view-c12-bio')">🌺 Class 12 Bio</button>
+        </div>
+      </div>
+
+      <div class="hub-card">
+        <div class="hub-card-header">
+          <div class="hub-card-icon">⚡</div>
+          <div>
+            <div class="hub-card-title">Physics</div>
+            <div class="hub-card-desc">Mechanics, Waves, Electrodynamics & Optics (180 Marks)</div>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--bio-subtext);">Class 11 (10 Units) | Class 12 (9 Units)</p>
+        <div class="hub-card-actions">
+          <button class="btn-hub" onclick="showOnlyView('view-c11-phy')">🌱 Class 11 Phy</button>
+          <button class="btn-hub" onclick="showOnlyView('view-c12-phy')">🌺 Class 12 Phy</button>
+        </div>
+      </div>
+
+      <div class="hub-card">
+        <div class="hub-card-header">
+          <div class="hub-card-icon">🧪</div>
+          <div>
+            <div class="hub-card-title">Chemistry</div>
+            <div class="hub-card-desc">Physical, Inorganic & Organic (180 Marks)</div>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--bio-subtext);">Class 11 (9 Units) | Class 12 (10 Units)</p>
+        <div class="hub-card-actions">
+          <button class="btn-hub" onclick="showOnlyView('view-c11-chem')">🌱 Class 11 Chem</button>
+          <button class="btn-hub" onclick="showOnlyView('view-c12-chem')">🌺 Class 12 Chem</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="glass-card info-card" style="display: block;">
+      <div class="input-group">
+        <label for="personal-notes">Dream Board & Daily Affirmations 📝💕</label>
+        <textarea id="personal-notes" placeholder="Write reminders, target test series schedules, or motivational affirmations here..." rows="3"></textarea>
+      </div>
+    </section>
+
   </div>
-</div>
-</section>
 
-<!-- Personal Notes & Reminders -->
-<section class="glass-card info-card" style="display: block;">
-<div class="input-group">
-<label for="personal-notes">Personal Notes & Reminders 📝</label>
-<textarea id="personal-notes" placeholder="Write something for tomorrow, next month, or a year from now... 😅" rows="4"></textarea>
-</div>
-</section>
+  <!-- ================= 🌱 CLASS 11 BIOLOGY ONLY (UNIT-WISE) ================= -->
+  <div id="view-c11-bio" class="view-panel">
+    <div class="subject-top-nav">
+      <h2>🧬 Class 11 Biology : 5 Units (19 Chapters)</h2>
+      <button class="btn btn-secondary" onclick="showOnlyView('view-home')">🏠 Back to Hub</button>
+    </div>
 
-<!-- UNIT 1 -->
-<section class="glass-card">
-<div class="unit-header"><div class="unit-icon">🌍</div><div><h2 class="unit-title">UNIT 1 : Diversity in the Living World</h2></div></div>
-<div class="table-responsive">
-<table>
-<thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" id="u1-c1-status"></td><td>1</td><td class="chapter-name">The Living World</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u1-c1-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u1-c1-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u1-c1-rev1"></td><td><input type="checkbox" id="u1-c1-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u1-c2-status"></td><td>2</td><td class="chapter-name">Biological Classification</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u1-c2-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u1-c2-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u1-c2-rev1"></td><td><input type="checkbox" id="u1-c2-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u1-c3-status"></td><td>3</td><td class="chapter-name">Plant Kingdom</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u1-c3-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u1-c3-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u1-c3-rev1"></td><td><input type="checkbox" id="u1-c3-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u1-c4-status"></td><td>4</td><td class="chapter-name">Animal Kingdom</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u1-c4-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u1-c4-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u1-c4-rev1"></td><td><input type="checkbox" id="u1-c4-rev2"></td></tr>
-</tbody>
-</table>
-</div>
-</section>
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🌍</div><div><h2 class="unit-title">UNIT 1 : Diversity in the Living World</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u1-c1-status"></td><td>1</td><td class="chapter-name">The Living World</td><td><input type="date" id="u1-c1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c1-rev1"></td><td><input type="checkbox" id="u1-c1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u1-c2-status"></td><td>2</td><td class="chapter-name">Biological Classification</td><td><input type="date" id="u1-c2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c2-rev1"></td><td><input type="checkbox" id="u1-c2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u1-c3-status"></td><td>3</td><td class="chapter-name">Plant Kingdom</td><td><input type="date" id="u1-c3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c3-rev1"></td><td><input type="checkbox" id="u1-c3-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u1-c4-status"></td><td>4</td><td class="chapter-name">Animal Kingdom</td><td><input type="date" id="u1-c4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c4-rev1"></td><td><input type="checkbox" id="u1-c4-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<!-- UNIT 2 -->
-<section class="glass-card">
-<div class="unit-header"><div class="unit-icon">🌿</div><div><h2 class="unit-title">UNIT 2 : Structural Organization in Plants and Animals</h2></div></div>
-<div class="table-responsive">
-<table>
-<thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" id="u2-c5-status"></td><td>5</td><td class="chapter-name">Morphology of Flowering Plants</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u2-c5-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u2-c5-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u2-c5-rev1"></td><td><input type="checkbox" id="u2-c5-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u2-c6-status"></td><td>6</td><td class="chapter-name">Anatomy of Flowering Plants</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u2-c6-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u2-c6-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u2-c6-rev1"></td><td><input type="checkbox" id="u2-c6-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u2-c7-status"></td><td>7</td><td class="chapter-name">Structural Organization in Animals</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u2-c7-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u2-c7-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u2-c7-rev1"></td><td><input type="checkbox" id="u2-c7-rev2"></td></tr>
-</tbody>
-</table>
-</div>
-</section>
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🌿</div><div><h2 class="unit-title">UNIT 2 : Structural Organisation in Animals and Plants</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u2-c5-status"></td><td>5</td><td class="chapter-name">Morphology of Flowering Plants</td><td><input type="date" id="u2-c5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u2-c5-rev1"></td><td><input type="checkbox" id="u2-c5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u2-c6-status"></td><td>6</td><td class="chapter-name">Anatomy of Flowering Plants</td><td><input type="date" id="u2-c6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u2-c6-rev1"></td><td><input type="checkbox" id="u2-c6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u2-c7-status"></td><td>7</td><td class="chapter-name">Structural Organisation in Animals</td><td><input type="date" id="u2-c7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u2-c7-rev1"></td><td><input type="checkbox" id="u2-c7-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<!-- UNIT 3 -->
-<section class="glass-card">
-<div class="unit-header"><div class="unit-icon">🦠</div><div><h2 class="unit-title">UNIT 3 : Cell: Structure and Function</h2></div></div>
-<div class="table-responsive">
-<table>
-<thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" id="u3-c8-status"></td><td>8</td><td class="chapter-name">Cell: The Unit of Life</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u3-c8-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u3-c8-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u3-c8-rev1"></td><td><input type="checkbox" id="u3-c8-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u3-c9-status"></td><td>9</td><td class="chapter-name">Biomolecules</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u3-c9-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u3-c9-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u3-c9-rev1"></td><td><input type="checkbox" id="u3-c9-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u3-c10-status"></td><td>10</td><td class="chapter-name">Cell Cycle and Cell Division</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u3-c10-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u3-c10-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u3-c10-rev1"></td><td><input type="checkbox" id="u3-c10-rev2"></td></tr>
-</tbody>
-</table>
-</div>
-</section>
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🦠</div><div><h2 class="unit-title">UNIT 3 : Cell: Structure and Function</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u3-c8-status"></td><td>8</td><td class="chapter-name">Cell: The Unit of Life</td><td><input type="date" id="u3-c8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u3-c8-rev1"></td><td><input type="checkbox" id="u3-c8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u3-c9-status"></td><td>9</td><td class="chapter-name">Biomolecules</td><td><input type="date" id="u3-c9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u3-c9-rev1"></td><td><input type="checkbox" id="u3-c9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u3-c10-status"></td><td>10</td><td class="chapter-name">Cell Cycle and Cell Division</td><td><input type="date" id="u3-c10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u3-c10-rev1"></td><td><input type="checkbox" id="u3-c10-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<!-- UNIT 4 -->
-<section class="glass-card">
-<div class="unit-header"><div class="unit-icon">☀️</div><div><h2 class="unit-title">UNIT 4 : Plant Physiology</h2></div></div>
-<div class="table-responsive">
-<table>
-<thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" id="u4-c11-status"></td><td>11</td><td class="chapter-name">Photosynthesis in Higher Plants</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u4-c11-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u4-c11-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u4-c11-rev1"></td><td><input type="checkbox" id="u4-c11-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u4-c12-status"></td><td>12</td><td class="chapter-name">Respiration in Plants</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u4-c12-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u4-c12-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u4-c12-rev1"></td><td><input type="checkbox" id="u4-c12-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u4-c13-status"></td><td>13</td><td class="chapter-name">Plant Growth and Development</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u4-c13-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u4-c13-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u4-c13-rev1"></td><td><input type="checkbox" id="u4-c13-rev2"></td></tr>
-</tbody>
-</table>
-</div>
-</section>
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">☀️</div><div><h2 class="unit-title">UNIT 4 : Plant Physiology</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u4-c11-status"></td><td>11</td><td class="chapter-name">Photosynthesis in Higher Plants</td><td><input type="date" id="u4-c11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u4-c11-rev1"></td><td><input type="checkbox" id="u4-c11-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u4-c12-status"></td><td>12</td><td class="chapter-name">Respiration in Plants</td><td><input type="date" id="u4-c12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u4-c12-rev1"></td><td><input type="checkbox" id="u4-c12-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u4-c13-status"></td><td>13</td><td class="chapter-name">Plant Growth and Development</td><td><input type="date" id="u4-c13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u4-c13-rev1"></td><td><input type="checkbox" id="u4-c13-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<!-- UNIT 5 -->
-<section class="glass-card">
-<div class="unit-header"><div class="unit-icon">🫀</div><div><h2 class="unit-title">UNIT 5 : Human Physiology</h2></div></div>
-<div class="table-responsive">
-<table>
-<thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
-<tbody>
-<tr><td><input type="checkbox" id="u5-c14-status"></td><td>14</td><td class="chapter-name">Breathing and Exchange of Gases</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u5-c14-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u5-c14-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u5-c14-rev1"></td><td><input type="checkbox" id="u5-c14-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u5-c15-status"></td><td>15</td><td class="chapter-name">Body Fluids and Circulation</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u5-c15-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u5-c15-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u5-c15-rev1"></td><td><input type="checkbox" id="u5-c15-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u5-c16-status"></td><td>16</td><td class="chapter-name">Excretory Products & Elimination</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u5-c16-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u5-c16-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u5-c16-rev1"></td><td><input type="checkbox" id="u5-c16-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u5-c17-status"></td><td>17</td><td class="chapter-name">Locomotion and Movement</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u5-c17-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u5-c17-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u5-c17-rev1"></td><td><input type="checkbox" id="u5-c17-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u5-c18-status"></td><td>18</td><td class="chapter-name">Neural Control and Coordination</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u5-c18-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u5-c18-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u5-c18-rev1"></td><td><input type="checkbox" id="u5-c18-rev2"></td></tr>
-<tr><td><input type="checkbox" id="u5-c19-status"></td><td>19</td><td class="chapter-name">Chemical Coordination & Integration</td><td><div class="hybrid-date-wrapper"><input type="text" class="date-mask" id="u5-c19-date" placeholder="DD/MM/YYYY" maxlength="10"><input type="date" class="native-calendar-btn" id="u5-c19-date-picker"><span class="calendar-icon-overlay">📅</span></div></td><td><input type="checkbox" id="u5-c19-rev1"></td><td><input type="checkbox" id="u5-c19-rev2"></td></tr>
-</tbody>
-</table>
-</div>
-</section>
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🫀</div><div><h2 class="unit-title">UNIT 5 : Human Physiology</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u5-c14-status"></td><td>14</td><td class="chapter-name">Breathing and Exchange of Gases</td><td><input type="date" id="u5-c14-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c14-rev1"></td><td><input type="checkbox" id="u5-c14-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c15-status"></td><td>15</td><td class="chapter-name">Body Fluids and Circulation</td><td><input type="date" id="u5-c15-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c15-rev1"></td><td><input type="checkbox" id="u5-c15-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c16-status"></td><td>16</td><td class="chapter-name">Excretory Products and their Elimination</td><td><input type="date" id="u5-c16-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c16-rev1"></td><td><input type="checkbox" id="u5-c16-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c17-status"></td><td>17</td><td class="chapter-name">Locomotion and Movement</td><td><input type="date" id="u5-c17-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c17-rev1"></td><td><input type="checkbox" id="u5-c17-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c18-status"></td><td>18</td><td class="chapter-name">Neural Control and Coordination</td><td><input type="date" id="u5-c18-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c18-rev1"></td><td><input type="checkbox" id="u5-c18-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c19-status"></td><td>19</td><td class="chapter-name">Chemical Coordination and Integration</td><td><input type="date" id="u5-c19-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c19-rev1"></td><td><input type="checkbox" id="u5-c19-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 
-<!-- FOOTER & Secure Action Bar -->
-<footer class="footer-section">
-<div class="glass-card action-bar">
-<div class="action-bar-text">
-<h3>🛡️ Maximum Security Sync</h3>
-<p>Exported files are mathematically sealed with a digital signature to prevent malicious tampering. Do not import files from unknown sources.</p>
-</div>
-<div style="display: flex; gap: 12px; flex-wrap: wrap;">
-<button class="btn btn-export" id="btn-export">⬇️ Secure Export</button>
-<button class="btn btn-import" id="btn-import">⬆️ Secure Import</button>
-<input type="file" id="import-file" class="file-input-hidden" accept=".json">
-</div>
-</div>
-</footer>
+  <!-- ================= 🌱 CLASS 11 PHYSICS ONLY (UNIT-WISE) ================= -->
+  <div id="view-c11-phy" class="view-panel">
+    <div class="subject-top-nav">
+      <h2>⚡ Class 11 Physics : 10 Units (14 Chapters)</h2>
+      <button class="btn btn-secondary" onclick="showOnlyView('view-home')">🏠 Back to Hub</button>
+    </div>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">📐</div><div><h2 class="unit-title">UNIT 1 : Physical World and Measurement</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p1-status"></td><td>1</td><td class="chapter-name">Units and Measurements</td><td><input type="date" id="c11-p1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p1-rev1"></td><td><input type="checkbox" id="c11-p1-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🏎️</div><div><h2 class="unit-title">UNIT 2 : Kinematics</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p2-status"></td><td>2</td><td class="chapter-name">Motion in a Straight Line</td><td><input type="date" id="c11-p2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p2-rev1"></td><td><input type="checkbox" id="c11-p2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p3-status"></td><td>3</td><td class="chapter-name">Motion in a Plane</td><td><input type="date" id="c11-p3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p3-rev1"></td><td><input type="checkbox" id="c11-p3-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🥊</div><div><h2 class="unit-title">UNIT 3 : Laws of Motion</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p4-status"></td><td>4</td><td class="chapter-name">Laws of Motion</td><td><input type="date" id="c11-p4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p4-rev1"></td><td><input type="checkbox" id="c11-p4-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚙️</div><div><h2 class="unit-title">UNIT 4 : Work, Energy and Power</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p5-status"></td><td>5</td><td class="chapter-name">Work, Energy and Power</td><td><input type="date" id="c11-p5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p5-rev1"></td><td><input type="checkbox" id="c11-p5-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🌀</div><div><h2 class="unit-title">UNIT 5 : Motion of System of Particles and Rigid Body</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p6-status"></td><td>6</td><td class="chapter-name">System of Particles and Rotational Motion</td><td><input type="date" id="c11-p6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p6-rev1"></td><td><input type="checkbox" id="c11-p6-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🪐</div><div><h2 class="unit-title">UNIT 6 : Gravitation</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p7-status"></td><td>7</td><td class="chapter-name">Gravitation</td><td><input type="date" id="c11-p7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p7-rev1"></td><td><input type="checkbox" id="c11-p7-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧊</div><div><h2 class="unit-title">UNIT 7 : Properties of Bulk Matter</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p8-status"></td><td>8</td><td class="chapter-name">Mechanical Properties of Solids</td><td><input type="date" id="c11-p8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p8-rev1"></td><td><input type="checkbox" id="c11-p8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p9-status"></td><td>9</td><td class="chapter-name">Mechanical Properties of Fluids</td><td><input type="date" id="c11-p9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p9-rev1"></td><td><input type="checkbox" id="c11-p9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p10-status"></td><td>10</td><td class="chapter-name">Thermal Properties of Matter</td><td><input type="date" id="c11-p10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p10-rev1"></td><td><input type="checkbox" id="c11-p10-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🔥</div><div><h2 class="unit-title">UNIT 8 : Thermodynamics</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p11-status"></td><td>11</td><td class="chapter-name">Thermodynamics</td><td><input type="date" id="c11-p11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p11-rev1"></td><td><input type="checkbox" id="c11-p11-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">💨</div><div><h2 class="unit-title">UNIT 9 : Behaviour of Perfect Gas and Kinetic Theory</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p12-status"></td><td>12</td><td class="chapter-name">Kinetic Theory</td><td><input type="date" id="c11-p12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p12-rev1"></td><td><input type="checkbox" id="c11-p12-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🌊</div><div><h2 class="unit-title">UNIT 10 : Oscillations and Waves</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-p13-status"></td><td>13</td><td class="chapter-name">Oscillations</td><td><input type="date" id="c11-p13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p13-rev1"></td><td><input type="checkbox" id="c11-p13-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p14-status"></td><td>14</td><td class="chapter-name">Waves</td><td><input type="date" id="c11-p14-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p14-rev1"></td><td><input type="checkbox" id="c11-p14-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= 🌱 CLASS 11 CHEMISTRY ONLY (UNIT-WISE) ================= -->
+  <div id="view-c11-chem" class="view-panel">
+    <div class="subject-top-nav">
+      <h2>🧪 Class 11 Chemistry : 9 Units</h2>
+      <button class="btn btn-secondary" onclick="showOnlyView('view-home')">🏠 Back to Hub</button>
+    </div>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚖️</div><div><h2 class="unit-title">UNIT 1 : Some Basic Concepts of Chemistry</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch1-status"></td><td>1</td><td class="chapter-name">Some Basic Concepts of Chemistry</td><td><input type="date" id="c11-ch1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch1-rev1"></td><td><input type="checkbox" id="c11-ch1-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚛️</div><div><h2 class="unit-title">UNIT 2 : Structure of Atom</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch2-status"></td><td>2</td><td class="chapter-name">Structure of Atom</td><td><input type="date" id="c11-ch2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch2-rev1"></td><td><input type="checkbox" id="c11-ch2-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">📊</div><div><h2 class="unit-title">UNIT 3 : Classification of Elements and Periodicity in Properties</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch3-status"></td><td>3</td><td class="chapter-name">Classification of Elements and Periodicity in Properties</td><td><input type="date" id="c11-ch3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch3-rev1"></td><td><input type="checkbox" id="c11-ch3-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🔗</div><div><h2 class="unit-title">UNIT 4 : Chemical Bonding and Molecular Structure</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch4-status"></td><td>4</td><td class="chapter-name">Chemical Bonding and Molecular Structure</td><td><input type="date" id="c11-ch4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch4-rev1"></td><td><input type="checkbox" id="c11-ch4-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🔥</div><div><h2 class="unit-title">UNIT 5 : Chemical Thermodynamics</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch5-status"></td><td>5</td><td class="chapter-name">Chemical Thermodynamics</td><td><input type="date" id="c11-ch5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch5-rev1"></td><td><input type="checkbox" id="c11-ch5-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚖️</div><div><h2 class="unit-title">UNIT 6 : Equilibrium</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch6-status"></td><td>6</td><td class="chapter-name">Equilibrium</td><td><input type="date" id="c11-ch6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch6-rev1"></td><td><input type="checkbox" id="c11-ch6-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚡</div><div><h2 class="unit-title">UNIT 7 : Redox Reactions</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch7-status"></td><td>7</td><td class="chapter-name">Redox Reactions</td><td><input type="date" id="c11-ch7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch7-rev1"></td><td><input type="checkbox" id="c11-ch7-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧪</div><div><h2 class="unit-title">UNIT 8 : Organic Chemistry: Basic Principles & Techniques</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch8-status"></td><td>8</td><td class="chapter-name">Organic Chemistry: Basic Principles and Techniques</td><td><input type="date" id="c11-ch8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch8-rev1"></td><td><input type="checkbox" id="c11-ch8-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🛢️</div><div><h2 class="unit-title">UNIT 9 : Hydrocarbons</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c11-ch9-status"></td><td>9</td><td class="chapter-name">Hydrocarbons</td><td><input type="date" id="c11-ch9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch9-rev1"></td><td><input type="checkbox" id="c11-ch9-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= 🌺 CLASS 12 BIOLOGY ONLY (UNIT-WISE) ================= -->
+  <div id="view-c12-bio" class="view-panel">
+    <div class="subject-top-nav">
+      <h2>🌸 Class 12 Biology : 5 Units (13 Chapters)</h2>
+      <button class="btn btn-secondary" onclick="showOnlyView('view-home')">🏠 Back to Hub</button>
+    </div>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🌸</div><div><h2 class="unit-title">UNIT 6 : Reproduction</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u6-c1-status"></td><td>1</td><td class="chapter-name">Sexual Reproduction in Flowering Plants</td><td><input type="date" id="u6-c1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u6-c1-rev1"></td><td><input type="checkbox" id="u6-c1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u6-c2-status"></td><td>2</td><td class="chapter-name">Human Reproduction</td><td><input type="date" id="u6-c2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u6-c2-rev1"></td><td><input type="checkbox" id="u6-c2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u6-c3-status"></td><td>3</td><td class="chapter-name">Reproductive Health</td><td><input type="date" id="u6-c3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u6-c3-rev1"></td><td><input type="checkbox" id="u6-c3-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧬</div><div><h2 class="unit-title">UNIT 7 : Genetics and Evolution</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u7-c4-status"></td><td>4</td><td class="chapter-name">Principles of Inheritance and Variation</td><td><input type="date" id="u7-c4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u7-c4-rev1"></td><td><input type="checkbox" id="u7-c4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u7-c5-status"></td><td>5</td><td class="chapter-name">Molecular Basis of Inheritance</td><td><input type="date" id="u7-c5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u7-c5-rev1"></td><td><input type="checkbox" id="u7-c5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u7-c6-status"></td><td>6</td><td class="chapter-name">Evolution</td><td><input type="date" id="u7-c6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u7-c6-rev1"></td><td><input type="checkbox" id="u7-c6-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🩺</div><div><h2 class="unit-title">UNIT 8 : Biology in Human Welfare</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u8-c7-status"></td><td>7</td><td class="chapter-name">Human Health and Disease</td><td><input type="date" id="u8-c7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u8-c7-rev1"></td><td><input type="checkbox" id="u8-c7-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u8-c8-status"></td><td>8</td><td class="chapter-name">Microbes in Human Welfare</td><td><input type="date" id="u8-c8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u8-c8-rev1"></td><td><input type="checkbox" id="u8-c8-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧪</div><div><h2 class="unit-title">UNIT 9 : Biotechnology</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u9-c9-status"></td><td>9</td><td class="chapter-name">Biotechnology: Principles and Processes</td><td><input type="date" id="u9-c9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u9-c9-rev1"></td><td><input type="checkbox" id="u9-c9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u9-c10-status"></td><td>10</td><td class="chapter-name">Biotechnology and its Applications</td><td><input type="date" id="u9-c10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u9-c10-rev1"></td><td><input type="checkbox" id="u9-c10-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🦋</div><div><h2 class="unit-title">UNIT 10 : Ecology and Environment</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="u10-c11-status"></td><td>11</td><td class="chapter-name">Organisms and Populations</td><td><input type="date" id="u10-c11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u10-c11-rev1"></td><td><input type="checkbox" id="u10-c11-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u10-c12-status"></td><td>12</td><td class="chapter-name">Ecosystem</td><td><input type="date" id="u10-c12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u10-c12-rev1"></td><td><input type="checkbox" id="u10-c12-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u10-c13-status"></td><td>13</td><td class="chapter-name">Biodiversity and its Conservation</td><td><input type="date" id="u10-c13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u10-c13-rev1"></td><td><input type="checkbox" id="u10-c13-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= 🌺 CLASS 12 PHYSICS ONLY (UNIT-WISE) ================= -->
+  <div id="view-c12-phy" class="view-panel">
+    <div class="subject-top-nav">
+      <h2>⚡ Class 12 Physics : 9 Units (14 Chapters)</h2>
+      <button class="btn btn-secondary" onclick="showOnlyView('view-home')">🏠 Back to Hub</button>
+    </div>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚡</div><div><h2 class="unit-title">UNIT 1 : Electrostatics</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p1-status"></td><td>1</td><td class="chapter-name">Electric Charges and Fields</td><td><input type="date" id="c12-p1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p1-rev1"></td><td><input type="checkbox" id="c12-p1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p2-status"></td><td>2</td><td class="chapter-name">Electrostatic Potential and Capacitance</td><td><input type="date" id="c12-p2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p2-rev1"></td><td><input type="checkbox" id="c12-p2-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🔋</div><div><h2 class="unit-title">UNIT 2 : Current Electricity</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p3-status"></td><td>3</td><td class="chapter-name">Current Electricity</td><td><input type="date" id="c12-p3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p3-rev1"></td><td><input type="checkbox" id="c12-p3-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧲</div><div><h2 class="unit-title">UNIT 3 : Magnetic Effects of Current and Magnetism</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p4-status"></td><td>4</td><td class="chapter-name">Moving Charges and Magnetism</td><td><input type="date" id="c12-p4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p4-rev1"></td><td><input type="checkbox" id="c12-p4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p5-status"></td><td>5</td><td class="chapter-name">Magnetism and Matter</td><td><input type="date" id="c12-p5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p5-rev1"></td><td><input type="checkbox" id="c12-p5-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">💡</div><div><h2 class="unit-title">UNIT 4 : Electromagnetic Induction and Alternating Currents</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p6-status"></td><td>6</td><td class="chapter-name">Electromagnetic Induction</td><td><input type="date" id="c12-p6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p6-rev1"></td><td><input type="checkbox" id="c12-p6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p7-status"></td><td>7</td><td class="chapter-name">Alternating Current</td><td><input type="date" id="c12-p7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p7-rev1"></td><td><input type="checkbox" id="c12-p7-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">📡</div><div><h2 class="unit-title">UNIT 5 : Electromagnetic Waves</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p8-status"></td><td>8</td><td class="chapter-name">Electromagnetic Waves</td><td><input type="date" id="c12-p8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p8-rev1"></td><td><input type="checkbox" id="c12-p8-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🔭</div><div><h2 class="unit-title">UNIT 6 : Optics</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p9-status"></td><td>9</td><td class="chapter-name">Ray Optics and Optical Instruments</td><td><input type="date" id="c12-p9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p9-rev1"></td><td><input type="checkbox" id="c12-p9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p10-status"></td><td>10</td><td class="chapter-name">Wave Optics</td><td><input type="date" id="c12-p10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p10-rev1"></td><td><input type="checkbox" id="c12-p10-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">☀️</div><div><h2 class="unit-title">UNIT 7 : Dual Nature of Radiation and Matter</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p11-status"></td><td>11</td><td class="chapter-name">Dual Nature of Radiation and Matter</td><td><input type="date" id="c12-p11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p11-rev1"></td><td><input type="checkbox" id="c12-p11-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚛️</div><div><h2 class="unit-title">UNIT 8 : Atoms and Nuclei</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p12-status"></td><td>12</td><td class="chapter-name">Atoms</td><td><input type="date" id="c12-p12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p12-rev1"></td><td><input type="checkbox" id="c12-p12-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p13-status"></td><td>13</td><td class="chapter-name">Nuclei</td><td><input type="date" id="c12-p13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p13-rev1"></td><td><input type="checkbox" id="c12-p13-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">💻</div><div><h2 class="unit-title">UNIT 9 : Electronic Devices</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-p14-status"></td><td>14</td><td class="chapter-name">Semiconductor Electronics</td><td><input type="date" id="c12-p14-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p14-rev1"></td><td><input type="checkbox" id="c12-p14-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= 🌺 CLASS 12 CHEMISTRY ONLY (UNIT-WISE) ================= -->
+  <div id="view-c12-chem" class="view-panel">
+    <div class="subject-top-nav">
+      <h2>🧪 Class 12 Chemistry : 10 Units</h2>
+      <button class="btn btn-secondary" onclick="showOnlyView('view-home')">🏠 Back to Hub</button>
+    </div>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">💧</div><div><h2 class="unit-title">UNIT 1 : Solutions</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch1-status"></td><td>1</td><td class="chapter-name">Solutions</td><td><input type="date" id="c12-ch1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch1-rev1"></td><td><input type="checkbox" id="c12-ch1-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⚡</div><div><h2 class="unit-title">UNIT 2 : Electrochemistry</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch2-status"></td><td>2</td><td class="chapter-name">Electrochemistry</td><td><input type="date" id="c12-ch2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch2-rev1"></td><td><input type="checkbox" id="c12-ch2-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">⏱️</div><div><h2 class="unit-title">UNIT 3 : Chemical Kinetics</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch3-status"></td><td>3</td><td class="chapter-name">Chemical Kinetics</td><td><input type="date" id="c12-ch3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch3-rev1"></td><td><input type="checkbox" id="c12-ch3-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧱</div><div><h2 class="unit-title">UNIT 4 : The d- and f-Block Elements</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch4-status"></td><td>4</td><td class="chapter-name">The d- and f-Block Elements</td><td><input type="date" id="c12-ch4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch4-rev1"></td><td><input type="checkbox" id="c12-ch4-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">💠</div><div><h2 class="unit-title">UNIT 5 : Coordination Compounds</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch5-status"></td><td>5</td><td class="chapter-name">Coordination Compounds</td><td><input type="date" id="c12-ch5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch5-rev1"></td><td><input type="checkbox" id="c12-ch5-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧪</div><div><h2 class="unit-title">UNIT 6 : Haloalkanes and Haloarenes</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch6-status"></td><td>6</td><td class="chapter-name">Haloalkanes and Haloarenes</td><td><input type="date" id="c12-ch6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch6-rev1"></td><td><input type="checkbox" id="c12-ch6-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🍷</div><div><h2 class="unit-title">UNIT 7 : Alcohols, Phenols and Ethers</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch7-status"></td><td>7</td><td class="chapter-name">Alcohols, Phenols and Ethers</td><td><input type="date" id="c12-ch7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch7-rev1"></td><td><input type="checkbox" id="c12-ch7-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🍋</div><div><h2 class="unit-title">UNIT 8 : Aldehydes, Ketones and Carboxylic Acids</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch8-status"></td><td>8</td><td class="chapter-name">Aldehydes, Ketones and Carboxylic Acids</td><td><input type="date" id="c12-ch8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch8-rev1"></td><td><input type="checkbox" id="c12-ch8-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🧬</div><div><h2 class="unit-title">UNIT 9 : Amines</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch9-status"></td><td>9</td><td class="chapter-name">Amines</td><td><input type="date" id="c12-ch9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch9-rev1"></td><td><input type="checkbox" id="c12-ch9-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="glass-card">
+      <div class="unit-header"><div class="unit-icon">🍬</div><div><h2 class="unit-title">UNIT 10 : Biomolecules</h2></div></div>
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" id="c12-ch10-status"></td><td>10</td><td class="chapter-name">Biomolecules</td><td><input type="date" id="c12-ch10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch10-rev1"></td><td><input type="checkbox" id="c12-ch10-rev2"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- 🌟 DYNAMIC MOTIVATIONAL QUOTES -->
+  <div class="quotes-card">
+    <div class="quote-icon">💡</div>
+    <div class="quote-content">
+      <span class="quote-title">Daily Inspiration</span>
+      <div class="quote-text" id="quote-text">"Small daily improvements over time lead to stunning results."</div>
+      <div class="quote-author" id="quote-author">— Robin Sharma</div>
+    </div>
+  </div>
+
 </main>
 
-<!-- FULL-SCREEN STUDY TIMER OVERLAY -->
-<div id="fullscreen-timer-modal" class="fullscreen-timer-overlay theme-emerald">
-
-<!-- 📲 Temporary 7-Second Mobile Landscape Orientation Hint -->
-<div class="tilt-hint-banner" id="fs-tilt-hint">
-  <span class="tilt-icon-anim">📱</span>
-  <span>Landscape mode for the best view!</span>
-</div>
-
-<!-- Inline Edit Modal Overlay -->
-<div class="fs-edit-overlay" id="fs-edit-overlay">
-  <div style="font-weight: 700; color: #38bdf8; letter-spacing: 1px;">⚙️ SET TARGET DURATION</div>
-  <div class="fs-edit-box-row">
-    <input type="number" class="fs-edit-input" id="fs-edit-hrs" min="0" max="23" value="00" placeholder="HH">
-    <span style="font-weight: 800; color: #f8fafc; font-size: 1.2rem;">:</span>
-    <input type="number" class="fs-edit-input" id="fs-edit-mins" min="0" max="59" value="00" placeholder="MM">
-    <span style="font-weight: 800; color: #f8fafc; font-size: 1.2rem;">:</span>
-    <input type="number" class="fs-edit-input" id="fs-edit-secs" min="0" max="59" value="00" placeholder="SS">
-  </div>
-  <div style="display: flex; gap: 10px; margin-top: 5px;">
-    <button class="btn btn-primary" id="btn-save-fs-edit">Apply Target</button>
-    <button class="btn btn-secondary" id="btn-cancel-fs-edit" style="color: #f8fafc; border-color: rgba(255,255,255,0.2);">Cancel</button>
-  </div>
-</div>
-
-<div class="fs-content-deck">
-  <div class="fs-subtext">🧠 ULTRA FOCUS MODE</div>
-
-  <!-- Fullscreen Digit Display Cards -->
-  <div class="flip-clock-container" id="fs-flip-clock">
-    <div class="flip-unit">
-      <div class="flip-card" id="fscard-0"><span class="flip-digit-span" id="card-h1">0</span></div>
-      <div class="flip-card" id="fscard-1"><span class="flip-digit-span" id="card-h2">0</span></div>
+<!-- 🌟 STANDALONE BOXED PROFESSIONAL FOOTER -->
+<footer class="app-footer-master">
+  <div class="footer-boxed-wrapper">
+    <!-- Sync & Actions Control Center -->
+    <div class="footer-action-panel">
+      <div>
+        <h3 style="color: var(--bio-subtext); margin-bottom: 4px; font-weight: 800; font-size: 1.15rem;">🛡️ Data Sync & Backup Center</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 580px;">HMAC-SHA integrity protection. Safely transfer your PCB preparation checkpoints between mobile and desktop devices.</p>
+      </div>
+      <div class="footer-actions-btn-row">
+        <button class="btn btn-import" id="btn-import">⬆️ Import Backup</button>
+        <button class="btn btn-export" id="btn-export">⬇️ Export Backup</button>
+        <button class="btn btn-log" id="btn-footer-log" onclick="openLogModal()">📋 Activity Log</button>
+        <input type="file" id="import-file" class="file-input-hidden" accept=".json">
+      </div>
     </div>
-    <div class="flip-colon">:</div>
-    <div class="flip-unit">
-      <div class="flip-card" id="fscard-2"><span class="flip-digit-span" id="card-m1">0</span></div>
-      <div class="flip-card" id="fscard-3"><span class="flip-digit-span" id="card-m2">0</span></div>
+
+    <!-- 4-Column High-Yield Study & NCERT Reference Grid -->
+    <div class="footer-main-grid">
+      <div class="footer-column">
+        <h4>🧬 High-Yield Biology <span class="footer-badge">360M</span></h4>
+        <ul>
+          <li><a onclick="showOnlyView('view-c11-bio')">🌱 Genetics & Evolution (Ch 4-6)</a></li>
+          <li><a onclick="showOnlyView('view-c11-bio')">🫀 Human Physiology (Ch 14-19)</a></li>
+          <li><a onclick="showOnlyView('view-c12-bio')">🌺 Plant Physiology (Ch 11-13)</a></li>
+          <li><a onclick="showOnlyView('view-c12-bio')">🦋 Ecology & Environment (Ch 11-13)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>⚡ Physics Core <span class="footer-badge">180M</span></h4>
+        <ul>
+          <li><a onclick="showOnlyView('view-c11-phy')">🏎️ Mechanics & Rotational Motion</a></li>
+          <li><a onclick="showOnlyView('view-c12-phy')">⚡ Electrostatics & Current</a></li>
+          <li><a onclick="showOnlyView('view-c12-phy')">🔭 Ray & Wave Optics</a></li>
+          <li><a onclick="showOnlyView('view-c12-phy')">⚛️ Modern Physics & Semi-conductors</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>🧪 Chemistry Essentials <span class="footer-badge">180M</span></h4>
+        <ul>
+          <li><a onclick="showOnlyView('view-c11-chem')">🔗 Chemical Bonding & Thermodynamics</a></li>
+          <li><a onclick="showOnlyView('view-c11-chem')">🧪 GOC & Hydrocarbons</a></li>
+          <li><a onclick="showOnlyView('view-c12-chem')">🧱 Coordination & d-f Block</a></li>
+          <li><a onclick="showOnlyView('view-c12-chem')">🍋 Aldehydes, Ketones & Amines</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>📚 Aspirant Command Center</h4>
+        <ul>
+          <li><a onclick="showOnlyView('view-home')">🏠 Dashboard Hub</a></li>
+          <li><a onclick="openNotesModal()">💌 Formula & Mnemonic Cards</a></li>
+          <li><a onclick="document.getElementById('btn-open-fullscreen-timer').click()">📺 Fullscreen Exam Focus</a></li>
+          <li style="color: #34d399; font-size: 0.84rem; font-weight: 700; margin-top: 4px;">● Local Auto-Save: Active (Offline Ready)</li>
+        </ul>
+      </div>
     </div>
-    <div class="flip-colon">:</div>
-    <div class="flip-unit">
-      <div class="flip-card" id="fscard-4"><span class="flip-digit-span" id="card-s1">0</span></div>
-      <div class="flip-card" id="fscard-5"><span class="flip-digit-span" id="card-s2">0</span></div>
+
+    <!-- Bottom Legal & Telemetry -->
+    <div class="footer-bottom-bar">
+      <div>© 2026–2027 NEET Master Prep Suite • Engineered for AIIMS Aspirants 🌸</div>
+      <div style="display: flex; gap: 16px;">
+        <span>🎯 Target: May 2, 2027</span>
+        <span>⚡ Version 19.0 Pro</span>
+      </div>
     </div>
   </div>
+</footer>
 
-  <div class="fs-preset-btns">
-    <button onclick="setTimerPreset(0, 15, 0)">15 Min Sprint</button>
-    <button onclick="setTimerPreset(0, 25, 0)">25 Min Pomodoro</button>
-    <button onclick="setTimerPreset(0, 45, 0)">45 Min Deep Session</button>
-    <button onclick="setTimerPreset(1, 0, 0)">1 Hr Full Test</button>
-  </div>
+<!-- 🌟 CUSTOM NOTES / FORMULAS MODAL -->
+<div id="custom-notes-modal" class="custom-notes-modal">
+  <div class="notes-hub-container">
+    <div class="notes-header-bar">
+      <div>
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--bio-subtext);">💌 Custom Study Notes & Formulas</h2>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Write personal key points, formula reminders, and save them automatically in cards.</p>
+      </div>
+      <button class="btn btn-secondary" onclick="closeNotesModal()">🚪 Back to Tracker</button>
+    </div>
 
-  <div class="fs-controls-group">
-    <button class="btn btn-primary" id="btn-fs-toggle">▶️ Start Session</button>
-    <button class="btn btn-warning" id="btn-fs-pause" style="display: none;">⏸️ Pause Session</button>
-    <button class="btn btn-danger" id="btn-fs-stop">⏹️ Stop / Reset</button>
-    <button class="btn btn-theme" id="btn-fs-theme">🎨 Theme</button>
-    <button class="btn btn-alarm" id="btn-fs-alarm-stop" style="display: none;">🔔 Stop Ringtone</button>
-    <button class="btn btn-fullscreen-exit" id="btn-fs-close">🚪 Exit Fullscreen</button>
+    <div class="notes-input-area">
+      <label for="new-note-text" style="color: var(--bio-accent); font-weight: 700;">✍️ Write New Card</label>
+      <textarea id="new-note-text" placeholder="Write anything (e.g. Physics formula, biology mnemonic, or self-reminder)..." rows="4"></textarea>
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn btn-primary" onclick="saveNewCustomNote()">💾 Save Note Card</button>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--bio-accent); margin-bottom: 10px;">📚 Saved Notes Grid</h3>
+      <div class="notes-grid" id="notes-grid-container"></div>
+    </div>
   </div>
 </div>
+
+<!-- FULL-SCREEN FOCUS TIMER OVERLAY (16 THEMES) -->
+<div id="fullscreen-timer-modal" class="fullscreen-timer-overlay fst-obsidian">
+  <div class="fs-edit-overlay" id="fs-edit-overlay">
+    <div style="font-weight: 800; color: #f472b6; letter-spacing: 1px;">⚙️ SET TARGET DURATION</div>
+    <div class="fs-edit-box-row">
+      <input type="number" class="fs-edit-input" id="fs-edit-hrs" min="0" max="23" value="00" placeholder="HH">
+      <span style="font-weight: 800; color: #fff1f2; font-size: 1.2rem;">:</span>
+      <input type="number" class="fs-edit-input" id="fs-edit-mins" min="0" max="59" value="00" placeholder="MM">
+      <span style="font-weight: 800; color: #fff1f2; font-size: 1.2rem;">:</span>
+      <input type="number" class="fs-edit-input" id="fs-edit-secs" min="0" max="59" value="00" placeholder="SS">
+    </div>
+    <div style="display: flex; gap: 10px; margin-top: 5px;">
+      <button class="btn btn-primary" id="btn-save-fs-edit">Apply Target</button>
+      <button class="btn btn-secondary" id="btn-cancel-fs-edit" style="color: #f8fafc;">Cancel</button>
+    </div>
+  </div>
+
+  <div class="fs-content-deck">
+    <div class="fs-subtext">🌸 ULTRA FOCUS MODE 🌸</div>
+
+    <div class="flip-clock-container" id="fs-flip-clock">
+      <div class="flip-unit">
+        <div class="flip-card" id="fscard-0"><span class="flip-digit-span" id="card-h1">0</span></div>
+        <div class="flip-card" id="fscard-1"><span class="flip-digit-span" id="card-h2">0</span></div>
+      </div>
+      <div class="flip-colon">:</div>
+      <div class="flip-unit">
+        <div class="flip-card" id="fscard-2"><span class="flip-digit-span" id="card-m1">0</span></div>
+        <div class="flip-card" id="fscard-3"><span class="flip-digit-span" id="card-m2">0</span></div>
+      </div>
+      <div class="flip-colon">:</div>
+      <div class="flip-unit">
+        <div class="flip-card" id="fscard-4"><span class="flip-digit-span" id="card-s1">0</span></div>
+        <div class="flip-card" id="fscard-5"><span class="flip-digit-span" id="card-s2">0</span></div>
+      </div>
+    </div>
+
+    <div class="fs-preset-btns">
+      <button onclick="setTimerPreset(0, 15, 0)">15 Min Sprint</button>
+      <button onclick="setTimerPreset(0, 25, 0)">25 Min Pomodoro</button>
+      <button onclick="setTimerPreset(0, 45, 0)">45 Min Deep Session</button>
+      <button onclick="setTimerPreset(1, 0, 0)">1 Hr Full Test</button>
+    </div>
+
+    <div class="fs-controls-group">
+      <button class="btn btn-primary" id="btn-fs-toggle">▶️ Start Session</button>
+      <button class="btn btn-warning" id="btn-fs-pause" style="display: none;">⏸️ Pause Session</button>
+      <button class="btn btn-danger" id="btn-fs-stop">⏹️ Stop / Reset</button>
+      <button class="btn btn-theme" id="btn-fs-theme">🎨 Theme</button>
+      <button class="btn btn-alarm" id="btn-fs-alarm-stop" style="display: none;">🔔 Stop Ringtone</button>
+      <button class="btn btn-fullscreen-exit" id="btn-fs-close">🚪 Exit Fullscreen</button>
+    </div>
+  </div>
 </div>
 
-<!-- Floating Activity Log Button -->
-<button id="btn-activity-log" class="floating-log-btn">🔔 Activity Log</button>
+<!-- 🌟 DOCKED FLOATING "BACK TO TOP" BUTTON -->
+<div class="floating-dock">
+  <button id="btn-back-to-top" class="btn-top" title="Back to Top" onclick="scrollToTop()">▲</button>
+</div>
 
-<!-- Toasts -->
 <div id="toast-container" class="toast-container"></div>
 
-<!-- Security Confirmation Modal -->
+<!-- Modals -->
 <div id="security-modal" class="modal-overlay">
-<div class="security-modal">
-<div class="modal-icon" id="modal-icon">⚠️</div>
-<h3 class="modal-title" id="modal-title">Security Alert</h3>
-<p class="modal-text" id="modal-desc">Message here</p>
-<div class="modal-buttons">
-<button class="btn btn-secondary" id="btn-cancel-modal">Cancel</button>
-<button class="btn btn-danger" id="modal-confirm-btn">Confirm Action</button>
-</div>
-</div>
+  <div class="security-modal">
+    <div class="modal-icon" id="modal-icon">⚠️</div>
+    <h3 class="modal-title" id="modal-title">Security Alert</h3>
+    <p class="modal-text" id="modal-desc">Message here</p>
+    <div class="modal-buttons">
+      <button class="btn btn-secondary" id="btn-cancel-modal">Cancel</button>
+      <button class="btn btn-danger" id="modal-confirm-btn">Confirm</button>
+    </div>
+  </div>
 </div>
 
-<!-- Custom Activity Log Modal -->
 <div id="log-modal" class="modal-overlay">
-<div class="security-modal" style="max-width: 550px;">
-<h3 class="modal-title">📋 Activity History</h3>
-<p class="modal-text" style="margin-bottom: 15px;">Your recent actions and security alerts are securely logged below.</p>
-<div id="log-content" class="log-content-area"></div>
-<div class="modal-buttons">
-<button class="btn btn-secondary" id="btn-close-log">Close Window</button>
-<button class="btn btn-secondary" id="btn-clear-log" style="color: var(--danger);">Clear Logs</button>
-</div>
-</div>
+  <div class="security-modal">
+    <h3 class="modal-title">📋 Activity & Study Log</h3>
+    <div id="log-content" class="log-content-area"></div>
+    <div class="modal-buttons">
+      <button class="btn btn-secondary" id="btn-close-log">Close</button>
+      <button class="btn btn-danger" id="btn-clear-log">Clear Log</button>
+    </div>
+  </div>
 </div>
 
 <script>
-function pad2(num) {
-  return String(num).padStart(2, '0');
+// 📱 Inline Service Worker for Instant PWA Installation
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    const swCode = `
+      self.addEventListener('install', e => self.skipWaiting());
+      self.addEventListener('activate', e => self.clients.claim());
+      self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => new Response('Offline'))));
+    `;
+    const blob = new Blob([swCode], { type: 'text/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).catch(() => {});
+  });
 }
 
-// Total XSS Protection & Sanitization
+// ⬆️ Floating Back-to-Top Handler
+const backToTopBtn = document.getElementById('btn-back-to-top');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 280) {
+    backToTopBtn.classList.add('show');
+  } else {
+    backToTopBtn.classList.remove('show');
+  }
+}, { passive: true });
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 🌟 DYNAMIC ROTATING MOTIVATIONAL QUOTES
+const motivationalQuotes = [
+  { text: "Small daily improvements over time lead to stunning results.", author: "Robin Sharma" },
+  { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+  { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+  { text: "Your stethoscope is waiting for you at AIIMS. Keep solving!", author: "NEET Mentor" },
+  { text: "Discipline is choosing between what you want now and what you want most.", author: "Abraham Lincoln" },
+  { text: "The harder you work for something, the greater you will feel when you achieve it.", author: "Anonymous" },
+  { text: "Push yourself, because no one else is going to do it for you.", author: "Medical Aspirant Motto" }
+];
+let currentQuoteIdx = 0;
+
+function rotateMotivationalQuote() {
+  const quoteTextEl = document.getElementById('quote-text');
+  const quoteAuthorEl = document.getElementById('quote-author');
+  if (!quoteTextEl || !quoteAuthorEl) return;
+
+  quoteTextEl.style.opacity = '0';
+  setTimeout(() => {
+    currentQuoteIdx = (currentQuoteIdx + 1) % motivationalQuotes.length;
+    quoteTextEl.innerText = `"${motivationalQuotes[currentQuoteIdx].text}"`;
+    quoteAuthorEl.innerText = `— ${motivationalQuotes[currentQuoteIdx].author}`;
+    quoteTextEl.style.opacity = '1';
+  }, 300);
+}
+setInterval(rotateMotivationalQuote, 10000);
+
+// 🌟 CUSTOM NOTES / MESSAGES HUB MANAGEMENT
+function openNotesModal() {
+  renderCustomNotes();
+  const modal = document.getElementById('custom-notes-modal');
+  modal.classList.add('active');
+  document.documentElement.classList.add('no-scroll');
+  document.body.classList.add('no-scroll');
+}
+
+function closeNotesModal() {
+  const modal = document.getElementById('custom-notes-modal');
+  modal.classList.remove('active');
+  document.documentElement.classList.remove('no-scroll');
+  document.body.classList.remove('no-scroll');
+}
+
+function saveNewCustomNote() {
+  const noteInput = document.getElementById('new-note-text');
+  const text = noteInput.value.trim();
+  if (!text) {
+    showCustomMessage('Please enter text for your note.', 'error');
+    return;
+  }
+
+  const existingNotes = JSON.parse(localStorage.getItem('neet_custom_saved_notes') || '[]');
+  const now = new Date();
+  const timeStr = `${pad2(now.getDate())}/${pad2(now.getMonth()+1)}/${now.getFullYear()} ${now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}`;
+
+  existingNotes.unshift({ id: 'note_' + Date.now(), text: sanitizeInput(text), time: timeStr });
+  localStorage.setItem('neet_custom_saved_notes', JSON.stringify(existingNotes));
+
+  noteInput.value = '';
+  renderCustomNotes();
+  showCustomMessage('Note card saved in grid! 🌸', 'success');
+}
+
+function deleteCustomNote(noteId) {
+  let existingNotes = JSON.parse(localStorage.getItem('neet_custom_saved_notes') || '[]');
+  existingNotes = existingNotes.filter(n => n.id !== noteId);
+  localStorage.setItem('neet_custom_saved_notes', JSON.stringify(existingNotes));
+  renderCustomNotes();
+  showCustomMessage('Note card removed.', 'info');
+}
+
+function renderCustomNotes() {
+  const container = document.getElementById('notes-grid-container');
+  const existingNotes = JSON.parse(localStorage.getItem('neet_custom_saved_notes') || '[]');
+
+  if (existingNotes.length === 0) {
+    container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No saved notes yet. Write a note above to create cards! 📝</div>';
+    return;
+  }
+
+  container.innerHTML = existingNotes.map(note => `
+    <div class="note-card">
+      <div class="note-card-text">${note.text}</div>
+      <div class="note-card-footer">
+        <span class="note-card-time">${note.time}</span>
+        <button class="note-del-btn" onclick="deleteCustomNote('${note.id}')" title="Delete Card">🗑️ Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// 🎨 12 Global Homepage Themes Presets & Switcher
+const globalThemes = [
+  { className: '', name: 'Sakura Dream' },
+  { className: 'theme-cyber-lilac', name: 'Cyber Lilac' },
+  { className: 'theme-midnight-amethyst', name: 'Midnight Amethyst' },
+  { className: 'theme-neon-candy', name: 'Neon Candy' },
+  { className: 'theme-mint-emerald', name: 'Mint Emerald' },
+  { className: 'theme-celestial-rose', name: 'Celestial Rose' },
+  { className: 'theme-nordic-twilight', name: 'Nordic Twilight' },
+  { className: 'theme-sunset-coral', name: 'Sunset Coral' },
+  { className: 'theme-lavender-velvet', name: 'Lavender Velvet' },
+  { className: 'theme-emerald-forest', name: 'Emerald Forest' },
+  { className: 'theme-solar-amber', name: 'Solar Amber' },
+  { className: 'theme-electric-berry', name: 'Electric Berry' }
+];
+let currentGlobalThemeIdx = 0;
+
+function cycleGlobalTheme() {
+  currentGlobalThemeIdx = (currentGlobalThemeIdx + 1) % globalThemes.length;
+  applyThemeByIndex(currentGlobalThemeIdx);
+  localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
+  showCustomMessage(`Theme set to ${globalThemes[currentGlobalThemeIdx].name} ✨`, 'info');
+}
+
+function applyThemeByIndex(idx) {
+  globalThemes.forEach(t => { if (t.className) document.body.classList.remove(t.className); });
+  if (globalThemes[idx].className) {
+    document.body.classList.add(globalThemes[idx].className);
+  }
+  document.getElementById('current-theme-name').innerText = globalThemes[idx].name;
+}
+
+// ⏰ Real-Time Clock & NEET 2027 Countdown Ticker
+const targetNeetDate = new Date('May 2, 2027 14:00:00').getTime();
+
+function updateLiveClockAndCountdown() {
+  const now = new Date();
+
+  let hours = now.getHours();
+  const minutes = pad2(now.getMinutes());
+  const seconds = pad2(now.getSeconds());
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? pad2(hours) : '12';
+
+  const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+  const clockEl = document.getElementById('live-clock-time');
+  if (clockEl) clockEl.innerText = timeString;
+
+  const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+  const dateString = now.toLocaleDateString(undefined, options);
+  const dateEl = document.getElementById('live-clock-date');
+  if (dateEl) dateEl.innerText = dateString;
+
+  const distance = targetNeetDate - now.getTime();
+  if (distance > 0) {
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hrs = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById('cd-days').innerText = days;
+    document.getElementById('cd-hours').innerText = pad2(hrs);
+    document.getElementById('cd-mins').innerText = pad2(mins);
+    document.getElementById('cd-secs').innerText = pad2(secs);
+  } else {
+    document.getElementById('cd-days').innerText = '00';
+    document.getElementById('cd-hours').innerText = '00';
+    document.getElementById('cd-mins').innerText = '00';
+    document.getElementById('cd-secs').innerText = '00';
+  }
+}
+setInterval(updateLiveClockAndCountdown, 1000);
+updateLiveClockAndCountdown();
+
+// Navigation View Handler
+function showOnlyView(viewId) {
+  document.querySelectorAll('.view-panel').forEach(panel => {
+    panel.classList.remove('active-view');
+  });
+
+  const targetPanel = document.getElementById(viewId);
+  if (targetPanel) {
+    targetPanel.classList.add('active-view');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function pad2(num) { return String(num).padStart(2, '0'); }
+
 function sanitizeInput(str) {
   if (typeof str !== 'string') return '';
   return str.replace(/[&<>'"]/g, tag => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    "'": '&#39;',
-    '"': '&quot;'
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
   }[tag] || tag));
 }
 
-// Alarm Sound Generator
 let audioCtx = null;
 let alarmInterval = null;
 let isAlarmRinging = false;
 
-function playModernBoostRingtone() {
+function playMelodicRingtone() {
   try {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
 
     const now = audioCtx.currentTime;
-    const notes = [987.77, 1318.51, 1567.98, 1975.53, 2637.02];
+    const notes = [1046.50, 1318.51, 1567.98, 2093.00];
     
     notes.forEach((freq, idx) => {
-      const osc1 = audioCtx.createOscillator();
-      const gain1 = audioCtx.createGain();
-      osc1.type = 'square';
-      osc1.frequency.setValueAtTime(freq, now + (idx * 0.12));
-      gain1.gain.setValueAtTime(0, now + (idx * 0.12));
-      gain1.gain.linearRampToValueAtTime(0.5, now + (idx * 0.12) + 0.03); 
-      gain1.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.12) + 0.4);
-      osc1.connect(gain1);
-      gain1.connect(audioCtx.destination);
-      osc1.start(now + (idx * 0.12));
-      osc1.stop(now + (idx * 0.12) + 0.45);
-
-      const osc2 = audioCtx.createOscillator();
-      const gain2 = audioCtx.createGain();
-      osc2.type = 'triangle';
-      osc2.frequency.setValueAtTime(freq / 1.5, now + (idx * 0.12)); 
-      gain2.gain.setValueAtTime(0, now + (idx * 0.12));
-      gain2.gain.linearRampToValueAtTime(0.8, now + (idx * 0.12) + 0.03); 
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.12) + 0.4);
-      osc2.connect(gain2);
-      gain2.connect(audioCtx.destination);
-      osc2.start(now + (idx * 0.12));
-      osc2.stop(now + (idx * 0.12) + 0.45);
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + (idx * 0.1));
+      gain.gain.setValueAtTime(0, now + (idx * 0.1));
+      gain.gain.linearRampToValueAtTime(0.35, now + (idx * 0.1) + 0.03); 
+      gain.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.1) + 0.4);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now + (idx * 0.1));
+      osc.stop(now + (idx * 0.1) + 0.45);
     });
-  } catch (e) {
-    console.warn('Audio Synthesis Error:', e);
-  }
+  } catch (e) {}
 }
 
 function startAlarmRingtone() {
   if (isAlarmRinging) return;
   isAlarmRinging = true;
-
-  playModernBoostRingtone();
-  alarmInterval = setInterval(playModernBoostRingtone, 1100);
+  playMelodicRingtone();
+  alarmInterval = setInterval(playMelodicRingtone, 1200);
 
   document.getElementById('btn-start-target-timer').style.display = 'none';
   document.getElementById('btn-pause-target-timer').style.display = 'none';
@@ -1047,67 +2650,45 @@ function stopAlarmRingtone() {
 
   globalTimeRemaining = savedInitialSeconds > 0 ? savedInitialSeconds : getInputsTotalSeconds();
   syncAllTimerDisplays();
-
-  showCustomMessage('Ringtone alarm stopped.', 'info');
+  showCustomMessage('Alarm stopped.', 'info');
 }
 
-// Screen Wake Lock
 let wakeLock = null;
-
 async function requestWakeLock() {
   if ('wakeLock' in navigator) {
-    try {
-      wakeLock = await navigator.wakeLock.request('screen');
-    } catch (err) {
-      console.warn(`Wake Lock Error: ${err.name}, ${err.message}`);
-    }
+    try { wakeLock = await navigator.wakeLock.request('screen'); }
+    catch (err) {}
   }
 }
-
 function releaseWakeLock() {
-  if (wakeLock !== null) {
-    wakeLock.release().then(() => {
-      wakeLock = null;
-    });
-  }
+  if (wakeLock !== null) { wakeLock.release().then(() => { wakeLock = null; }); }
 }
 
-document.addEventListener('visibilitychange', async () => {
-  const modal = document.getElementById('fullscreen-timer-modal');
-  if (document.visibilityState === 'visible' && modal.classList.contains('active')) {
-    await requestWakeLock();
-  }
-});
+// 📱 AUTO-LANDSCAPE HANDLER FOR MOBILE & TABLETS
+async function enterTrueFullscreen() {
+  const el = document.documentElement;
+  try {
+    if (el.requestFullscreen) await el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) await el.webkitRequestFullscreen();
+  } catch (err) {}
 
-window.addEventListener('focus', async () => {
-  const modal = document.getElementById('fullscreen-timer-modal');
-  if (wakeLock === null && modal.classList.contains('active')) {
-    await requestWakeLock();
-  }
-});
-
-function enterTrueFullscreen() {
-  const element = document.documentElement;
-  if (element.requestFullscreen) {
-    element.requestFullscreen().catch(err => console.warn("Fullscreen request denied: ", err));
-  } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();
-  } else if (element.msRequestFullscreen) {
-    element.msRequestFullscreen();
+  if (screen.orientation && screen.orientation.lock && window.innerWidth <= 1024) {
+    try {
+      await screen.orientation.lock('landscape');
+    } catch (e) {}
   }
 }
 
 function exitTrueFullscreen() {
-  if (document.exitFullscreen) {
-    if (document.fullscreenElement) {
-      document.exitFullscreen().catch(err => console.warn("Fullscreen exit error: ", err));
-    }
-  } else if (document.webkitExitFullscreen) {
-    if (document.webkitFullscreenElement) document.webkitExitFullscreen();
+  if (screen.orientation && screen.orientation.unlock) {
+    try {
+      screen.orientation.unlock();
+    } catch (e) {}
   }
+  if (document.exitFullscreen && document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  else if (document.webkitExitFullscreen && document.webkitFullscreenElement) document.webkitExitFullscreen();
 }
 
-// Master Timer Controller
 let globalTimerInterval = null;
 let globalTimeRemaining = 0;
 let isTimerRunning = false;
@@ -1136,18 +2717,9 @@ function getInputsTotalSeconds() {
   return (h * 3600) + (m * 60) + s;
 }
 
-function updateInputBoxWithTextFlip(inputElem, newStrVal) {
-  if (inputElem.value !== newStrVal) {
-    inputElem.value = newStrVal;
-  }
-}
-
-// STRICT ZERO-FLASH DIGIT UPDATER
 function updateFlipDigitSpan(spanId, newDigit) {
   const span = document.getElementById(spanId);
-  if (span && span.innerText !== newDigit) {
-    span.innerText = newDigit;
-  }
+  if (span && span.innerText !== newDigit) span.innerText = newDigit;
 }
 
 function syncAllTimerDisplays() {
@@ -1159,48 +2731,32 @@ function syncAllTimerDisplays() {
   const strM = pad2(m);
   const strS = pad2(s);
 
-  updateInputBoxWithTextFlip(inHrs, strH);
-  updateInputBoxWithTextFlip(inMins, strM);
-  updateInputBoxWithTextFlip(inSecs, strS);
+  inHrs.value = strH;
+  inMins.value = strM;
+  inSecs.value = strS;
 
-  const formattedAll = `${strH}${strM}${strS}`;
-
-  updateFlipDigitSpan('card-h1', formattedAll[0]);
-  updateFlipDigitSpan('card-h2', formattedAll[1]);
-  updateFlipDigitSpan('card-m1', formattedAll[2]);
-  updateFlipDigitSpan('card-m2', formattedAll[3]);
-  updateFlipDigitSpan('card-s1', formattedAll[4]);
-  updateFlipDigitSpan('card-s2', formattedAll[5]);
+  const formatted = `${strH}${strM}${strS}`;
+  updateFlipDigitSpan('card-h1', formatted[0]);
+  updateFlipDigitSpan('card-h2', formatted[1]);
+  updateFlipDigitSpan('card-m1', formatted[2]);
+  updateFlipDigitSpan('card-m2', formatted[3]);
+  updateFlipDigitSpan('card-s1', formatted[4]);
+  updateFlipDigitSpan('card-s2', formatted[5]);
 }
 
 function updateInputsStyleState(running) {
   const boxes = [document.getElementById('box-hrs'), document.getElementById('box-mins'), document.getElementById('box-secs')];
-  const inputs = [inHrs, inMins, inSecs];
-
-  inputs.forEach(inp => inp.disabled = running);
-
-  boxes.forEach(b => {
-    if (running) {
-      b.classList.add('running');
-    } else {
-      b.classList.remove('running');
-    }
-  });
+  [inHrs, inMins, inSecs].forEach(inp => inp.disabled = running);
+  boxes.forEach(b => running ? b.classList.add('running') : b.classList.remove('running'));
 }
 
 function startGlobalTimer() {
-  if (isAlarmRinging) {
-    stopAlarmRingtone();
-  }
-
+  if (isAlarmRinging) stopAlarmRingtone();
   if (isTimerRunning) return;
 
+  if (globalTimeRemaining <= 0) globalTimeRemaining = getInputsTotalSeconds();
   if (globalTimeRemaining <= 0) {
-    globalTimeRemaining = getInputsTotalSeconds();
-  }
-
-  if (globalTimeRemaining <= 0) {
-    showCustomMessage('Please enter a duration greater than 0 seconds.', 'error');
+    showCustomMessage('Enter a target duration > 0.', 'error');
     return;
   }
 
@@ -1219,16 +2775,13 @@ function startGlobalTimer() {
   fsPauseBtn.style.display = 'inline-flex';
   fsAlarmStopBtn.style.display = 'none';
 
-  showCustomMessage('Study timer started!', 'info');
+  showCustomMessage('Study sprint initiated! 🌸', 'info');
 
   clearInterval(globalTimerInterval);
   globalTimerInterval = setInterval(() => {
     globalTimeRemaining--;
     syncAllTimerDisplays();
-
-    if (globalTimeRemaining <= 0) {
-      stopGlobalTimer(true);
-    }
+    if (globalTimeRemaining <= 0) stopGlobalTimer(true);
   }, 1000);
 }
 
@@ -1245,7 +2798,7 @@ function pauseGlobalTimer() {
   fsToggleBtn.innerText = '▶️ Resume Session';
   fsPauseBtn.style.display = 'none';
 
-  showCustomMessage('Timer paused at current time.', 'info');
+  showCustomMessage('Timer paused.', 'info');
 }
 
 function stopGlobalTimer(isCompleted = false) {
@@ -1257,7 +2810,7 @@ function stopGlobalTimer(isCompleted = false) {
     globalTimeRemaining = 0;
     syncAllTimerDisplays();
     startAlarmRingtone();
-    showCustomMessage('🎯 Targeted Study Session Completed! Press Stop Ringtone to turn off alarm.', 'success');
+    showCustomMessage('🎯 Target Completed! Great job! 🌸', 'success');
   } else {
     resetGlobalTimer();
   }
@@ -1266,9 +2819,7 @@ function stopGlobalTimer(isCompleted = false) {
 function resetGlobalTimer() {
   clearInterval(globalTimerInterval);
   isTimerRunning = false;
-  if (isAlarmRinging) {
-    stopAlarmRingtone();
-  }
+  if (isAlarmRinging) stopAlarmRingtone();
 
   updateInputsStyleState(false);
 
@@ -1284,7 +2835,7 @@ function resetGlobalTimer() {
 
   globalTimeRemaining = savedInitialSeconds > 0 ? savedInitialSeconds : getInputsTotalSeconds();
   syncAllTimerDisplays();
-  showCustomMessage('Timer reset to target time.', 'info');
+  showCustomMessage('Timer reset.', 'info');
 }
 
 function setTimerPreset(h, m, s) {
@@ -1292,7 +2843,6 @@ function setTimerPreset(h, m, s) {
   inHrs.value = pad2(h);
   inMins.value = pad2(m);
   inSecs.value = pad2(s);
-
   globalTimeRemaining = (h * 3600) + (m * 60) + s;
   savedInitialSeconds = globalTimeRemaining;
   syncAllTimerDisplays();
@@ -1308,36 +2858,36 @@ fsPauseBtn.addEventListener('click', pauseGlobalTimer);
 fsStopBtn.addEventListener('click', resetGlobalTimer);
 fsAlarmStopBtn.addEventListener('click', stopAlarmRingtone);
 
-// FULLSCREEN 12 COLOR THEME SWITCHER
-const fsThemes = [
-  { class: 'theme-emerald', name: 'Cyber Emerald' },
-  { class: 'theme-cyan', name: 'Neon Cyan' },
-  { class: 'theme-purple', name: 'Amethyst Purple' },
-  { class: 'theme-crimson', name: 'Crimson Blood' },
-  { class: 'theme-amber', name: 'Amber Solar' },
-  { class: 'theme-navy', name: 'Midnight Navy' },
-  { class: 'theme-rose', name: 'Rose Quartz' },
-  { class: 'theme-lime', name: 'Matrix Lime' },
-  { class: 'theme-tokyo', name: 'Tokyo Sunset' },
-  { class: 'theme-monochrome', name: 'Monochrome OLED' },
-  { class: 'theme-lavender', name: 'Pastel Lavender' },
-  { class: 'theme-volcano', name: 'Volcanic Magma' }
+// 🌟 16 FULLSCREEN THEMES LIST
+const fsThemesList = [
+  { class: 'fst-obsidian', name: '🖤 OLED Obsidian' },
+  { class: 'fst-sakura', name: '🌸 Soft Sakura' },
+  { class: 'fst-lilac', name: '💜 Velvet Lilac' },
+  { class: 'fst-cyan', name: '💎 Frosted Cyan' },
+  { class: 'fst-mint', name: '🍃 Sage Mint' },
+  { class: 'fst-sunset', name: '🌅 Warm Sunset' },
+  { class: 'fst-slate', name: '🌫️ Nordic Slate' },
+  { class: 'fst-terracotta', name: '🧱 Earthy Terracotta' },
+  { class: 'fst-rose', name: '🌹 Pastel Rose' },
+  { class: 'fst-galaxy', name: '🌌 Deep Galaxy' },
+  { class: 'fst-matcha', name: '🍵 Matcha Tea' },
+  { class: 'fst-mocha', name: '☕ Mocha Cream' },
+  { class: 'fst-solar', name: '☀️ Solar Amber' },
+  { class: 'fst-arctic', name: '❄️ Arctic Ice' },
+  { class: 'fst-ruby', name: '🍷 Royal Ruby' },
+  { class: 'fst-cyberpunk', name: '⚡ Cyberpunk Neon' }
 ];
-let currentThemeIndex = 0;
+let currentFsThemeIndex = 0;
 
 fsThemeBtn.addEventListener('click', () => {
-  fsModal.classList.remove(fsThemes[currentThemeIndex].class);
-  currentThemeIndex = (currentThemeIndex + 1) % fsThemes.length;
-  fsModal.classList.add(fsThemes[currentThemeIndex].class);
-  
-  showCustomMessage(`Theme: ${fsThemes[currentThemeIndex].name}`, 'info');
+  fsThemesList.forEach(t => fsModal.classList.remove(t.class));
+  currentFsThemeIndex = (currentFsThemeIndex + 1) % fsThemesList.length;
+  fsModal.classList.add(fsThemesList[currentFsThemeIndex].class);
+  showCustomMessage(`Fullscreen Theme: ${fsThemesList[currentFsThemeIndex].name}`, 'info');
 });
 
-const homepageInputs = [inHrs, inMins, inSecs];
-
-homepageInputs.forEach((inp, idx) => {
+[inHrs, inMins, inSecs].forEach(inp => {
   inp.addEventListener('focus', function() { this.select(); });
-
   inp.addEventListener('blur', function() {
     let val = parseInt(this.value, 10);
     if (isNaN(val) || val < 0) val = 0;
@@ -1348,35 +2898,7 @@ homepageInputs.forEach((inp, idx) => {
     if (!isTimerRunning && !isAlarmRinging) {
       globalTimeRemaining = getInputsTotalSeconds();
       savedInitialSeconds = globalTimeRemaining;
-      startTargetBtn.innerText = '▶️ Start Set';
-      fsToggleBtn.innerText = '▶️ Start Session';
       syncAllTimerDisplays();
-    }
-  });
-
-  inp.addEventListener('input', function() {
-    if (!isTimerRunning && !isAlarmRinging) {
-      let val = this.value.replace(/\D/g, '');
-      if (val.length > 2) val = val.slice(-2);
-      this.value = val;
-
-      globalTimeRemaining = getInputsTotalSeconds();
-      savedInitialSeconds = globalTimeRemaining;
-      startTargetBtn.innerText = '▶️ Start Set';
-      fsToggleBtn.innerText = '▶️ Start Session';
-      syncAllTimerDisplays();
-
-      if (val.length >= 2 && idx < homepageInputs.length - 1) {
-        homepageInputs[idx + 1].focus();
-        homepageInputs[idx + 1].select();
-      }
-    }
-  });
-
-  inp.addEventListener('keydown', function(e) {
-    if (e.key === 'Backspace' && this.value === '' && idx > 0) {
-      homepageInputs[idx - 1].focus();
-      homepageInputs[idx - 1].select();
     }
   });
 });
@@ -1386,49 +2908,16 @@ const fsEditHrs = document.getElementById('fs-edit-hrs');
 const fsEditMins = document.getElementById('fs-edit-mins');
 const fsEditSecs = document.getElementById('fs-edit-secs');
 
-const fsEditInputsGroup = [fsEditHrs, fsEditMins, fsEditSecs];
-
-fsEditInputsGroup.forEach((inp, idx) => {
-  inp.addEventListener('focus', function() {
-    this.select();
-  });
-
-  inp.addEventListener('input', function() {
-    let val = this.value.replace(/\D/g, '');
-    if (val.length > 2) val = val.slice(-2);
-    this.value = val;
-
-    if (val.length >= 2 && idx < fsEditInputsGroup.length - 1) {
-      fsEditInputsGroup[idx + 1].focus();
-      fsEditInputsGroup[idx + 1].select();
-    }
-  });
-
-  inp.addEventListener('keydown', function(e) {
-    if (e.key === 'Backspace' && this.value === '' && idx > 0) {
-      fsEditInputsGroup[idx - 1].focus();
-      fsEditInputsGroup[idx - 1].select();
-    }
-    if (e.key === 'Enter') {
-      document.getElementById('btn-save-fs-edit').click();
-    }
-  });
-});
-
-[0, 1, 2, 3, 4, 5].forEach(cardIdx => {
-  const cardElem = document.getElementById(`fscard-${cardIdx}`);
-  if (cardElem) {
-    cardElem.addEventListener('click', () => {
+[0, 1, 2, 3, 4, 5].forEach(idx => {
+  const el = document.getElementById(`fscard-${idx}`);
+  if (el) {
+    el.addEventListener('click', () => {
       if (!isTimerRunning && !isAlarmRinging) {
         fsEditHrs.value = inHrs.value;
         fsEditMins.value = inMins.value;
         fsEditSecs.value = inSecs.value;
         fsEditOverlay.classList.add('active');
-        
-        setTimeout(() => {
-          fsEditHrs.focus();
-          fsEditHrs.select();
-        }, 50);
+        setTimeout(() => { fsEditHrs.focus(); fsEditHrs.select(); }, 50);
       }
     });
   }
@@ -1438,10 +2927,7 @@ document.getElementById('btn-save-fs-edit').addEventListener('click', () => {
   let h = parseInt(fsEditHrs.value, 10) || 0;
   let m = parseInt(fsEditMins.value, 10) || 0;
   let s = parseInt(fsEditSecs.value, 10) || 0;
-
-  if (h > 23) h = 23;
-  if (m > 59) m = 59;
-  if (s > 59) s = 59;
+  if (h > 23) h = 23; if (m > 59) m = 59; if (s > 59) s = 59;
 
   inHrs.value = pad2(h);
   inMins.value = pad2(m);
@@ -1450,69 +2936,21 @@ document.getElementById('btn-save-fs-edit').addEventListener('click', () => {
   globalTimeRemaining = getInputsTotalSeconds();
   savedInitialSeconds = globalTimeRemaining;
   syncAllTimerDisplays();
-
   fsEditOverlay.classList.remove('active');
-  showCustomMessage('Custom duration saved!', 'success');
+  showCustomMessage('Target saved!', 'success');
 });
 
-document.getElementById('btn-cancel-fs-edit').addEventListener('click', () => {
-  fsEditOverlay.classList.remove('active');
-});
+document.getElementById('btn-cancel-fs-edit').addEventListener('click', () => fsEditOverlay.classList.remove('active'));
 
-document.addEventListener('keydown', (e) => {
-  if (fsEditOverlay.classList.contains('active')) return;
-
-  if (e.key === 'Enter' || e.key === ' ') {
-    if (['TEXTAREA', 'INPUT'].includes(document.activeElement.tagName) && 
-        !['in-hrs', 'in-mins', 'in-secs'].includes(document.activeElement.id)) {
-      return;
-    }
-    
-    e.preventDefault();
-    if (document.activeElement && document.activeElement.tagName === 'BUTTON') {
-      document.activeElement.blur();
-    }
-
-    if (isTimerRunning) {
-      pauseGlobalTimer();
-    } else {
-      startGlobalTimer();
-    }
-  }
-});
-
-// Launch Fullscreen & Trigger 7-Second Orientation Hint
-let tiltHintTimeout = null;
-
-function showTiltHintFor7Seconds() {
-  const hintBanner = document.getElementById('fs-tilt-hint');
-  if (!hintBanner) return;
-
-  clearTimeout(tiltHintTimeout);
-  hintBanner.classList.add('show');
-
-  tiltHintTimeout = setTimeout(() => {
-    hintBanner.classList.remove('show');
-  }, 7000); // Disappears after 7 seconds
-}
-
-document.getElementById('btn-open-fullscreen-timer').addEventListener('click', () => {
-  if (!isTimerRunning && globalTimeRemaining <= 0) {
-    globalTimeRemaining = getInputsTotalSeconds();
-  }
+document.getElementById('btn-open-fullscreen-timer').addEventListener('click', async () => {
+  if (!isTimerRunning && globalTimeRemaining <= 0) globalTimeRemaining = getInputsTotalSeconds();
   syncAllTimerDisplays();
-  
-  enterTrueFullscreen();
+  await enterTrueFullscreen();
   requestWakeLock();
-  
-  requestAnimationFrame(() => {
-    fsModal.classList.add('active');
-    document.documentElement.classList.add('no-scroll');
-    document.body.classList.add('no-scroll');
-    showTiltHintFor7Seconds();
-  });
-
-  showCustomMessage('Entered ULTRA Focus Mode. Browser & Taskbar Hidden.', 'info');
+  fsModal.classList.add('active');
+  document.documentElement.classList.add('no-scroll');
+  document.body.classList.add('no-scroll');
+  showCustomMessage('Entered Focus Mode (Landscape Auto-Lock). 🌸', 'info');
 });
 
 document.getElementById('btn-fs-close').addEventListener('click', closeFullscreenOverlay);
@@ -1521,26 +2959,21 @@ function closeFullscreenOverlay() {
   fsModal.classList.remove('active');
   document.documentElement.classList.remove('no-scroll');
   document.body.classList.remove('no-scroll');
-  
-  const hintBanner = document.getElementById('fs-tilt-hint');
-  if (hintBanner) hintBanner.classList.remove('show');
-  
   exitTrueFullscreen();
   releaseWakeLock();
 }
 
-document.addEventListener('fullscreenchange', () => {
-  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-    fsModal.classList.remove('active');
-    document.documentElement.classList.remove('no-scroll');
-    document.body.classList.remove('no-scroll');
-    releaseWakeLock();
-  }
-});
-
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && fsModal.classList.contains('active')) {
-    closeFullscreenOverlay();
+  if (e.key === 'Escape') {
+    if (document.getElementById('custom-notes-modal').classList.contains('active')) {
+      closeNotesModal();
+    } else if (fsModal.classList.contains('active')) {
+      closeFullscreenOverlay();
+    } else if (securityModal.classList.contains('active')) {
+      securityModal.classList.remove('active');
+    } else if (logModal.classList.contains('active')) {
+      logModal.classList.remove('active');
+    }
   }
 });
 
@@ -1548,119 +2981,70 @@ globalTimeRemaining = getInputsTotalSeconds();
 savedInitialSeconds = globalTimeRemaining;
 syncAllTimerDisplays();
 
-// Hybrid Date System
-function setupDateMasks() {
-  document.querySelectorAll('.hybrid-date-wrapper').forEach(wrapper => {
-    const textInput = wrapper.querySelector('input.date-mask');
-    const pickerInput = wrapper.querySelector('input.native-calendar-btn');
-
-    if (!textInput || !pickerInput) return;
-
-    textInput.addEventListener('input', (e) => {
-      let v = e.target.value.replace(/\D/g, '');
-      if (v.length > 8) v = v.substring(0, 8);
-      if (v.length >= 5) {
-        e.target.value = `${v.substring(0, 2)}/${v.substring(2, 4)}/${v.substring(4)}`;
-      } else if (v.length >= 3) {
-        e.target.value = `${v.substring(0, 2)}/${v.substring(2)}`;
-      } else {
-        e.target.value = v;
-      }
-
-      if (e.target.value.length === 10) {
-        const parts = e.target.value.split('/');
-        if (parts[0] <= 31 && parts[1] <= 12 && parts[2].length === 4) {
-          pickerInput.value = `${parts[2]}-${parts[1]}-${parts[0]}`;
-        }
-      }
-    });
-
-    pickerInput.addEventListener('change', (e) => {
-      if (!e.target.value) return;
-      const parts = e.target.value.split('-');
-      if (parts.length === 3) {
-        textInput.value = `${parts[2]}/${parts[1]}/${parts[0]}`;
-        textInput.dispatchEvent(new Event('input', { bubbles: true }));
-      }
-    });
-  });
-}
-
-// Digital Signature Generator
 function generateAntiTamperSignature(dataString) {
   let hash = 0;
   for (let i = 0; i < dataString.length; i++) {
-    const char = dataString.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
+    hash = ((hash << 5) - hash) + dataString.charCodeAt(i);
     hash = hash & hash;
   }
-  return "BIO-SECURE-SIG-" + Math.abs(hash).toString(36) + "-" + dataString.length;
+  return "NEET-SECURE-SIG-" + Math.abs(hash).toString(36) + "-" + dataString.length;
 }
 
-// Activity Logging & UI Toast Notifications
 function recordActivityLog(message, type) {
-  let logs = JSON.parse(localStorage.getItem('bio_activity_logs') || '[]');
+  let logs = JSON.parse(localStorage.getItem('neet_activity_logs') || '[]');
   const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
   logs.unshift({ time, message, type });
   if (logs.length > 50) logs.pop();
-  localStorage.setItem('bio_activity_logs', JSON.stringify(logs));
-  renderActivityLogs();
+  localStorage.setItem('neet_activity_logs', JSON.stringify(logs));
+  if (logModal.classList.contains('active')) {
+    renderActivityLogs();
+  }
 }
 
 function renderActivityLogs() {
   const container = document.getElementById('log-content');
-  let logs = JSON.parse(localStorage.getItem('bio_activity_logs') || '[]');
-
+  if (!container) return;
+  let logs = JSON.parse(localStorage.getItem('neet_activity_logs') || '[]');
   if (logs.length === 0) {
-    container.innerHTML = '<div style="text-align:center; color: #94a3b8; padding: 20px;">No recent activity logged.</div>';
+    container.innerHTML = '<div style="text-align:center; color: var(--bio-glow); padding: 25px;">No activity logged yet. Start studying or checking chapters!</div>';
     return;
   }
-
-  container.innerHTML = logs.map(log => {
-    let icon = log.type === 'success' ? '✅' : log.type === 'error' ? '🛡️' : 'ℹ️';
-    let color = log.type === 'success' ? 'var(--success)' : log.type === 'error' ? 'var(--danger)' : '#f8fafc';
-    return `
-      <div class="log-entry">
-        <span class="log-time">[${log.time}]</span>
-        <span>${icon}</span>
-        <span style="color: ${color}; font-size: 0.95rem;">${log.message}</span>
-      </div>
-    `;
-  }).join('');
+  container.innerHTML = logs.map(l => `
+    <div class="log-entry">
+      <span class="log-time">[${l.time}]</span>
+      <span>${l.type === 'success' ? '🌸' : l.type === 'error' ? '🛡️' : '✨'}</span>
+      <span style="color: ${l.type === 'success' ? 'var(--success)' : l.type === 'error' ? 'var(--danger)' : '#fdf2f8'};">${l.message}</span>
+    </div>
+  `).join('');
 }
 
 function showCustomMessage(message, type = 'info') {
   recordActivityLog(message, type);
-
   const container = document.getElementById('toast-container');
   const msgBox = document.createElement('div');
   msgBox.className = `custom-message-box ${type}`;
-
-  let icon = type === 'success' ? '✅' : type === 'error' ? '🛡️' : 'ℹ️';
-  msgBox.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+  msgBox.innerHTML = `<span>${type === 'success' ? '🌸' : type === 'error' ? '🛡️' : '✨'}</span> <span>${message}</span>`;
   container.appendChild(msgBox);
 
   setTimeout(() => msgBox.classList.add('show'), 10);
-  setTimeout(() => {
-    msgBox.classList.remove('show');
-    setTimeout(() => msgBox.remove(), 400);
-  }, 3000);
+  setTimeout(() => { msgBox.classList.remove('show'); setTimeout(() => msgBox.remove(), 400); }, 2800);
 }
 
 const securityModal = document.getElementById('security-modal');
 const logModal = document.getElementById('log-modal');
 
 document.getElementById('btn-cancel-modal').addEventListener('click', () => securityModal.classList.remove('active'));
-document.getElementById('btn-activity-log').addEventListener('click', () => {
-  renderActivityLogs();
-  logModal.classList.add('active');
-});
 document.getElementById('btn-close-log').addEventListener('click', () => logModal.classList.remove('active'));
 document.getElementById('btn-clear-log').addEventListener('click', () => {
-  localStorage.removeItem('bio_activity_logs');
+  localStorage.removeItem('neet_activity_logs');
   renderActivityLogs();
-  showCustomMessage('Activity Log Cleared', 'info');
+  showCustomMessage('Activity log cleared.', 'info');
 });
+
+function openLogModal() {
+  renderActivityLogs();
+  logModal.classList.add('active');
+}
 
 function openSecurityModal(title, desc, icon, confirmAction, confirmText, isDanger) {
   document.getElementById('modal-title').innerText = title;
@@ -1678,103 +3062,76 @@ function openSecurityModal(title, desc, icon, confirmAction, confirmText, isDang
     securityModal.classList.remove('active');
     confirmAction();
   });
-
   securityModal.classList.add('active');
 }
 
-// LocalStorage Persistence & Export/Import Controls
 document.addEventListener('DOMContentLoaded', () => {
-  setupDateMasks();
+  const savedThemeIdx = localStorage.getItem('neet_active_theme_idx');
+  if (savedThemeIdx !== null) {
+    currentGlobalThemeIdx = parseInt(savedThemeIdx, 10) || 0;
+    applyThemeByIndex(currentGlobalThemeIdx);
+  }
 
   let storageAvailable = true;
   try { localStorage.getItem('test'); } catch(e) { storageAvailable = false; }
-
   if (!storageAvailable) {
-    setTimeout(() => showCustomMessage('Warning: LocalStorage blocked. Auto-save disabled.', 'error'), 1000);
+    setTimeout(() => showCustomMessage('LocalStorage unavailable. Auto-save disabled.', 'error'), 1000);
     return;
   }
 
-  const allInputs = document.querySelectorAll('input:not([type="file"]):not(.native-calendar-btn), textarea');
-  let textChangeTimeout;
+  const allInputs = document.querySelectorAll('input:not([type="file"]), textarea:not(#new-note-text)');
+  let textTimeout;
 
   allInputs.forEach(input => {
-    const savedValue = localStorage.getItem(input.id);
-    if (savedValue !== null) {
-      if (input.type === 'checkbox') {
-        input.checked = (savedValue === 'true');
-      } else {
-        input.value = savedValue;
-        if (input.classList.contains('date-mask') && savedValue.length === 10) {
-          const picker = input.parentElement.querySelector('.native-calendar-btn');
-          if (picker) {
-            const parts = savedValue.split('/');
-            if (parts.length === 3) picker.value = `${parts[2]}-${parts[1]}-${parts[0]}`;
-          }
-        }
-      }
+    const saved = localStorage.getItem(input.id);
+    if (saved !== null) {
+      if (input.type === 'checkbox') input.checked = (saved === 'true');
+      else input.value = saved;
     }
 
     input.addEventListener('input', (e) => {
-      let valueToSave = e.target.type === 'checkbox' ? (e.target.checked ? 'true' : 'false') : sanitizeInput(e.target.value);
-      localStorage.setItem(e.target.id, valueToSave);
+      let val = e.target.type === 'checkbox' ? (e.target.checked ? 'true' : 'false') : sanitizeInput(e.target.value);
+      localStorage.setItem(e.target.id, val);
 
-      if (e.target.type === 'checkbox') {
-        showCustomMessage('Progress Checkpoint Saved', 'success');
-      } else {
-        clearTimeout(textChangeTimeout);
-        textChangeTimeout = setTimeout(() => showCustomMessage('Text Data Auto-Saved', 'info'), 800);
+      if (e.target.type === 'checkbox') showCustomMessage('Progress Saved 🌸', 'success');
+      else if (e.target.type === 'date') showCustomMessage('Date Saved 🗓️', 'success');
+      else {
+        clearTimeout(textTimeout);
+        textTimeout = setTimeout(() => showCustomMessage('Saved ✨', 'info'), 800);
       }
     });
   });
 
-  document.getElementById('btn-export').addEventListener('click', triggerSecureExport);
-  document.getElementById('btn-import').addEventListener('click', triggerSecureImport);
+  document.getElementById('btn-export').addEventListener('click', () => {
+    openSecurityModal("Backup Export", "Export signed & encrypted progress backup file?", "🔐", executeSecureExport, "Export", false);
+  });
+  document.getElementById('btn-import').addEventListener('click', () => {
+    openSecurityModal("Import Backup", "Restore your progress from a verified backup file?", "🛑", () => document.getElementById('import-file').click(), "Verify & Import", true);
+  });
   document.getElementById('import-file').addEventListener('change', executeSecureImport);
 });
 
-function triggerSecureExport() {
-  openSecurityModal(
-    "Secure Export Initialization",
-    "Your data will be exported with a Digital Signature. Any manual modifications will break the signature and permanently block the import. Proceed?",
-    "🔐", executeSecureExport, "Lock & Export", false
-  );
-}
-
 function executeSecureExport() {
   const payload = {};
-  document.querySelectorAll('input:not([type="file"]):not(.native-calendar-btn), textarea').forEach(input => {
+  document.querySelectorAll('input:not([type="file"]), textarea:not(#new-note-text)').forEach(input => {
     payload[input.id] = input.type === 'checkbox' ? input.checked : sanitizeInput(input.value);
   });
 
+  payload['__custom_saved_notes'] = localStorage.getItem('neet_custom_saved_notes') || '[]';
+
   const payloadString = JSON.stringify(payload);
   const securePackage = {
-    metadata: { 
-      timestamp: new Date().toISOString(), 
-      version: "5.3", 
-      integrity_signature: generateAntiTamperSignature(payloadString) 
-    },
+    metadata: { timestamp: new Date().toISOString(), version: "19.0", integrity_signature: generateAntiTamperSignature(payloadString) },
     payload: payload
   };
 
-  const dataBlob = new Blob([JSON.stringify(securePackage, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(dataBlob);
-
   const a = document.createElement('a');
-  a.href = url;
-  a.download = 'biology-secure-backup.json';
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(securePackage, null, 2)], { type: 'application/json' }));
+  a.download = 'neet-2027-pcb-backup.json';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-
-  showCustomMessage('Data Encapsulated & Exported Successfully!', 'success');
-}
-
-function triggerSecureImport() {
-  openSecurityModal(
-    "Security Warning",
-    "Ensure this file was generated by YOU. If the file has been tampered with or contains injected code, the security system will block it.",
-    "🛑", () => document.getElementById('import-file').click(), "Verify & Import", true
-  );
+  showCustomMessage('Backup file downloaded! 💕', 'success');
 }
 
 function executeSecureImport(event) {
@@ -1784,45 +3141,36 @@ function executeSecureImport(event) {
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
-      const importedData = JSON.parse(e.target.result);
+      const data = JSON.parse(e.target.result);
+      if (!data.metadata || !data.payload || !data.metadata.integrity_signature) throw new Error();
 
-      if (!importedData.metadata || !importedData.payload || !importedData.metadata.integrity_signature) {
-        throw new Error("Invalid Secure Package Format.");
-      }
-
-      const payloadString = JSON.stringify(importedData.payload);
-      if (importedData.metadata.integrity_signature !== generateAntiTamperSignature(payloadString)) {
-        showCustomMessage("Malicious Modification Detected! Import Blocked.", "error");
+      const payloadStr = JSON.stringify(data.payload);
+      if (data.metadata.integrity_signature !== generateAntiTamperSignature(payloadStr)) {
+        showCustomMessage("Tampered file! Import rejected.", "error");
         return;
       }
 
-      const allowedKeys = Array.from(document.querySelectorAll('input:not([type="file"]):not(.native-calendar-btn), textarea')).map(i => i.id);
-      const payloadKeys = Object.keys(importedData.payload);
-
-      for (let key of payloadKeys) {
-        if (!allowedKeys.includes(key)) {
-          throw new Error("Schema violation detected: Unauthorized key.");
-        }
+      if (data.payload['__custom_saved_notes']) {
+        localStorage.setItem('neet_custom_saved_notes', data.payload['__custom_saved_notes']);
       }
 
-      for (const key of allowedKeys) {
-        if (importedData.payload[key] !== undefined) {
-          let safeValue = importedData.payload[key];
-          const targetInput = document.getElementById(key);
-          if (targetInput.type === 'checkbox') {
-            safeValue = (safeValue === true || safeValue === 'true') ? 'true' : 'false';
-          } else {
-            safeValue = sanitizeInput(String(safeValue));
+      const allowedKeys = Array.from(document.querySelectorAll('input:not([type="file"]), textarea:not(#new-note-text)')).map(i => i.id);
+      for (const k of allowedKeys) {
+        if (data.payload[k] !== undefined) {
+          let val = data.payload[k];
+          const el = document.getElementById(k);
+          if (el) {
+            if (el.type === 'checkbox') val = (val === true || val === 'true') ? 'true' : 'false';
+            else val = sanitizeInput(String(val));
+            localStorage.setItem(k, val);
           }
-          localStorage.setItem(key, safeValue);
         }
       }
 
-      showCustomMessage('Security Checks Passed! Restoring...', 'success');
-      setTimeout(() => window.location.reload(), 1500);
-
-    } catch (error) {
-      showCustomMessage('Security Error: Corrupted or Malicious File Blocked!', 'error');
+      showCustomMessage('Restored! Reloading... 🌸', 'success');
+      setTimeout(() => window.location.reload(), 1200);
+    } catch (err) {
+      showCustomMessage('Corrupted or invalid file blocked!', 'error');
     }
   };
   reader.readAsText(file);
