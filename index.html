@@ -6,7 +6,7 @@
 <title>NEET 2027 Master Tracker | Aesthetic High-Performance PCB Suite</title>
 
 <!-- 🌐 Enterprise SEO Optimization -->
-<meta name="description" content="Ultimate NEET 2027 PCB Master Tracker with real-time countdown to May 2, 2027, Pomodoro focus timer with automatic mobile landscape mode, custom note cards, and NCERT unit-wise syllabus checklist.">
+<meta name="description" content="Ultimate NEET 2027 PCB Master Tracker with real-time countdown to May 2, 2027, Pomodoro focus timer with auto landscape mode, interactive DD/MM/YYYY modal calendar, and NCERT unit-wise syllabus checklist.">
 <meta name="keywords" content="NEET 2027, NEET tracker, NEET study planner, NEET countdown, Biology NCERT tracker, Physics formula tracker, Chemistry syllabus NEET, NEET PWA, NCERT checklist">
 <meta name="author" content="NEET Master Prep Suite">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://neetmastertracker.app/">
 <meta property="og:title" content="NEET 2027 Master Tracker | Aesthetic High-Performance PCB Suite">
-<meta property="og:description" content="Complete NCERT Class 11 & 12 PCB syllabus tracker, real-time timer, automatic mobile landscape focus mode, and countdown for NEET 2027 aspirants.">
+<meta property="og:description" content="Complete NCERT Class 11 & 12 PCB syllabus tracker, real-time timer, DD/MM/YYYY calendar picker, and countdown for NEET 2027 aspirants.">
 <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%233b0764' stroke='%23f472b6' stroke-width='4'/><path d='M30,30 C45,45 55,55 70,70 M30,70 C45,55 55,45 70,30' stroke='%23f472b6' stroke-width='6' stroke-linecap='round'/><circle cx='30' cy='30' r='6' fill='%23fb7185'/><circle cx='70' cy='30' r='6' fill='%23c084fc'/><circle cx='30' cy='70' r='6' fill='%23c084fc'/><circle cx='70' cy='70' r='6' fill='%23fb7185'/></svg>">
 
 <!-- Twitter Cards -->
@@ -607,39 +607,33 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 input[type="number"] { -moz-appearance: textfield; }
 
-/* 📅 DIRECT & RESPONSIVE NATIVE DATE PICKER INPUT */
-input[type="date"] {
-  width: 100%;
-  padding: 10px 14px;
+/* 📅 DIRECT-CLICK DATE BUTTON CELL */
+.date-badge-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
   background: rgba(18, 5, 30, 0.6);
   border: 1.5px solid var(--glass-border);
   border-radius: 12px;
-  color: var(--bio-subtext);
+  color: #fbcfe8;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.88rem;
   font-weight: 700;
-  text-align: center;
-  outline: none;
   cursor: pointer;
-  transition: all 0.25s ease;
-  color-scheme: dark;
+  transition: all 0.2s ease;
+  user-select: none;
+  width: 100%;
+  max-width: 160px;
 }
 
-input[type="date"]:hover, input[type="date"]:focus {
+.date-badge-btn:hover {
   border-color: var(--bio-accent);
-  background: rgba(18, 5, 30, 0.85);
+  background: rgba(244, 114, 182, 0.2);
+  color: #ffffff;
   box-shadow: 0 0 12px rgba(244, 114, 182, 0.35);
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  filter: invert(0.8) sepia(100%) saturate(300%) hue-rotate(290deg);
-  opacity: 0.9;
-  transition: transform 0.2s ease;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator:hover {
-  transform: scale(1.15);
+  transform: translateY(-1px);
 }
 
 .timer-panel {
@@ -1029,12 +1023,139 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 
 .note-del-btn:hover { transform: scale(1.2); }
 
-/* 🌟 FULLSCREEN FOCUS OVERLAY (16 ZERO-GLOW THEMES & MOBILE LANDSCAPE STYLES) */
+/* 🌟 POPUP CUSTOM CALENDAR MODAL (DD/MM/YYYY ENGINE) */
+.calendar-modal-overlay {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  background: rgba(10, 2, 18, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100010;
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  padding: 20px;
+}
+
+.calendar-modal-overlay.active {
+  opacity: 1; visibility: visible; pointer-events: auto;
+}
+
+.custom-calendar-box {
+  background: radial-gradient(circle at 50% 0%, #300a40 0%, #150324 100%);
+  border: 1.5px solid var(--bio-accent);
+  border-radius: var(--radius);
+  padding: 22px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), var(--btn-border-glow);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cal-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cal-nav-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  color: var(--bio-subtext);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.cal-nav-btn:hover {
+  background: var(--bio-accent);
+  color: white;
+}
+
+.cal-month-title {
+  font-weight: 800;
+  color: #fff1f2;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.cal-grid-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+
+.cal-day-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--bio-accent);
+  text-transform: uppercase;
+  padding: 4px 0;
+}
+
+.cal-date-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff1f2;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+.cal-date-cell:hover:not(.empty) {
+  background: rgba(244, 114, 182, 0.25);
+  border-color: var(--bio-accent);
+}
+
+.cal-date-cell.selected {
+  background: var(--btn-primary-grad);
+  color: white;
+  border-color: #ffffff;
+  box-shadow: var(--btn-border-glow);
+}
+
+.cal-date-cell.today {
+  border-color: var(--bio-glow);
+}
+
+.cal-date-cell.empty {
+  cursor: default;
+}
+
+.cal-quick-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  border-top: 1px solid rgba(244, 114, 182, 0.15);
+  padding-top: 12px;
+}
+
+.cal-quick-actions .btn {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  flex: 1;
+}
+
+/* 🌟 TABLET & LARGE SCREEN OPTIMIZED FULLSCREEN FOCUS OVERLAY */
 .fullscreen-timer-overlay {
   position: fixed; inset: 0; width: 100vw; height: 100vh;
   z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center;
   visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease;
-  padding: 20px;
+  padding: 24px;
   overflow: hidden !important;
 }
 
@@ -1065,14 +1186,14 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1300px;
 }
 
 .fs-subtext {
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-size: clamp(1rem, 2.8vmin, 1.4rem);
   font-weight: 800;
   color: var(--fs-digit-color, #fbcfe8);
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   margin-bottom: 20px;
   text-align: center;
@@ -1082,21 +1203,21 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(8px, 1.5vw, 16px);
-  margin: 10px 0 25px 0;
+  gap: clamp(10px, 2vmin, 24px);
+  margin: 10px 0 30px 0;
   width: 100%;
 }
 
-.flip-unit { display: flex; gap: clamp(4px, 1vw, 10px); }
+.flip-unit { display: flex; gap: clamp(6px, 1.4vmin, 14px); }
 
 .flip-card {
   position: relative;
-  width: clamp(65px, 12vw, 135px);
-  height: clamp(90px, 18vw, 175px);
+  width: clamp(75px, 14vmin, 170px);
+  height: clamp(105px, 20vmin, 230px);
   background: var(--fs-card-bg, #1e1138);
-  border-radius: 18px;
+  border-radius: clamp(16px, 2.5vmin, 26px);
   border: 2px solid var(--fs-card-border, #701a61);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1110,7 +1231,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 .flip-digit-span {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(3.6rem, 13vw, 10.5rem);
+  font-size: clamp(4.2rem, 16vmin, 13rem);
   font-weight: 800;
   color: var(--fs-digit-color, #f472b6);
   text-shadow: none !important;
@@ -1120,7 +1241,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 
 .flip-colon {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(2.5rem, 8vw, 7.5rem);
+  font-size: clamp(3rem, 10vmin, 8.5rem);
   font-weight: 800;
   color: var(--fs-digit-color, #f472b6);
   opacity: 0.85;
@@ -1129,18 +1250,18 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 }
 
 .fs-preset-btns {
-  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; width: 100%;
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px; width: 100%;
 }
 
 .fs-preset-btns button {
-  padding: 8px 18px;
+  padding: 10px 22px;
   background: rgba(255, 255, 255, 0.08);
   border: 1.5px solid var(--fs-card-border, #f472b6);
   color: #fdf2f8;
   border-radius: 30px;
   cursor: pointer;
   font-weight: 700;
-  font-size: clamp(0.8rem, 1.8vw, 0.92rem);
+  font-size: clamp(0.85rem, 1.8vmin, 1.05rem);
   transition: all 0.2s ease;
 }
 
@@ -1151,49 +1272,41 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 
 .fs-controls-group {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
 }
 
 .fs-controls-group .btn {
-  font-size: clamp(0.85rem, 2vw, 0.95rem);
-  padding: 10px 20px;
-  border-radius: 14px;
+  font-size: clamp(0.9rem, 2vmin, 1.05rem);
+  padding: 12px 24px;
+  border-radius: 16px;
 }
 
 #btn-fs-toggle { background: var(--btn-primary-grad); color: white; border: 1.5px solid var(--bio-accent); }
 #btn-fs-stop { background: #fb7185; color: white; border: 1.5px solid #f43f5e; }
 .btn-fullscreen-exit { background: rgba(255, 255, 255, 0.1); border: 1.5px solid var(--bio-accent); color: white; }
 
-/* 📱 Fallback CSS rotation for browsers that disallow JS Orientation Lock */
-@media (max-width: 900px) and (orientation: portrait) {
-  .fullscreen-timer-overlay.active .fs-content-deck {
-    transform: rotate(90deg);
-    max-width: 88vh;
-    width: 88vh;
+/* 📱 TABLET SPECIFIC VIEWPORT OPTIMIZATIONS (600px to 1200px) */
+@media (min-width: 601px) and (max-width: 1200px) {
+  .flip-card {
+    width: clamp(100px, 15vw, 155px);
+    height: clamp(140px, 22vw, 210px);
   }
-  .fullscreen-timer-overlay.active .flip-card {
-    width: clamp(48px, 12vh, 85px);
-    height: clamp(65px, 16vh, 115px);
+  .flip-digit-span {
+    font-size: clamp(5.5rem, 15vw, 11rem);
   }
-  .fullscreen-timer-overlay.active .flip-digit-span {
-    font-size: clamp(2.5rem, 10vh, 5.5rem);
+  .flip-colon {
+    font-size: clamp(3.8rem, 10vw, 7rem);
   }
-  .fullscreen-timer-overlay.active .flip-colon {
-    font-size: clamp(1.8rem, 6vh, 3.8rem);
+  .fs-preset-btns button {
+    padding: 10px 22px;
+    font-size: 1rem;
   }
-  .fullscreen-timer-overlay.active .fs-preset-btns {
-    margin-bottom: 12px;
-  }
-  .fullscreen-timer-overlay.active .fs-preset-btns button {
-    padding: 5px 12px;
-    font-size: 0.76rem;
-  }
-  .fullscreen-timer-overlay.active .fs-controls-group .btn {
-    padding: 6px 14px;
-    font-size: 0.8rem;
+  .fs-controls-group .btn {
+    padding: 12px 24px;
+    font-size: 1.05rem;
   }
 }
 
@@ -1460,8 +1573,8 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="input-group"><label for="student-name">Aspirant Name 🩺</label><input type="text" id="student-name" placeholder="Enter your full name"></div>
       <div class="input-group"><label for="target-score">Target NEET Score 🎯</label><input type="text" id="target-score" placeholder="e.g., 720/720 (AIIMS New Delhi)"></div>
       <div class="input-group">
-        <label for="start-date-picker">Prep Start Date 🗓️</label>
-        <input type="date" id="start-date-picker" aria-label="Select Prep Start Date">
+        <label>Prep Start Date (DD/MM/YYYY) 🗓️</label>
+        <button type="button" class="date-badge-btn" id="start-date" onclick="openCustomCalendar('start-date')">📅 Set Date</button>
       </div>
     </section>
 
@@ -1533,12 +1646,12 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🌍</div><div><h2 class="unit-title">UNIT 1 : Diversity in the Living World</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u1-c1-status"></td><td>1</td><td class="chapter-name">The Living World</td><td><input type="date" id="u1-c1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c1-rev1"></td><td><input type="checkbox" id="u1-c1-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u1-c2-status"></td><td>2</td><td class="chapter-name">Biological Classification</td><td><input type="date" id="u1-c2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c2-rev1"></td><td><input type="checkbox" id="u1-c2-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u1-c3-status"></td><td>3</td><td class="chapter-name">Plant Kingdom</td><td><input type="date" id="u1-c3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c3-rev1"></td><td><input type="checkbox" id="u1-c3-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u1-c4-status"></td><td>4</td><td class="chapter-name">Animal Kingdom</td><td><input type="date" id="u1-c4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u1-c4-rev1"></td><td><input type="checkbox" id="u1-c4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u1-c1-status"></td><td>1</td><td class="chapter-name">The Living World</td><td><button type="button" class="date-badge-btn" id="u1-c1-date" onclick="openCustomCalendar('u1-c1-date')">📅 Set Date</button></td><td><input type="checkbox" id="u1-c1-rev1"></td><td><input type="checkbox" id="u1-c1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u1-c2-status"></td><td>2</td><td class="chapter-name">Biological Classification</td><td><button type="button" class="date-badge-btn" id="u1-c2-date" onclick="openCustomCalendar('u1-c2-date')">📅 Set Date</button></td><td><input type="checkbox" id="u1-c2-rev1"></td><td><input type="checkbox" id="u1-c2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u1-c3-status"></td><td>3</td><td class="chapter-name">Plant Kingdom</td><td><button type="button" class="date-badge-btn" id="u1-c3-date" onclick="openCustomCalendar('u1-c3-date')">📅 Set Date</button></td><td><input type="checkbox" id="u1-c3-rev1"></td><td><input type="checkbox" id="u1-c3-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u1-c4-status"></td><td>4</td><td class="chapter-name">Animal Kingdom</td><td><button type="button" class="date-badge-btn" id="u1-c4-date" onclick="openCustomCalendar('u1-c4-date')">📅 Set Date</button></td><td><input type="checkbox" id="u1-c4-rev1"></td><td><input type="checkbox" id="u1-c4-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1548,11 +1661,11 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🌿</div><div><h2 class="unit-title">UNIT 2 : Structural Organisation in Animals and Plants</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u2-c5-status"></td><td>5</td><td class="chapter-name">Morphology of Flowering Plants</td><td><input type="date" id="u2-c5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u2-c5-rev1"></td><td><input type="checkbox" id="u2-c5-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u2-c6-status"></td><td>6</td><td class="chapter-name">Anatomy of Flowering Plants</td><td><input type="date" id="u2-c6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u2-c6-rev1"></td><td><input type="checkbox" id="u2-c6-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u2-c7-status"></td><td>7</td><td class="chapter-name">Structural Organisation in Animals</td><td><input type="date" id="u2-c7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u2-c7-rev1"></td><td><input type="checkbox" id="u2-c7-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u2-c5-status"></td><td>5</td><td class="chapter-name">Morphology of Flowering Plants</td><td><button type="button" class="date-badge-btn" id="u2-c5-date" onclick="openCustomCalendar('u2-c5-date')">📅 Set Date</button></td><td><input type="checkbox" id="u2-c5-rev1"></td><td><input type="checkbox" id="u2-c5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u2-c6-status"></td><td>6</td><td class="chapter-name">Anatomy of Flowering Plants</td><td><button type="button" class="date-badge-btn" id="u2-c6-date" onclick="openCustomCalendar('u2-c6-date')">📅 Set Date</button></td><td><input type="checkbox" id="u2-c6-rev1"></td><td><input type="checkbox" id="u2-c6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u2-c7-status"></td><td>7</td><td class="chapter-name">Structural Organisation in Animals</td><td><button type="button" class="date-badge-btn" id="u2-c7-date" onclick="openCustomCalendar('u2-c7-date')">📅 Set Date</button></td><td><input type="checkbox" id="u2-c7-rev1"></td><td><input type="checkbox" id="u2-c7-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1562,11 +1675,11 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🦠</div><div><h2 class="unit-title">UNIT 3 : Cell: Structure and Function</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u3-c8-status"></td><td>8</td><td class="chapter-name">Cell: The Unit of Life</td><td><input type="date" id="u3-c8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u3-c8-rev1"></td><td><input type="checkbox" id="u3-c8-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u3-c9-status"></td><td>9</td><td class="chapter-name">Biomolecules</td><td><input type="date" id="u3-c9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u3-c9-rev1"></td><td><input type="checkbox" id="u3-c9-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u3-c10-status"></td><td>10</td><td class="chapter-name">Cell Cycle and Cell Division</td><td><input type="date" id="u3-c10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u3-c10-rev1"></td><td><input type="checkbox" id="u3-c10-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u3-c8-status"></td><td>8</td><td class="chapter-name">Cell: The Unit of Life</td><td><button type="button" class="date-badge-btn" id="u3-c8-date" onclick="openCustomCalendar('u3-c8-date')">📅 Set Date</button></td><td><input type="checkbox" id="u3-c8-rev1"></td><td><input type="checkbox" id="u3-c8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u3-c9-status"></td><td>9</td><td class="chapter-name">Biomolecules</td><td><button type="button" class="date-badge-btn" id="u3-c9-date" onclick="openCustomCalendar('u3-c9-date')">📅 Set Date</button></td><td><input type="checkbox" id="u3-c9-rev1"></td><td><input type="checkbox" id="u3-c9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u3-c10-status"></td><td>10</td><td class="chapter-name">Cell Cycle and Cell Division</td><td><button type="button" class="date-badge-btn" id="u3-c10-date" onclick="openCustomCalendar('u3-c10-date')">📅 Set Date</button></td><td><input type="checkbox" id="u3-c10-rev1"></td><td><input type="checkbox" id="u3-c10-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1576,11 +1689,11 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">☀️</div><div><h2 class="unit-title">UNIT 4 : Plant Physiology</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u4-c11-status"></td><td>11</td><td class="chapter-name">Photosynthesis in Higher Plants</td><td><input type="date" id="u4-c11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u4-c11-rev1"></td><td><input type="checkbox" id="u4-c11-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u4-c12-status"></td><td>12</td><td class="chapter-name">Respiration in Plants</td><td><input type="date" id="u4-c12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u4-c12-rev1"></td><td><input type="checkbox" id="u4-c12-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u4-c13-status"></td><td>13</td><td class="chapter-name">Plant Growth and Development</td><td><input type="date" id="u4-c13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u4-c13-rev1"></td><td><input type="checkbox" id="u4-c13-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u4-c11-status"></td><td>11</td><td class="chapter-name">Photosynthesis in Higher Plants</td><td><button type="button" class="date-badge-btn" id="u4-c11-date" onclick="openCustomCalendar('u4-c11-date')">📅 Set Date</button></td><td><input type="checkbox" id="u4-c11-rev1"></td><td><input type="checkbox" id="u4-c11-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u4-c12-status"></td><td>12</td><td class="chapter-name">Respiration in Plants</td><td><button type="button" class="date-badge-btn" id="u4-c12-date" onclick="openCustomCalendar('u4-c12-date')">📅 Set Date</button></td><td><input type="checkbox" id="u4-c12-rev1"></td><td><input type="checkbox" id="u4-c12-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u4-c13-status"></td><td>13</td><td class="chapter-name">Plant Growth and Development</td><td><button type="button" class="date-badge-btn" id="u4-c13-date" onclick="openCustomCalendar('u4-c13-date')">📅 Set Date</button></td><td><input type="checkbox" id="u4-c13-rev1"></td><td><input type="checkbox" id="u4-c13-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1590,14 +1703,14 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🫀</div><div><h2 class="unit-title">UNIT 5 : Human Physiology</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u5-c14-status"></td><td>14</td><td class="chapter-name">Breathing and Exchange of Gases</td><td><input type="date" id="u5-c14-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c14-rev1"></td><td><input type="checkbox" id="u5-c14-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u5-c15-status"></td><td>15</td><td class="chapter-name">Body Fluids and Circulation</td><td><input type="date" id="u5-c15-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c15-rev1"></td><td><input type="checkbox" id="u5-c15-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u5-c16-status"></td><td>16</td><td class="chapter-name">Excretory Products and their Elimination</td><td><input type="date" id="u5-c16-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c16-rev1"></td><td><input type="checkbox" id="u5-c16-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u5-c17-status"></td><td>17</td><td class="chapter-name">Locomotion and Movement</td><td><input type="date" id="u5-c17-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c17-rev1"></td><td><input type="checkbox" id="u5-c17-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u5-c18-status"></td><td>18</td><td class="chapter-name">Neural Control and Coordination</td><td><input type="date" id="u5-c18-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c18-rev1"></td><td><input type="checkbox" id="u5-c18-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u5-c19-status"></td><td>19</td><td class="chapter-name">Chemical Coordination and Integration</td><td><input type="date" id="u5-c19-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u5-c19-rev1"></td><td><input type="checkbox" id="u5-c19-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c14-status"></td><td>14</td><td class="chapter-name">Breathing and Exchange of Gases</td><td><button type="button" class="date-badge-btn" id="u5-c14-date" onclick="openCustomCalendar('u5-c14-date')">📅 Set Date</button></td><td><input type="checkbox" id="u5-c14-rev1"></td><td><input type="checkbox" id="u5-c14-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c15-status"></td><td>15</td><td class="chapter-name">Body Fluids and Circulation</td><td><button type="button" class="date-badge-btn" id="u5-c15-date" onclick="openCustomCalendar('u5-c15-date')">📅 Set Date</button></td><td><input type="checkbox" id="u5-c15-rev1"></td><td><input type="checkbox" id="u5-c15-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c16-status"></td><td>16</td><td class="chapter-name">Excretory Products and their Elimination</td><td><button type="button" class="date-badge-btn" id="u5-c16-date" onclick="openCustomCalendar('u5-c16-date')">📅 Set Date</button></td><td><input type="checkbox" id="u5-c16-rev1"></td><td><input type="checkbox" id="u5-c16-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c17-status"></td><td>17</td><td class="chapter-name">Locomotion and Movement</td><td><button type="button" class="date-badge-btn" id="u5-c17-date" onclick="openCustomCalendar('u5-c17-date')">📅 Set Date</button></td><td><input type="checkbox" id="u5-c17-rev1"></td><td><input type="checkbox" id="u5-c17-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c18-status"></td><td>18</td><td class="chapter-name">Neural Control and Coordination</td><td><button type="button" class="date-badge-btn" id="u5-c18-date" onclick="openCustomCalendar('u5-c18-date')">📅 Set Date</button></td><td><input type="checkbox" id="u5-c18-rev1"></td><td><input type="checkbox" id="u5-c18-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u5-c19-status"></td><td>19</td><td class="chapter-name">Chemical Coordination and Integration</td><td><button type="button" class="date-badge-btn" id="u5-c19-date" onclick="openCustomCalendar('u5-c19-date')">📅 Set Date</button></td><td><input type="checkbox" id="u5-c19-rev1"></td><td><input type="checkbox" id="u5-c19-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1615,9 +1728,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">📐</div><div><h2 class="unit-title">UNIT 1 : Physical World and Measurement</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p1-status"></td><td>1</td><td class="chapter-name">Units and Measurements</td><td><input type="date" id="c11-p1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p1-rev1"></td><td><input type="checkbox" id="c11-p1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p1-status"></td><td>1</td><td class="chapter-name">Units and Measurements</td><td><button type="button" class="date-badge-btn" id="c11-p1-date" onclick="openCustomCalendar('c11-p1-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p1-rev1"></td><td><input type="checkbox" id="c11-p1-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1627,10 +1740,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🏎️</div><div><h2 class="unit-title">UNIT 2 : Kinematics</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p2-status"></td><td>2</td><td class="chapter-name">Motion in a Straight Line</td><td><input type="date" id="c11-p2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p2-rev1"></td><td><input type="checkbox" id="c11-p2-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c11-p3-status"></td><td>3</td><td class="chapter-name">Motion in a Plane</td><td><input type="date" id="c11-p3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p3-rev1"></td><td><input type="checkbox" id="c11-p3-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p2-status"></td><td>2</td><td class="chapter-name">Motion in a Straight Line</td><td><button type="button" class="date-badge-btn" id="c11-p2-date" onclick="openCustomCalendar('c11-p2-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p2-rev1"></td><td><input type="checkbox" id="c11-p2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p3-status"></td><td>3</td><td class="chapter-name">Motion in a Plane</td><td><button type="button" class="date-badge-btn" id="c11-p3-date" onclick="openCustomCalendar('c11-p3-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p3-rev1"></td><td><input type="checkbox" id="c11-p3-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1640,9 +1753,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🥊</div><div><h2 class="unit-title">UNIT 3 : Laws of Motion</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p4-status"></td><td>4</td><td class="chapter-name">Laws of Motion</td><td><input type="date" id="c11-p4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p4-rev1"></td><td><input type="checkbox" id="c11-p4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p4-status"></td><td>4</td><td class="chapter-name">Laws of Motion</td><td><button type="button" class="date-badge-btn" id="c11-p4-date" onclick="openCustomCalendar('c11-p4-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p4-rev1"></td><td><input type="checkbox" id="c11-p4-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1652,9 +1765,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚙️</div><div><h2 class="unit-title">UNIT 4 : Work, Energy and Power</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p5-status"></td><td>5</td><td class="chapter-name">Work, Energy and Power</td><td><input type="date" id="c11-p5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p5-rev1"></td><td><input type="checkbox" id="c11-p5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p5-status"></td><td>5</td><td class="chapter-name">Work, Energy and Power</td><td><button type="button" class="date-badge-btn" id="c11-p5-date" onclick="openCustomCalendar('c11-p5-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p5-rev1"></td><td><input type="checkbox" id="c11-p5-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1664,9 +1777,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🌀</div><div><h2 class="unit-title">UNIT 5 : Motion of System of Particles and Rigid Body</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p6-status"></td><td>6</td><td class="chapter-name">System of Particles and Rotational Motion</td><td><input type="date" id="c11-p6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p6-rev1"></td><td><input type="checkbox" id="c11-p6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p6-status"></td><td>6</td><td class="chapter-name">System of Particles and Rotational Motion</td><td><button type="button" class="date-badge-btn" id="c11-p6-date" onclick="openCustomCalendar('c11-p6-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p6-rev1"></td><td><input type="checkbox" id="c11-p6-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1676,9 +1789,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🪐</div><div><h2 class="unit-title">UNIT 6 : Gravitation</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p7-status"></td><td>7</td><td class="chapter-name">Gravitation</td><td><input type="date" id="c11-p7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p7-rev1"></td><td><input type="checkbox" id="c11-p7-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p7-status"></td><td>7</td><td class="chapter-name">Gravitation</td><td><button type="button" class="date-badge-btn" id="c11-p7-date" onclick="openCustomCalendar('c11-p7-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p7-rev1"></td><td><input type="checkbox" id="c11-p7-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1688,11 +1801,11 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧊</div><div><h2 class="unit-title">UNIT 7 : Properties of Bulk Matter</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p8-status"></td><td>8</td><td class="chapter-name">Mechanical Properties of Solids</td><td><input type="date" id="c11-p8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p8-rev1"></td><td><input type="checkbox" id="c11-p8-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c11-p9-status"></td><td>9</td><td class="chapter-name">Mechanical Properties of Fluids</td><td><input type="date" id="c11-p9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p9-rev1"></td><td><input type="checkbox" id="c11-p9-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c11-p10-status"></td><td>10</td><td class="chapter-name">Thermal Properties of Matter</td><td><input type="date" id="c11-p10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p10-rev1"></td><td><input type="checkbox" id="c11-p10-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p8-status"></td><td>8</td><td class="chapter-name">Mechanical Properties of Solids</td><td><button type="button" class="date-badge-btn" id="c11-p8-date" onclick="openCustomCalendar('c11-p8-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p8-rev1"></td><td><input type="checkbox" id="c11-p8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p9-status"></td><td>9</td><td class="chapter-name">Mechanical Properties of Fluids</td><td><button type="button" class="date-badge-btn" id="c11-p9-date" onclick="openCustomCalendar('c11-p9-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p9-rev1"></td><td><input type="checkbox" id="c11-p9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p10-status"></td><td>10</td><td class="chapter-name">Thermal Properties of Matter</td><td><button type="button" class="date-badge-btn" id="c11-p10-date" onclick="openCustomCalendar('c11-p10-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p10-rev1"></td><td><input type="checkbox" id="c11-p10-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1702,9 +1815,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🔥</div><div><h2 class="unit-title">UNIT 8 : Thermodynamics</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p11-status"></td><td>11</td><td class="chapter-name">Thermodynamics</td><td><input type="date" id="c11-p11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p11-rev1"></td><td><input type="checkbox" id="c11-p11-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p11-status"></td><td>11</td><td class="chapter-name">Thermodynamics</td><td><button type="button" class="date-badge-btn" id="c11-p11-date" onclick="openCustomCalendar('c11-p11-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p11-rev1"></td><td><input type="checkbox" id="c11-p11-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1714,9 +1827,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">💨</div><div><h2 class="unit-title">UNIT 9 : Behaviour of Perfect Gas and Kinetic Theory</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p12-status"></td><td>12</td><td class="chapter-name">Kinetic Theory</td><td><input type="date" id="c11-p12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p12-rev1"></td><td><input type="checkbox" id="c11-p12-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p12-status"></td><td>12</td><td class="chapter-name">Kinetic Theory</td><td><button type="button" class="date-badge-btn" id="c11-p12-date" onclick="openCustomCalendar('c11-p12-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p12-rev1"></td><td><input type="checkbox" id="c11-p12-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1726,10 +1839,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🌊</div><div><h2 class="unit-title">UNIT 10 : Oscillations and Waves</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-p13-status"></td><td>13</td><td class="chapter-name">Oscillations</td><td><input type="date" id="c11-p13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p13-rev1"></td><td><input type="checkbox" id="c11-p13-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c11-p14-status"></td><td>14</td><td class="chapter-name">Waves</td><td><input type="date" id="c11-p14-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-p14-rev1"></td><td><input type="checkbox" id="c11-p14-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p13-status"></td><td>13</td><td class="chapter-name">Oscillations</td><td><button type="button" class="date-badge-btn" id="c11-p13-date" onclick="openCustomCalendar('c11-p13-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p13-rev1"></td><td><input type="checkbox" id="c11-p13-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-p14-status"></td><td>14</td><td class="chapter-name">Waves</td><td><button type="button" class="date-badge-btn" id="c11-p14-date" onclick="openCustomCalendar('c11-p14-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-p14-rev1"></td><td><input type="checkbox" id="c11-p14-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1747,9 +1860,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚖️</div><div><h2 class="unit-title">UNIT 1 : Some Basic Concepts of Chemistry</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch1-status"></td><td>1</td><td class="chapter-name">Some Basic Concepts of Chemistry</td><td><input type="date" id="c11-ch1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch1-rev1"></td><td><input type="checkbox" id="c11-ch1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch1-status"></td><td>1</td><td class="chapter-name">Some Basic Concepts of Chemistry</td><td><button type="button" class="date-badge-btn" id="c11-ch1-date" onclick="openCustomCalendar('c11-ch1-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch1-rev1"></td><td><input type="checkbox" id="c11-ch1-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1759,9 +1872,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚛️</div><div><h2 class="unit-title">UNIT 2 : Structure of Atom</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch2-status"></td><td>2</td><td class="chapter-name">Structure of Atom</td><td><input type="date" id="c11-ch2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch2-rev1"></td><td><input type="checkbox" id="c11-ch2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch2-status"></td><td>2</td><td class="chapter-name">Structure of Atom</td><td><button type="button" class="date-badge-btn" id="c11-ch2-date" onclick="openCustomCalendar('c11-ch2-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch2-rev1"></td><td><input type="checkbox" id="c11-ch2-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1771,9 +1884,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">📊</div><div><h2 class="unit-title">UNIT 3 : Classification of Elements and Periodicity in Properties</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch3-status"></td><td>3</td><td class="chapter-name">Classification of Elements and Periodicity in Properties</td><td><input type="date" id="c11-ch3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch3-rev1"></td><td><input type="checkbox" id="c11-ch3-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch3-status"></td><td>3</td><td class="chapter-name">Classification of Elements and Periodicity in Properties</td><td><button type="button" class="date-badge-btn" id="c11-ch3-date" onclick="openCustomCalendar('c11-ch3-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch3-rev1"></td><td><input type="checkbox" id="c11-ch3-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1783,9 +1896,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🔗</div><div><h2 class="unit-title">UNIT 4 : Chemical Bonding and Molecular Structure</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch4-status"></td><td>4</td><td class="chapter-name">Chemical Bonding and Molecular Structure</td><td><input type="date" id="c11-ch4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch4-rev1"></td><td><input type="checkbox" id="c11-ch4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch4-status"></td><td>4</td><td class="chapter-name">Chemical Bonding and Molecular Structure</td><td><button type="button" class="date-badge-btn" id="c11-ch4-date" onclick="openCustomCalendar('c11-ch4-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch4-rev1"></td><td><input type="checkbox" id="c11-ch4-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1795,9 +1908,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🔥</div><div><h2 class="unit-title">UNIT 5 : Chemical Thermodynamics</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch5-status"></td><td>5</td><td class="chapter-name">Chemical Thermodynamics</td><td><input type="date" id="c11-ch5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch5-rev1"></td><td><input type="checkbox" id="c11-ch5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch5-status"></td><td>5</td><td class="chapter-name">Chemical Thermodynamics</td><td><button type="button" class="date-badge-btn" id="c11-ch5-date" onclick="openCustomCalendar('c11-ch5-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch5-rev1"></td><td><input type="checkbox" id="c11-ch5-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1807,9 +1920,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚖️</div><div><h2 class="unit-title">UNIT 6 : Equilibrium</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch6-status"></td><td>6</td><td class="chapter-name">Equilibrium</td><td><input type="date" id="c11-ch6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch6-rev1"></td><td><input type="checkbox" id="c11-ch6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch6-status"></td><td>6</td><td class="chapter-name">Equilibrium</td><td><button type="button" class="date-badge-btn" id="c11-ch6-date" onclick="openCustomCalendar('c11-ch6-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch6-rev1"></td><td><input type="checkbox" id="c11-ch6-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1819,9 +1932,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚡</div><div><h2 class="unit-title">UNIT 7 : Redox Reactions</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch7-status"></td><td>7</td><td class="chapter-name">Redox Reactions</td><td><input type="date" id="c11-ch7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch7-rev1"></td><td><input type="checkbox" id="c11-ch7-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch7-status"></td><td>7</td><td class="chapter-name">Redox Reactions</td><td><button type="button" class="date-badge-btn" id="c11-ch7-date" onclick="openCustomCalendar('c11-ch7-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch7-rev1"></td><td><input type="checkbox" id="c11-ch7-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1831,9 +1944,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧪</div><div><h2 class="unit-title">UNIT 8 : Organic Chemistry: Basic Principles & Techniques</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch8-status"></td><td>8</td><td class="chapter-name">Organic Chemistry: Basic Principles and Techniques</td><td><input type="date" id="c11-ch8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch8-rev1"></td><td><input type="checkbox" id="c11-ch8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch8-status"></td><td>8</td><td class="chapter-name">Organic Chemistry: Basic Principles and Techniques</td><td><button type="button" class="date-badge-btn" id="c11-ch8-date" onclick="openCustomCalendar('c11-ch8-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch8-rev1"></td><td><input type="checkbox" id="c11-ch8-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1843,9 +1956,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🛢️</div><div><h2 class="unit-title">UNIT 9 : Hydrocarbons</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c11-ch9-status"></td><td>9</td><td class="chapter-name">Hydrocarbons</td><td><input type="date" id="c11-ch9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c11-ch9-rev1"></td><td><input type="checkbox" id="c11-ch9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c11-ch9-status"></td><td>9</td><td class="chapter-name">Hydrocarbons</td><td><button type="button" class="date-badge-btn" id="c11-ch9-date" onclick="openCustomCalendar('c11-ch9-date')">📅 Set Date</button></td><td><input type="checkbox" id="c11-ch9-rev1"></td><td><input type="checkbox" id="c11-ch9-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1863,11 +1976,11 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🌸</div><div><h2 class="unit-title">UNIT 6 : Reproduction</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u6-c1-status"></td><td>1</td><td class="chapter-name">Sexual Reproduction in Flowering Plants</td><td><input type="date" id="u6-c1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u6-c1-rev1"></td><td><input type="checkbox" id="u6-c1-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u6-c2-status"></td><td>2</td><td class="chapter-name">Human Reproduction</td><td><input type="date" id="u6-c2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u6-c2-rev1"></td><td><input type="checkbox" id="u6-c2-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u6-c3-status"></td><td>3</td><td class="chapter-name">Reproductive Health</td><td><input type="date" id="u6-c3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u6-c3-rev1"></td><td><input type="checkbox" id="u6-c3-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u6-c1-status"></td><td>1</td><td class="chapter-name">Sexual Reproduction in Flowering Plants</td><td><button type="button" class="date-badge-btn" id="u6-c1-date" onclick="openCustomCalendar('u6-c1-date')">📅 Set Date</button></td><td><input type="checkbox" id="u6-c1-rev1"></td><td><input type="checkbox" id="u6-c1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u6-c2-status"></td><td>2</td><td class="chapter-name">Human Reproduction</td><td><button type="button" class="date-badge-btn" id="u6-c2-date" onclick="openCustomCalendar('u6-c2-date')">📅 Set Date</button></td><td><input type="checkbox" id="u6-c2-rev1"></td><td><input type="checkbox" id="u6-c2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u6-c3-status"></td><td>3</td><td class="chapter-name">Reproductive Health</td><td><button type="button" class="date-badge-btn" id="u6-c3-date" onclick="openCustomCalendar('u6-c3-date')">📅 Set Date</button></td><td><input type="checkbox" id="u6-c3-rev1"></td><td><input type="checkbox" id="u6-c3-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1877,11 +1990,11 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧬</div><div><h2 class="unit-title">UNIT 7 : Genetics and Evolution</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u7-c4-status"></td><td>4</td><td class="chapter-name">Principles of Inheritance and Variation</td><td><input type="date" id="u7-c4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u7-c4-rev1"></td><td><input type="checkbox" id="u7-c4-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u7-c5-status"></td><td>5</td><td class="chapter-name">Molecular Basis of Inheritance</td><td><input type="date" id="u7-c5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u7-c5-rev1"></td><td><input type="checkbox" id="u7-c5-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u7-c6-status"></td><td>6</td><td class="chapter-name">Evolution</td><td><input type="date" id="u7-c6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u7-c6-rev1"></td><td><input type="checkbox" id="u7-c6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u7-c4-status"></td><td>4</td><td class="chapter-name">Principles of Inheritance and Variation</td><td><button type="button" class="date-badge-btn" id="u7-c4-date" onclick="openCustomCalendar('u7-c4-date')">📅 Set Date</button></td><td><input type="checkbox" id="u7-c4-rev1"></td><td><input type="checkbox" id="u7-c4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u7-c5-status"></td><td>5</td><td class="chapter-name">Molecular Basis of Inheritance</td><td><button type="button" class="date-badge-btn" id="u7-c5-date" onclick="openCustomCalendar('u7-c5-date')">📅 Set Date</button></td><td><input type="checkbox" id="u7-c5-rev1"></td><td><input type="checkbox" id="u7-c5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u7-c6-status"></td><td>6</td><td class="chapter-name">Evolution</td><td><button type="button" class="date-badge-btn" id="u7-c6-date" onclick="openCustomCalendar('u7-c6-date')">📅 Set Date</button></td><td><input type="checkbox" id="u7-c6-rev1"></td><td><input type="checkbox" id="u7-c6-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1891,10 +2004,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🩺</div><div><h2 class="unit-title">UNIT 8 : Biology in Human Welfare</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u8-c7-status"></td><td>7</td><td class="chapter-name">Human Health and Disease</td><td><input type="date" id="u8-c7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u8-c7-rev1"></td><td><input type="checkbox" id="u8-c7-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u8-c8-status"></td><td>8</td><td class="chapter-name">Microbes in Human Welfare</td><td><input type="date" id="u8-c8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u8-c8-rev1"></td><td><input type="checkbox" id="u8-c8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u8-c7-status"></td><td>7</td><td class="chapter-name">Human Health and Disease</td><td><button type="button" class="date-badge-btn" id="u8-c7-date" onclick="openCustomCalendar('u8-c7-date')">📅 Set Date</button></td><td><input type="checkbox" id="u8-c7-rev1"></td><td><input type="checkbox" id="u8-c7-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u8-c8-status"></td><td>8</td><td class="chapter-name">Microbes in Human Welfare</td><td><button type="button" class="date-badge-btn" id="u8-c8-date" onclick="openCustomCalendar('u8-c8-date')">📅 Set Date</button></td><td><input type="checkbox" id="u8-c8-rev1"></td><td><input type="checkbox" id="u8-c8-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1904,10 +2017,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧪</div><div><h2 class="unit-title">UNIT 9 : Biotechnology</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u9-c9-status"></td><td>9</td><td class="chapter-name">Biotechnology: Principles and Processes</td><td><input type="date" id="u9-c9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u9-c9-rev1"></td><td><input type="checkbox" id="u9-c9-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u9-c10-status"></td><td>10</td><td class="chapter-name">Biotechnology and its Applications</td><td><input type="date" id="u9-c10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u9-c10-rev1"></td><td><input type="checkbox" id="u9-c10-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u9-c9-status"></td><td>9</td><td class="chapter-name">Biotechnology: Principles and Processes</td><td><button type="button" class="date-badge-btn" id="u9-c9-date" onclick="openCustomCalendar('u9-c9-date')">📅 Set Date</button></td><td><input type="checkbox" id="u9-c9-rev1"></td><td><input type="checkbox" id="u9-c9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u9-c10-status"></td><td>10</td><td class="chapter-name">Biotechnology and its Applications</td><td><button type="button" class="date-badge-btn" id="u9-c10-date" onclick="openCustomCalendar('u9-c10-date')">📅 Set Date</button></td><td><input type="checkbox" id="u9-c10-rev1"></td><td><input type="checkbox" id="u9-c10-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1917,11 +2030,11 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🦋</div><div><h2 class="unit-title">UNIT 10 : Ecology and Environment</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="u10-c11-status"></td><td>11</td><td class="chapter-name">Organisms and Populations</td><td><input type="date" id="u10-c11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u10-c11-rev1"></td><td><input type="checkbox" id="u10-c11-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u10-c12-status"></td><td>12</td><td class="chapter-name">Ecosystem</td><td><input type="date" id="u10-c12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u10-c12-rev1"></td><td><input type="checkbox" id="u10-c12-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="u10-c13-status"></td><td>13</td><td class="chapter-name">Biodiversity and its Conservation</td><td><input type="date" id="u10-c13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="u10-c13-rev1"></td><td><input type="checkbox" id="u10-c13-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u10-c11-status"></td><td>11</td><td class="chapter-name">Organisms and Populations</td><td><button type="button" class="date-badge-btn" id="u10-c11-date" onclick="openCustomCalendar('u10-c11-date')">📅 Set Date</button></td><td><input type="checkbox" id="u10-c11-rev1"></td><td><input type="checkbox" id="u10-c11-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u10-c12-status"></td><td>12</td><td class="chapter-name">Ecosystem</td><td><button type="button" class="date-badge-btn" id="u10-c12-date" onclick="openCustomCalendar('u10-c12-date')">📅 Set Date</button></td><td><input type="checkbox" id="u10-c12-rev1"></td><td><input type="checkbox" id="u10-c12-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="u10-c13-status"></td><td>13</td><td class="chapter-name">Biodiversity and its Conservation</td><td><button type="button" class="date-badge-btn" id="u10-c13-date" onclick="openCustomCalendar('u10-c13-date')">📅 Set Date</button></td><td><input type="checkbox" id="u10-c13-rev1"></td><td><input type="checkbox" id="u10-c13-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1939,10 +2052,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚡</div><div><h2 class="unit-title">UNIT 1 : Electrostatics</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p1-status"></td><td>1</td><td class="chapter-name">Electric Charges and Fields</td><td><input type="date" id="c12-p1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p1-rev1"></td><td><input type="checkbox" id="c12-p1-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c12-p2-status"></td><td>2</td><td class="chapter-name">Electrostatic Potential and Capacitance</td><td><input type="date" id="c12-p2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p2-rev1"></td><td><input type="checkbox" id="c12-p2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p1-status"></td><td>1</td><td class="chapter-name">Electric Charges and Fields</td><td><button type="button" class="date-badge-btn" id="c12-p1-date" onclick="openCustomCalendar('c12-p1-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p1-rev1"></td><td><input type="checkbox" id="c12-p1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p2-status"></td><td>2</td><td class="chapter-name">Electrostatic Potential and Capacitance</td><td><button type="button" class="date-badge-btn" id="c12-p2-date" onclick="openCustomCalendar('c12-p2-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p2-rev1"></td><td><input type="checkbox" id="c12-p2-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1952,9 +2065,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🔋</div><div><h2 class="unit-title">UNIT 2 : Current Electricity</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p3-status"></td><td>3</td><td class="chapter-name">Current Electricity</td><td><input type="date" id="c12-p3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p3-rev1"></td><td><input type="checkbox" id="c12-p3-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p3-status"></td><td>3</td><td class="chapter-name">Current Electricity</td><td><button type="button" class="date-badge-btn" id="c12-p3-date" onclick="openCustomCalendar('c12-p3-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p3-rev1"></td><td><input type="checkbox" id="c12-p3-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1964,10 +2077,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧲</div><div><h2 class="unit-title">UNIT 3 : Magnetic Effects of Current and Magnetism</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p4-status"></td><td>4</td><td class="chapter-name">Moving Charges and Magnetism</td><td><input type="date" id="c12-p4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p4-rev1"></td><td><input type="checkbox" id="c12-p4-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c12-p5-status"></td><td>5</td><td class="chapter-name">Magnetism and Matter</td><td><input type="date" id="c12-p5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p5-rev1"></td><td><input type="checkbox" id="c12-p5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p4-status"></td><td>4</td><td class="chapter-name">Moving Charges and Magnetism</td><td><button type="button" class="date-badge-btn" id="c12-p4-date" onclick="openCustomCalendar('c12-p4-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p4-rev1"></td><td><input type="checkbox" id="c12-p4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p5-status"></td><td>5</td><td class="chapter-name">Magnetism and Matter</td><td><button type="button" class="date-badge-btn" id="c12-p5-date" onclick="openCustomCalendar('c12-p5-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p5-rev1"></td><td><input type="checkbox" id="c12-p5-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1977,10 +2090,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">💡</div><div><h2 class="unit-title">UNIT 4 : Electromagnetic Induction and Alternating Currents</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p6-status"></td><td>6</td><td class="chapter-name">Electromagnetic Induction</td><td><input type="date" id="c12-p6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p6-rev1"></td><td><input type="checkbox" id="c12-p6-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c12-p7-status"></td><td>7</td><td class="chapter-name">Alternating Current</td><td><input type="date" id="c12-p7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p7-rev1"></td><td><input type="checkbox" id="c12-p7-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p6-status"></td><td>6</td><td class="chapter-name">Electromagnetic Induction</td><td><button type="button" class="date-badge-btn" id="c12-p6-date" onclick="openCustomCalendar('c12-p6-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p6-rev1"></td><td><input type="checkbox" id="c12-p6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p7-status"></td><td>7</td><td class="chapter-name">Alternating Current</td><td><button type="button" class="date-badge-btn" id="c12-p7-date" onclick="openCustomCalendar('c12-p7-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p7-rev1"></td><td><input type="checkbox" id="c12-p7-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -1990,9 +2103,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">📡</div><div><h2 class="unit-title">UNIT 5 : Electromagnetic Waves</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p8-status"></td><td>8</td><td class="chapter-name">Electromagnetic Waves</td><td><input type="date" id="c12-p8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p8-rev1"></td><td><input type="checkbox" id="c12-p8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p8-status"></td><td>8</td><td class="chapter-name">Electromagnetic Waves</td><td><button type="button" class="date-badge-btn" id="c12-p8-date" onclick="openCustomCalendar('c12-p8-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p8-rev1"></td><td><input type="checkbox" id="c12-p8-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2002,10 +2115,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🔭</div><div><h2 class="unit-title">UNIT 6 : Optics</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p9-status"></td><td>9</td><td class="chapter-name">Ray Optics and Optical Instruments</td><td><input type="date" id="c12-p9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p9-rev1"></td><td><input type="checkbox" id="c12-p9-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c12-p10-status"></td><td>10</td><td class="chapter-name">Wave Optics</td><td><input type="date" id="c12-p10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p10-rev1"></td><td><input type="checkbox" id="c12-p10-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p9-status"></td><td>9</td><td class="chapter-name">Ray Optics and Optical Instruments</td><td><button type="button" class="date-badge-btn" id="c12-p9-date" onclick="openCustomCalendar('c12-p9-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p9-rev1"></td><td><input type="checkbox" id="c12-p9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p10-status"></td><td>10</td><td class="chapter-name">Wave Optics</td><td><button type="button" class="date-badge-btn" id="c12-p10-date" onclick="openCustomCalendar('c12-p10-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p10-rev1"></td><td><input type="checkbox" id="c12-p10-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2015,9 +2128,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">☀️</div><div><h2 class="unit-title">UNIT 7 : Dual Nature of Radiation and Matter</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p11-status"></td><td>11</td><td class="chapter-name">Dual Nature of Radiation and Matter</td><td><input type="date" id="c12-p11-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p11-rev1"></td><td><input type="checkbox" id="c12-p11-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p11-status"></td><td>11</td><td class="chapter-name">Dual Nature of Radiation and Matter</td><td><button type="button" class="date-badge-btn" id="c12-p11-date" onclick="openCustomCalendar('c12-p11-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p11-rev1"></td><td><input type="checkbox" id="c12-p11-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2027,10 +2140,10 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚛️</div><div><h2 class="unit-title">UNIT 8 : Atoms and Nuclei</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p12-status"></td><td>12</td><td class="chapter-name">Atoms</td><td><input type="date" id="c12-p12-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p12-rev1"></td><td><input type="checkbox" id="c12-p12-rev2"></td></tr>
-            <tr><td><input type="checkbox" id="c12-p13-status"></td><td>13</td><td class="chapter-name">Nuclei</td><td><input type="date" id="c12-p13-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p13-rev1"></td><td><input type="checkbox" id="c12-p13-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p12-status"></td><td>12</td><td class="chapter-name">Atoms</td><td><button type="button" class="date-badge-btn" id="c12-p12-date" onclick="openCustomCalendar('c12-p12-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p12-rev1"></td><td><input type="checkbox" id="c12-p12-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p13-status"></td><td>13</td><td class="chapter-name">Nuclei</td><td><button type="button" class="date-badge-btn" id="c12-p13-date" onclick="openCustomCalendar('c12-p13-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p13-rev1"></td><td><input type="checkbox" id="c12-p13-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2040,9 +2153,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">💻</div><div><h2 class="unit-title">UNIT 9 : Electronic Devices</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-p14-status"></td><td>14</td><td class="chapter-name">Semiconductor Electronics</td><td><input type="date" id="c12-p14-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-p14-rev1"></td><td><input type="checkbox" id="c12-p14-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-p14-status"></td><td>14</td><td class="chapter-name">Semiconductor Electronics</td><td><button type="button" class="date-badge-btn" id="c12-p14-date" onclick="openCustomCalendar('c12-p14-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-p14-rev1"></td><td><input type="checkbox" id="c12-p14-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2060,9 +2173,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">💧</div><div><h2 class="unit-title">UNIT 1 : Solutions</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch1-status"></td><td>1</td><td class="chapter-name">Solutions</td><td><input type="date" id="c12-ch1-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch1-rev1"></td><td><input type="checkbox" id="c12-ch1-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch1-status"></td><td>1</td><td class="chapter-name">Solutions</td><td><button type="button" class="date-badge-btn" id="c12-ch1-date" onclick="openCustomCalendar('c12-ch1-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch1-rev1"></td><td><input type="checkbox" id="c12-ch1-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2072,9 +2185,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⚡</div><div><h2 class="unit-title">UNIT 2 : Electrochemistry</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch2-status"></td><td>2</td><td class="chapter-name">Electrochemistry</td><td><input type="date" id="c12-ch2-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch2-rev1"></td><td><input type="checkbox" id="c12-ch2-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch2-status"></td><td>2</td><td class="chapter-name">Electrochemistry</td><td><button type="button" class="date-badge-btn" id="c12-ch2-date" onclick="openCustomCalendar('c12-ch2-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch2-rev1"></td><td><input type="checkbox" id="c12-ch2-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2084,9 +2197,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">⏱️</div><div><h2 class="unit-title">UNIT 3 : Chemical Kinetics</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch3-status"></td><td>3</td><td class="chapter-name">Chemical Kinetics</td><td><input type="date" id="c12-ch3-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch3-rev1"></td><td><input type="checkbox" id="c12-ch3-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch3-status"></td><td>3</td><td class="chapter-name">Chemical Kinetics</td><td><button type="button" class="date-badge-btn" id="c12-ch3-date" onclick="openCustomCalendar('c12-ch3-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch3-rev1"></td><td><input type="checkbox" id="c12-ch3-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2096,9 +2209,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧱</div><div><h2 class="unit-title">UNIT 4 : The d- and f-Block Elements</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch4-status"></td><td>4</td><td class="chapter-name">The d- and f-Block Elements</td><td><input type="date" id="c12-ch4-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch4-rev1"></td><td><input type="checkbox" id="c12-ch4-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch4-status"></td><td>4</td><td class="chapter-name">The d- and f-Block Elements</td><td><button type="button" class="date-badge-btn" id="c12-ch4-date" onclick="openCustomCalendar('c12-ch4-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch4-rev1"></td><td><input type="checkbox" id="c12-ch4-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2108,9 +2221,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">💠</div><div><h2 class="unit-title">UNIT 5 : Coordination Compounds</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch5-status"></td><td>5</td><td class="chapter-name">Coordination Compounds</td><td><input type="date" id="c12-ch5-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch5-rev1"></td><td><input type="checkbox" id="c12-ch5-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch5-status"></td><td>5</td><td class="chapter-name">Coordination Compounds</td><td><button type="button" class="date-badge-btn" id="c12-ch5-date" onclick="openCustomCalendar('c12-ch5-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch5-rev1"></td><td><input type="checkbox" id="c12-ch5-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2120,9 +2233,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧪</div><div><h2 class="unit-title">UNIT 6 : Haloalkanes and Haloarenes</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch6-status"></td><td>6</td><td class="chapter-name">Haloalkanes and Haloarenes</td><td><input type="date" id="c12-ch6-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch6-rev1"></td><td><input type="checkbox" id="c12-ch6-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch6-status"></td><td>6</td><td class="chapter-name">Haloalkanes and Haloarenes</td><td><button type="button" class="date-badge-btn" id="c12-ch6-date" onclick="openCustomCalendar('c12-ch6-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch6-rev1"></td><td><input type="checkbox" id="c12-ch6-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2132,9 +2245,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🍷</div><div><h2 class="unit-title">UNIT 7 : Alcohols, Phenols and Ethers</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch7-status"></td><td>7</td><td class="chapter-name">Alcohols, Phenols and Ethers</td><td><input type="date" id="c12-ch7-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch7-rev1"></td><td><input type="checkbox" id="c12-ch7-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch7-status"></td><td>7</td><td class="chapter-name">Alcohols, Phenols and Ethers</td><td><button type="button" class="date-badge-btn" id="c12-ch7-date" onclick="openCustomCalendar('c12-ch7-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch7-rev1"></td><td><input type="checkbox" id="c12-ch7-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2144,9 +2257,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🍋</div><div><h2 class="unit-title">UNIT 8 : Aldehydes, Ketones and Carboxylic Acids</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch8-status"></td><td>8</td><td class="chapter-name">Aldehydes, Ketones and Carboxylic Acids</td><td><input type="date" id="c12-ch8-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch8-rev1"></td><td><input type="checkbox" id="c12-ch8-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch8-status"></td><td>8</td><td class="chapter-name">Aldehydes, Ketones and Carboxylic Acids</td><td><button type="button" class="date-badge-btn" id="c12-ch8-date" onclick="openCustomCalendar('c12-ch8-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch8-rev1"></td><td><input type="checkbox" id="c12-ch8-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2156,9 +2269,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🧬</div><div><h2 class="unit-title">UNIT 9 : Amines</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch9-status"></td><td>9</td><td class="chapter-name">Amines</td><td><input type="date" id="c12-ch9-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch9-rev1"></td><td><input type="checkbox" id="c12-ch9-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch9-status"></td><td>9</td><td class="chapter-name">Amines</td><td><button type="button" class="date-badge-btn" id="c12-ch9-date" onclick="openCustomCalendar('c12-ch9-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch9-rev1"></td><td><input type="checkbox" id="c12-ch9-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2168,9 +2281,9 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div class="unit-header"><div class="unit-icon">🍬</div><div><h2 class="unit-title">UNIT 10 : Biomolecules</h2></div></div>
       <div class="table-responsive">
         <table>
-          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date Completed</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
+          <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
           <tbody>
-            <tr><td><input type="checkbox" id="c12-ch10-status"></td><td>10</td><td class="chapter-name">Biomolecules</td><td><input type="date" id="c12-ch10-date" aria-label="Completion Date"></td><td><input type="checkbox" id="c12-ch10-rev1"></td><td><input type="checkbox" id="c12-ch10-rev2"></td></tr>
+            <tr><td><input type="checkbox" id="c12-ch10-status"></td><td>10</td><td class="chapter-name">Biomolecules</td><td><button type="button" class="date-badge-btn" id="c12-ch10-date" onclick="openCustomCalendar('c12-ch10-date')">📅 Set Date</button></td><td><input type="checkbox" id="c12-ch10-rev1"></td><td><input type="checkbox" id="c12-ch10-rev2"></td></tr>
           </tbody>
         </table>
       </div>
@@ -2254,7 +2367,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
       <div>© 2026–2027 NEET Master Prep Suite • Engineered for AIIMS Aspirants 🌸</div>
       <div style="display: flex; gap: 16px;">
         <span>🎯 Target: May 2, 2027</span>
-        <span>⚡ Version 19.0 Pro</span>
+        <span>⚡ Version 21.0 Pro</span>
       </div>
     </div>
   </div>
@@ -2282,6 +2395,35 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
     <div>
       <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--bio-accent); margin-bottom: 10px;">📚 Saved Notes Grid</h3>
       <div class="notes-grid" id="notes-grid-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 📅 POPUP CUSTOM CALENDAR MODAL (DD/MM/YYYY ENGINE) -->
+<div id="custom-calendar-modal" class="calendar-modal-overlay">
+  <div class="custom-calendar-box">
+    <div class="cal-header-bar">
+      <button type="button" class="cal-nav-btn" id="cal-prev-month">❮</button>
+      <div class="cal-month-title" id="cal-month-year-label">Month Year</div>
+      <button type="button" class="cal-nav-btn" id="cal-next-month">❯</button>
+    </div>
+
+    <div class="cal-grid-days" id="cal-days-header">
+      <div class="cal-day-label">Su</div>
+      <div class="cal-day-label">Mo</div>
+      <div class="cal-day-label">Tu</div>
+      <div class="cal-day-label">We</div>
+      <div class="cal-day-label">Th</div>
+      <div class="cal-day-label">Fr</div>
+      <div class="cal-day-label">Sa</div>
+    </div>
+
+    <div class="cal-grid-days" id="cal-dates-grid"></div>
+
+    <div class="cal-quick-actions">
+      <button type="button" class="btn btn-secondary" onclick="setCalendarToday()">Today</button>
+      <button type="button" class="btn btn-danger" onclick="clearActiveDate()">Clear</button>
+      <button type="button" class="btn btn-secondary" onclick="closeCustomCalendar()">Close</button>
     </div>
   </div>
 </div>
@@ -2493,6 +2635,106 @@ function renderCustomNotes() {
   `).join('');
 }
 
+// 📅 UNIVERSAL MODAL CALENDAR (GUARANTEED TO OPEN ACROSS ALL DEVICES)
+let activeDateElementId = null;
+let calViewDate = new Date();
+
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+function openCustomCalendar(elementId) {
+  activeDateElementId = elementId;
+  const currentVal = localStorage.getItem(elementId) || '';
+
+  if (currentVal && currentVal.length === 10) {
+    const parts = currentVal.split('/');
+    if (parts.length === 3) {
+      calViewDate = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+    }
+  } else {
+    calViewDate = new Date();
+  }
+
+  renderCalendarGrid();
+  document.getElementById('custom-calendar-modal').classList.add('active');
+}
+
+function closeCustomCalendar() {
+  document.getElementById('custom-calendar-modal').classList.remove('active');
+  activeDateElementId = null;
+}
+
+function renderCalendarGrid() {
+  const year = calViewDate.getFullYear();
+  const month = calViewDate.getMonth();
+
+  document.getElementById('cal-month-year-label').innerText = `${monthNames[month]} ${year}`;
+
+  const firstDayIndex = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
+
+  const currentVal = activeDateElementId ? (localStorage.getItem(activeDateElementId) || '') : '';
+  const today = new Date();
+  const todayStr = `${pad2(today.getDate())}/${pad2(today.getMonth()+1)}/${today.getFullYear()}`;
+
+  const grid = document.getElementById('cal-dates-grid');
+  grid.innerHTML = '';
+
+  for (let i = 0; i < firstDayIndex; i++) {
+    const emptyCell = document.createElement('div');
+    emptyCell.className = 'cal-date-cell empty';
+    grid.appendChild(emptyCell);
+  }
+
+  for (let d = 1; d <= totalDays; d++) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-date-cell';
+    cell.innerText = d;
+
+    const formatted = `${pad2(d)}/${pad2(month + 1)}/${year}`;
+    if (formatted === currentVal) cell.classList.add('selected');
+    if (formatted === todayStr) cell.classList.add('today');
+
+    cell.addEventListener('click', () => selectCalendarDate(formatted));
+    grid.appendChild(cell);
+  }
+}
+
+function selectCalendarDate(formattedDate) {
+  if (!activeDateElementId) return;
+
+  const btn = document.getElementById(activeDateElementId);
+  if (btn) btn.innerText = `🗓️ ${formattedDate}`;
+
+  localStorage.setItem(activeDateElementId, formattedDate);
+  showCustomMessage(`Date set to ${formattedDate} 🌸`, 'success');
+  closeCustomCalendar();
+}
+
+function setCalendarToday() {
+  const today = new Date();
+  const formatted = `${pad2(today.getDate())}/${pad2(today.getMonth()+1)}/${today.getFullYear()}`;
+  selectCalendarDate(formatted);
+}
+
+function clearActiveDate() {
+  if (!activeDateElementId) return;
+  const btn = document.getElementById(activeDateElementId);
+  if (btn) btn.innerText = '📅 Set Date';
+  localStorage.removeItem(activeDateElementId);
+  showCustomMessage('Date cleared.', 'info');
+  closeCustomCalendar();
+}
+
+document.getElementById('cal-prev-month').addEventListener('click', () => {
+  calViewDate.setMonth(calViewDate.getMonth() - 1);
+  renderCalendarGrid();
+});
+
+document.getElementById('cal-next-month').addEventListener('click', () => {
+  calViewDate.setMonth(calViewDate.getMonth() + 1);
+  renderCalendarGrid();
+});
+
 // 🎨 12 Global Homepage Themes Presets & Switcher
 const globalThemes = [
   { className: '', name: 'Sakura Dream' },
@@ -2568,7 +2810,7 @@ function updateLiveClockAndCountdown() {
 setInterval(updateLiveClockAndCountdown, 1000);
 updateLiveClockAndCountdown();
 
-// Navigation View Handler
+// 🚀 FAST RESPONSIVE VIEW SWITCHER
 function showOnlyView(viewId) {
   document.querySelectorAll('.view-panel').forEach(panel => {
     panel.classList.remove('active-view');
@@ -2577,7 +2819,11 @@ function showOnlyView(viewId) {
   const targetPanel = document.getElementById(viewId);
   if (targetPanel) {
     targetPanel.classList.add('active-view');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (viewId === 'view-home') {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    } else {
+      targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }
 
@@ -2664,29 +2910,33 @@ function releaseWakeLock() {
   if (wakeLock !== null) { wakeLock.release().then(() => { wakeLock = null; }); }
 }
 
-// 📱 AUTO-LANDSCAPE HANDLER FOR MOBILE & TABLETS
-async function enterTrueFullscreen() {
+// 📱 INSTANT SINGLE-TAP FULLSCREEN HANDLER
+function enterTrueFullscreen() {
   const el = document.documentElement;
   try {
-    if (el.requestFullscreen) await el.requestFullscreen();
-    else if (el.webkitRequestFullscreen) await el.webkitRequestFullscreen();
+    if (el.requestFullscreen) {
+      el.requestFullscreen().catch(() => {});
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
   } catch (err) {}
 
   if (screen.orientation && screen.orientation.lock && window.innerWidth <= 1024) {
-    try {
-      await screen.orientation.lock('landscape');
-    } catch (e) {}
+    screen.orientation.lock('landscape').catch(() => {});
   }
 }
 
 function exitTrueFullscreen() {
   if (screen.orientation && screen.orientation.unlock) {
-    try {
-      screen.orientation.unlock();
-    } catch (e) {}
+    try { screen.orientation.unlock(); } catch (e) {}
   }
-  if (document.exitFullscreen && document.fullscreenElement) document.exitFullscreen().catch(() => {});
-  else if (document.webkitExitFullscreen && document.webkitFullscreenElement) document.webkitExitFullscreen();
+  try {
+    if (document.exitFullscreen && document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else if (document.webkitExitFullscreen && document.webkitFullscreenElement) {
+      document.webkitExitFullscreen();
+    }
+  } catch (e) {}
 }
 
 let globalTimerInterval = null;
@@ -2942,17 +3192,18 @@ document.getElementById('btn-save-fs-edit').addEventListener('click', () => {
 
 document.getElementById('btn-cancel-fs-edit').addEventListener('click', () => fsEditOverlay.classList.remove('active'));
 
-document.getElementById('btn-open-fullscreen-timer').addEventListener('click', async () => {
+// Instant Single-Click Fullscreen Focus
+document.getElementById('btn-open-fullscreen-timer').addEventListener('click', () => {
   if (!isTimerRunning && globalTimeRemaining <= 0) globalTimeRemaining = getInputsTotalSeconds();
   syncAllTimerDisplays();
-  await enterTrueFullscreen();
+  enterTrueFullscreen();
   requestWakeLock();
   fsModal.classList.add('active');
   document.documentElement.classList.add('no-scroll');
   document.body.classList.add('no-scroll');
-  showCustomMessage('Entered Focus Mode (Landscape Auto-Lock). 🌸', 'info');
 });
 
+// Instant Single-Click Fullscreen Close
 document.getElementById('btn-fs-close').addEventListener('click', closeFullscreenOverlay);
 
 function closeFullscreenOverlay() {
@@ -2967,6 +3218,8 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if (document.getElementById('custom-notes-modal').classList.contains('active')) {
       closeNotesModal();
+    } else if (document.getElementById('custom-calendar-modal').classList.contains('active')) {
+      closeCustomCalendar();
     } else if (fsModal.classList.contains('active')) {
       closeFullscreenOverlay();
     } else if (securityModal.classList.contains('active')) {
@@ -3079,6 +3332,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // Restore Date Button text from LocalStorage
+  document.querySelectorAll('.date-badge-btn').forEach(btn => {
+    const saved = localStorage.getItem(btn.id);
+    if (saved) btn.innerText = `🗓️ ${saved}`;
+  });
+
   const allInputs = document.querySelectorAll('input:not([type="file"]), textarea:not(#new-note-text)');
   let textTimeout;
 
@@ -3094,7 +3353,6 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(e.target.id, val);
 
       if (e.target.type === 'checkbox') showCustomMessage('Progress Saved 🌸', 'success');
-      else if (e.target.type === 'date') showCustomMessage('Date Saved 🗓️', 'success');
       else {
         clearTimeout(textTimeout);
         textTimeout = setTimeout(() => showCustomMessage('Saved ✨', 'info'), 800);
@@ -3117,11 +3375,16 @@ function executeSecureExport() {
     payload[input.id] = input.type === 'checkbox' ? input.checked : sanitizeInput(input.value);
   });
 
+  document.querySelectorAll('.date-badge-btn').forEach(btn => {
+    const saved = localStorage.getItem(btn.id);
+    if (saved) payload[btn.id] = saved;
+  });
+
   payload['__custom_saved_notes'] = localStorage.getItem('neet_custom_saved_notes') || '[]';
 
   const payloadString = JSON.stringify(payload);
   const securePackage = {
-    metadata: { timestamp: new Date().toISOString(), version: "19.0", integrity_signature: generateAntiTamperSignature(payloadString) },
+    metadata: { timestamp: new Date().toISOString(), version: "21.0", integrity_signature: generateAntiTamperSignature(payloadString) },
     payload: payload
   };
 
@@ -3154,14 +3417,25 @@ function executeSecureImport(event) {
         localStorage.setItem('neet_custom_saved_notes', data.payload['__custom_saved_notes']);
       }
 
-      const allowedKeys = Array.from(document.querySelectorAll('input:not([type="file"]), textarea:not(#new-note-text)')).map(i => i.id);
-      for (const k of allowedKeys) {
+      const allTargets = [
+        ...Array.from(document.querySelectorAll('input:not([type="file"]), textarea:not(#new-note-text)')).map(i => i.id),
+        ...Array.from(document.querySelectorAll('.date-badge-btn')).map(b => b.id)
+      ];
+
+      for (const k of allTargets) {
         if (data.payload[k] !== undefined) {
           let val = data.payload[k];
           const el = document.getElementById(k);
           if (el) {
-            if (el.type === 'checkbox') val = (val === true || val === 'true') ? 'true' : 'false';
-            else val = sanitizeInput(String(val));
+            if (el.type === 'checkbox') {
+              val = (val === true || val === 'true') ? 'true' : 'false';
+              el.checked = (val === 'true');
+            } else if (el.classList.contains('date-badge-btn')) {
+              el.innerText = `🗓️ ${val}`;
+            } else {
+              val = sanitizeInput(String(val));
+              el.value = val;
+            }
             localStorage.setItem(k, val);
           }
         }
