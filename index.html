@@ -1091,19 +1091,27 @@ function sanitizeInput(str){
 }
 
 /* 🔔 Melodic ringtone */
-let audioCtx = null, alarmInterval = null, isAlarmRinging = false;
+let audioCtx = null, alarmInterval = null, isAlarmRinging = false, alarmRingCount = 0;
+const ALARM_PEAK_VOLUME = 0.35;   // same ceiling as before — final volume is unchanged
+const ALARM_FADE_IN_RINGS = 6;    // how many repeats (~7s) it takes to build up to full volume
 function playMelodicRingtone(){
   try {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === 'suspended') audioCtx.resume();
     const now = audioCtx.currentTime;
     const notes = [1046.50, 1318.51, 1567.98, 2093.00];
+    // 🔊 Gradual volume ramp-up: the ringtone starts soft on the first
+    // repeats and gets louder each cycle until it reaches full volume,
+    // instead of blasting at max volume the instant the target is hit.
+    alarmRingCount++;
+    const rampProgress = Math.min(alarmRingCount / ALARM_FADE_IN_RINGS, 1);
+    const ringVolume = ALARM_PEAK_VOLUME * (0.15 + 0.85 * rampProgress);
     notes.forEach((freq, idx) => {
       const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, now + idx*0.1);
       gain.gain.setValueAtTime(0, now + idx*0.1);
-      gain.gain.linearRampToValueAtTime(0.35, now + idx*0.1 + 0.03);
+      gain.gain.linearRampToValueAtTime(ringVolume, now + idx*0.1 + 0.03);
       gain.gain.exponentialRampToValueAtTime(0.001, now + idx*0.1 + 0.4);
       osc.connect(gain); gain.connect(audioCtx.destination);
       osc.start(now + idx*0.1); osc.stop(now + idx*0.1 + 0.45);
@@ -1113,6 +1121,7 @@ function playMelodicRingtone(){
 function startAlarmRingtone(){
   if (isAlarmRinging) return;
   isAlarmRinging = true;
+  alarmRingCount = 0;
   playMelodicRingtone();
   alarmInterval = setInterval(playMelodicRingtone, 1200);
   document.getElementById('btn-start-target-timer').style.display = 'none';
@@ -1124,7 +1133,7 @@ function startAlarmRingtone(){
 }
 function stopAlarmRingtone(){
   if (!isAlarmRinging) return;
-  clearInterval(alarmInterval); alarmInterval = null; isAlarmRinging = false;
+  clearInterval(alarmInterval); alarmInterval = null; isAlarmRinging = false; alarmRingCount = 0;
   document.getElementById('btn-alarm-stop-target').style.display = 'none';
   document.getElementById('btn-start-target-timer').style.display = 'inline-flex';
   document.getElementById('btn-start-target-timer').innerText = '▶️ Start';
@@ -1202,21 +1211,42 @@ function fitFullscreenTimerStage(){
     // Phones: scale the clock and the button rows independently, giving the
     // clock the lion's share of the available height so it stays the clear
     // visual focus instead of shrinking to match the buttons.
+    //
+    // FIX: previously the button row always claimed a fixed 20% height slice
+    // regardless of whether it actually needed that much. On an installed
+    // PWA (no browser chrome) there's plenty of dvh to go around, so that
+    // fixed slice was harmless. But in a normal mobile browser tab the real
+    // visible height is shorter (address bar, etc.), so that same fixed 20%
+    // ate into height the clock needed — the clock ended up height-bound and
+    // shrank, while the (already small) buttons stayed at their own bound,
+    // making buttons look disproportionately big next to the digits.
+    // Now: size the button row to only what it needs (fit by width, capped),
+    // then give literally everything left over to the clock.
     const clockW = clockBlock.offsetWidth, clockH = clockBlock.offsetHeight;
     const btnW = buttonsBlock.offsetWidth, btnH = buttonsBlock.offsetHeight;
     if (!clockW || !clockH || !btnW || !btnH) return;
 
     const stackGap = 22; // matches the deck's flex gap between the two blocks
     const usableH = Math.max(availH - stackGap, 1);
-    const clockAvailH = usableH * 0.8;
-    const btnAvailH = usableH * 0.2;
 
-    let clockScale = Math.min(availW / clockW, clockAvailH / clockH);
-    let btnScale = Math.min(availW / btnW, btnAvailH / btnH);
-    if (!isFinite(clockScale) || clockScale <= 0) clockScale = 1;
+    // Button row: fit to width, never upscale past natural size.
+    let btnScale = availW / btnW;
     if (!isFinite(btnScale) || btnScale <= 0) btnScale = 1;
-    clockScale = Math.max(0.35, Math.min(clockScale, 1.9));
     btnScale = Math.max(0.3, Math.min(btnScale, 1.0));
+
+    // Guarantee the clock at least 62% of the usable height even if the
+    // button row would otherwise be allowed to take more than that.
+    const minClockShare = usableH * 0.62;
+    let btnAvailH = usableH - (btnH * btnScale);
+    if (btnAvailH < minClockShare){
+      btnAvailH = Math.max(usableH - minClockShare, 1);
+      btnScale = Math.max(0.3, Math.min(btnAvailH / btnH, btnScale));
+    }
+
+    const clockAvailH = Math.max(usableH - (btnH * btnScale), 1);
+    let clockScale = Math.min(availW / clockW, clockAvailH / clockH);
+    if (!isFinite(clockScale) || clockScale <= 0) clockScale = 1;
+    clockScale = Math.max(0.35, Math.min(clockScale, 1.9));
 
     clockBlock.style.transform = `scale(${clockScale})`;
     buttonsBlock.style.transform = `scale(${btnScale})`;
