@@ -248,19 +248,19 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .fullscreen-timer-overlay.fst-ruby{background:radial-gradient(circle at 50% 50%,#4c0519 0%,#1f0107 100%)}
 .fullscreen-timer-overlay.fst-cyberpunk{background:radial-gradient(circle at 50% 50%,#3b0764 0%,#030712 100%)}
 
-.fs-content-deck{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(10px,2.4vmin,22px);width:96%;max-width:1280px;height:94%;z-index:2}
-.fs-subtext{font-size:clamp(.72rem,1.9vmin,1.2rem);font-weight:800;letter-spacing:3px;color:var(--bio-accent);text-transform:uppercase;text-align:center}
-.flip-clock-container{display:flex;align-items:center;justify-content:center;gap:clamp(4px,1.6vmin,22px);width:100%;flex-wrap:nowrap}
-.flip-unit{display:flex;gap:clamp(3px,1vmin,12px)}
-.flip-card{background:rgba(18,5,30,.85);border:clamp(2px,.4vmin,4px) solid var(--glass-border);border-radius:clamp(10px,3vmin,30px);width:clamp(42px,12vmin,150px);height:clamp(64px,24vmin,220px);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 35px rgba(0,0,0,.7),var(--btn-glow);cursor:pointer;user-select:none;transition:transform .2s ease,border-color .2s ease}
+.fs-content-deck{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;z-index:2;transform-origin:center center;transition:transform .15s ease;will-change:transform}
+.fs-subtext{font-size:1.15rem;font-weight:800;letter-spacing:3px;color:var(--bio-accent);text-transform:uppercase;text-align:center;white-space:nowrap}
+.flip-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:nowrap}
+.flip-unit{display:flex;gap:10px}
+.flip-card{background:rgba(18,5,30,.85);border:3px solid var(--glass-border);border-radius:26px;width:132px;height:200px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 35px rgba(0,0,0,.7),var(--btn-glow);cursor:pointer;user-select:none;transition:transform .2s ease,border-color .2s ease}
 .flip-card:hover{transform:translateY(-4px) scale(1.02);border-color:var(--bio-accent)}
-.flip-digit-span{font-family:'JetBrains Mono',monospace;font-size:clamp(1.8rem,16vmin,10rem);font-weight:800;color:#fff1f2;line-height:1}
-.flip-colon{font-family:'JetBrains Mono',monospace;font-size:clamp(1.4rem,12vmin,8rem);font-weight:800;color:var(--bio-accent);line-height:1;padding:0 clamp(0px,.4vmin,6px)}
-.fs-preset-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(6px,1.1vmin,12px)}
-.fs-preset-btns button{padding:clamp(6px,1.1vmin,10px) clamp(11px,1.8vmin,20px);border-radius:20px;border:1.5px solid var(--glass-border);background:rgba(255,255,255,.06);color:var(--bio-subtext);font-weight:700;font-size:clamp(.72rem,1.6vmin,.92rem);cursor:pointer;transition:all .2s ease}
+.flip-digit-span{font-family:'JetBrains Mono',monospace;font-size:6.4rem;font-weight:800;color:#fff1f2;line-height:1}
+.flip-colon{font-family:'JetBrains Mono',monospace;font-size:5rem;font-weight:800;color:var(--bio-accent);line-height:1;padding:0 4px}
+.fs-preset-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:640px}
+.fs-preset-btns button{padding:9px 18px;border-radius:20px;border:1.5px solid var(--glass-border);background:rgba(255,255,255,.06);color:var(--bio-subtext);font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s ease;white-space:nowrap}
 .fs-preset-btns button:hover{background:rgba(244,114,182,.25);border-color:var(--bio-accent);color:#fff}
-.fs-controls-group{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(6px,1.3vmin,14px)}
-.fs-controls-group .btn{padding:clamp(7px,1.3vmin,12px) clamp(13px,2.2vmin,22px);font-size:clamp(.72rem,1.6vmin,.92rem)}
+.fs-controls-group{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:680px}
+.fs-controls-group .btn{padding:11px 20px;font-size:.88rem;white-space:nowrap}
 .btn-fullscreen-exit{background:rgba(255,255,255,.08);color:#f8fafc;border-color:rgba(255,255,255,.2)}
 .btn-fullscreen-exit:hover{background:rgba(255,255,255,.18)}
 .fs-edit-overlay{position:absolute;inset:0;background:rgba(12,2,20,.94);backdrop-filter:blur(16px);z-index:10;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px}
@@ -1146,6 +1146,46 @@ function exitTrueFullscreenAndLandscape(){
   } catch(e){}
 }
 
+/* 🔍 Auto-fit: scale the whole clock+buttons stage as one unit so it always
+   fills the available space correctly on any phone, tablet, or desktop
+   screen — this keeps the clock and the buttons in the same proportion to
+   each other instead of sizing them independently. */
+function fitFullscreenTimerStage(){
+  const stage = document.querySelector('.fs-content-deck');
+  const modal = document.getElementById('fullscreen-timer-modal');
+  if (!stage || !modal || !modal.classList.contains('active')) return;
+
+  stage.style.transform = 'none';
+  const stageW = stage.offsetWidth;
+  const stageH = stage.offsetHeight;
+  if (!stageW || !stageH) return;
+
+  const pad = 20; // breathing room so nothing touches the edges
+  const availW = modal.clientWidth - pad * 2;
+  const availH = modal.clientHeight - pad * 2;
+
+  let scale = Math.min(availW / stageW, availH / stageH);
+  if (!isFinite(scale) || scale <= 0) scale = 1;
+  scale = Math.max(0.3, Math.min(scale, 1.6));
+
+  stage.style.transform = `scale(${scale})`;
+}
+
+let fitFsRaf = null;
+function scheduleFitFullscreenTimer(){
+  if (fitFsRaf) cancelAnimationFrame(fitFsRaf);
+  fitFsRaf = requestAnimationFrame(() => {
+    fitFullscreenTimerStage();
+    // run again shortly after: covers async orientation-lock/rotation
+    // settling and font/layout completing just after opening
+    setTimeout(fitFullscreenTimerStage, 150);
+    setTimeout(fitFullscreenTimerStage, 450);
+  });
+}
+window.addEventListener('resize', scheduleFitFullscreenTimer);
+window.addEventListener('orientationchange', scheduleFitFullscreenTimer);
+if (screen.orientation) screen.orientation.addEventListener('change', scheduleFitFullscreenTimer);
+
 /* ⏱️ Focus timer */
 let globalTimerInterval = null, globalTimeRemaining = 0, isTimerRunning = false, savedInitialSeconds = 0;
 const startTargetBtn = document.getElementById('btn-start-target-timer');
@@ -1320,6 +1360,7 @@ document.getElementById('btn-open-fullscreen-timer').addEventListener('click', a
   fsModal.classList.add('active');
   document.documentElement.classList.add('no-scroll');
   document.body.classList.add('no-scroll');
+  scheduleFitFullscreenTimer();
 });
 document.getElementById('btn-fs-close').addEventListener('click', closeFullscreenOverlay);
 function closeFullscreenOverlay(){
@@ -1331,6 +1372,7 @@ function closeFullscreenOverlay(){
 }
 document.addEventListener('fullscreenchange', () => {
   if (!document.fullscreenElement && fsModal.classList.contains('active')) closeFullscreenOverlay();
+  else scheduleFitFullscreenTimer();
 });
 
 document.addEventListener('keydown', (e) => {
