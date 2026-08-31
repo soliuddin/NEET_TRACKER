@@ -1184,7 +1184,7 @@ function getFullscreenTimerFitPadding(modal){
   // modal.clientWidth/Height, which get swapped when that trick is active).
   const smallerDim = Math.min(window.innerWidth, window.innerHeight);
   let padPct;
-  if (smallerDim <= 480) padPct = 0.045;       // phones: a little breathing room on all sides
+  if (smallerDim <= 480) padPct = 0.07;        // phones: more breathing room on all sides
   else if (smallerDim <= 1024) padPct = 0.11;  // tablets: extra breathing room → smaller
   else padPct = 0.04;                          // laptops/desktops/large screens
 
@@ -1315,7 +1315,7 @@ function fitFullscreenTimerStage(){
 
     // Small safety margin on both, so everything sits comfortably inside
     // the screen with a bit of breathing room instead of hugging the edges.
-    const PHONE_FIT_SAFETY = 0.92;
+    const PHONE_FIT_SAFETY = 0.84;
     clockScale *= PHONE_FIT_SAFETY;
     btnScale *= PHONE_FIT_SAFETY;
 
