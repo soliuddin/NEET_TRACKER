@@ -1150,6 +1150,19 @@ function exitTrueFullscreenAndLandscape(){
    fills the available space correctly on any phone, tablet, or desktop
    screen — this keeps the clock and the buttons in the same proportion to
    each other instead of sizing them independently. */
+function getFullscreenTimerFitPadding(modal){
+  // Smaller viewport dimension is a reliable phone-vs-tablet-vs-desktop
+  // signal, and it's unaffected by the landscape-rotation CSS trick (unlike
+  // modal.clientWidth/Height, which get swapped when that trick is active).
+  const smallerDim = Math.min(window.innerWidth, window.innerHeight);
+  let padPct;
+  if (smallerDim <= 480) padPct = 0.018;       // phones: fill closer to edge-to-edge → bigger
+  else if (smallerDim <= 1024) padPct = 0.11;  // tablets: extra breathing room → smaller
+  else padPct = 0.04;                          // laptops/desktops/large screens
+
+  return Math.round(Math.min(modal.clientWidth, modal.clientHeight) * padPct);
+}
+
 function fitFullscreenTimerStage(){
   const stage = document.querySelector('.fs-content-deck');
   const modal = document.getElementById('fullscreen-timer-modal');
@@ -1160,7 +1173,7 @@ function fitFullscreenTimerStage(){
   const stageH = stage.offsetHeight;
   if (!stageW || !stageH) return;
 
-  const pad = 20; // breathing room so nothing touches the edges
+  const pad = getFullscreenTimerFitPadding(modal);
   const availW = modal.clientWidth - pad * 2;
   const availH = modal.clientHeight - pad * 2;
 
