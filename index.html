@@ -1321,6 +1321,24 @@ function fitFullscreenTimerStage(){
 
     clockBlock.style.transform = `scale(${clockScale})`;
     buttonsBlock.style.transform = `scale(${btnScale})`;
+
+    // FIX: transform:scale() only changes how big something *looks* — it
+    // does NOT shrink the space it reserves in the flex layout. Since the
+    // clock and buttons are each scaled independently here (unlike the
+    // tablet/desktop branch below, which scales the whole deck as one
+    // centered unit), the deck's parent kept reserving the clock's and
+    // buttons' *natural, unscaled* height for layout purposes — so the
+    // whole stack was taller than it looked, and centering that phantom
+    // height inside the screen pushed the visible (smaller) content down,
+    // leaving a gap up top and cutting the buttons off at the bottom.
+    // Negative margins pull the reserved layout space back down to match
+    // the actual visual (scaled) size, so centering works correctly again.
+    const clockMarginV = (clockH * clockScale - clockH) / 2;
+    const btnMarginV = (btnH * btnScale - btnH) / 2;
+    clockBlock.style.marginTop = clockMarginV + 'px';
+    clockBlock.style.marginBottom = clockMarginV + 'px';
+    buttonsBlock.style.marginTop = btnMarginV + 'px';
+    buttonsBlock.style.marginBottom = btnMarginV + 'px';
   } else {
     // Tablets and larger: keep scaling the whole stage as one unit.
     const stageW = deck.offsetWidth, stageH = deck.offsetHeight;
