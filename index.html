@@ -579,7 +579,12 @@ h1 {
   gap: 18px;
 }
 
-.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-group { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
+  width: 100%;
+}
 
 label { font-weight: 700; color: var(--bio-glow); font-size: 0.88rem; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -634,6 +639,19 @@ input[type="number"] { -moz-appearance: textfield; }
   color: #ffffff;
   box-shadow: 0 0 12px rgba(244, 114, 182, 0.35);
   transform: translateY(-1px);
+}
+
+/* Specific styling for the Prep Start Date Button in Header card so it fits seamlessly like inputs */
+.date-badge-btn.header-date-btn {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 48px;
+  font-size: 0.96rem;
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .timer-panel {
@@ -1150,13 +1168,14 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
   flex: 1;
 }
 
-/* 🌟 TABLET & LARGE SCREEN OPTIMIZED FULLSCREEN FOCUS OVERLAY */
+/* 🌟 MOBILE & TABLET OPTIMIZED FULLSCREEN FOCUS OVERLAY */
 .fullscreen-timer-overlay {
   position: fixed; inset: 0; width: 100vw; height: 100vh;
   z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center;
   visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease, background 0.4s ease;
-  padding: 24px;
+  padding: clamp(6px, 1.8vh, 16px) clamp(8px, 2vw, 20px);
   overflow: hidden !important;
+  box-sizing: border-box;
 }
 
 .fullscreen-timer-overlay.fst-obsidian { background: #000000; --fs-digit-color: #f8fafc; --fs-card-bg: #111827; --fs-card-border: #334155; }
@@ -1186,16 +1205,17 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1100px;
+  margin: auto;
 }
 
 .fs-subtext {
-  font-size: clamp(1rem, 2.8vmin, 1.4rem);
+  font-size: clamp(0.72rem, 2vh, 1.1rem);
   font-weight: 800;
   color: var(--fs-digit-color, #fbcfe8);
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: clamp(4px, 1.2vh, 12px);
   text-align: center;
 }
 
@@ -1203,21 +1223,24 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(10px, 2vmin, 24px);
-  margin: 10px 0 30px 0;
+  gap: clamp(4px, 1.1vw, 16px);
+  margin: 4px 0 clamp(8px, 1.8vh, 18px) 0;
   width: 100%;
 }
 
-.flip-unit { display: flex; gap: clamp(6px, 1.4vmin, 14px); }
+.flip-unit { 
+  display: flex; 
+  gap: clamp(3px, 0.8vw, 10px); 
+}
 
 .flip-card {
   position: relative;
-  width: clamp(75px, 14vmin, 170px);
-  height: clamp(105px, 20vmin, 230px);
+  width: clamp(38px, 10.5vw, 130px);
+  height: clamp(56px, 22vh, 175px);
   background: var(--fs-card-bg, #1e1138);
-  border-radius: clamp(16px, 2.5vmin, 26px);
-  border: 2px solid var(--fs-card-border, #701a61);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
+  border-radius: clamp(8px, 1.8vw, 20px);
+  border: 1.5px solid var(--fs-card-border, #701a61);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1231,7 +1254,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 .flip-digit-span {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(4.2rem, 16vmin, 13rem);
+  font-size: clamp(2.4rem, 16vh, 8.5rem);
   font-weight: 800;
   color: var(--fs-digit-color, #f472b6);
   text-shadow: none !important;
@@ -1241,27 +1264,27 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 
 .flip-colon {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(3rem, 10vmin, 8.5rem);
+  font-size: clamp(1.8rem, 10vh, 5.5rem);
   font-weight: 800;
   color: var(--fs-digit-color, #f472b6);
   opacity: 0.85;
-  margin: 0 2px;
+  margin: 0 1px;
   text-shadow: none !important;
 }
 
 .fs-preset-btns {
-  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px; width: 100%;
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: clamp(6px, 1.4vh, 14px); width: 100%;
 }
 
 .fs-preset-btns button {
-  padding: 10px 22px;
+  padding: clamp(5px, 1.2vh, 9px) clamp(10px, 1.8vw, 18px);
   background: rgba(255, 255, 255, 0.08);
   border: 1.5px solid var(--fs-card-border, #f472b6);
   color: #fdf2f8;
-  border-radius: 30px;
+  border-radius: 20px;
   cursor: pointer;
   font-weight: 700;
-  font-size: clamp(0.85rem, 1.8vmin, 1.05rem);
+  font-size: clamp(0.7rem, 1.8vh, 0.9rem);
   transition: all 0.2s ease;
 }
 
@@ -1272,43 +1295,21 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
 
 .fs-controls-group {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
 }
 
 .fs-controls-group .btn {
-  font-size: clamp(0.9rem, 2vmin, 1.05rem);
-  padding: 12px 24px;
-  border-radius: 16px;
+  font-size: clamp(0.72rem, 1.8vh, 0.92rem);
+  padding: clamp(6px, 1.2vh, 10px) clamp(10px, 1.8vw, 18px);
+  border-radius: 12px;
 }
 
 #btn-fs-toggle { background: var(--btn-primary-grad); color: white; border: 1.5px solid var(--bio-accent); }
 #btn-fs-stop { background: #fb7185; color: white; border: 1.5px solid #f43f5e; }
 .btn-fullscreen-exit { background: rgba(255, 255, 255, 0.1); border: 1.5px solid var(--bio-accent); color: white; }
-
-/* 📱 TABLET SPECIFIC VIEWPORT OPTIMIZATIONS (600px to 1200px) */
-@media (min-width: 601px) and (max-width: 1200px) {
-  .flip-card {
-    width: clamp(100px, 15vw, 155px);
-    height: clamp(140px, 22vw, 210px);
-  }
-  .flip-digit-span {
-    font-size: clamp(5.5rem, 15vw, 11rem);
-  }
-  .flip-colon {
-    font-size: clamp(3.8rem, 10vw, 7rem);
-  }
-  .fs-preset-btns button {
-    padding: 10px 22px;
-    font-size: 1rem;
-  }
-  .fs-controls-group .btn {
-    padding: 12px 24px;
-    font-size: 1.05rem;
-  }
-}
 
 .view-panel { display: none; }
 .view-panel.active-view { display: block; }
@@ -1570,11 +1571,17 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
     </section>
 
     <section class="glass-card info-card">
-      <div class="input-group"><label for="student-name">Aspirant Name 🩺</label><input type="text" id="student-name" placeholder="Enter your full name"></div>
-      <div class="input-group"><label for="target-score">Target NEET Score 🎯</label><input type="text" id="target-score" placeholder="e.g., 720/720 (AIIMS New Delhi)"></div>
       <div class="input-group">
-        <label>Prep Start Date</label>
-        <button type="button" class="date-badge-btn" id="start-date" onclick="openCustomCalendar('start-date')">📅 Set Date</button>
+        <label for="student-name">Aspirant Name 🩺</label>
+        <input type="text" id="student-name" placeholder="Enter your full name">
+      </div>
+      <div class="input-group">
+        <label for="target-score">Target NEET Score 🎯</label>
+        <input type="text" id="target-score" placeholder="e.g., 720/720 (AIIMS New Delhi)">
+      </div>
+      <div class="input-group">
+        <label>Prep Start Date🗓️</label>
+        <button type="button" class="date-badge-btn header-date-btn" id="start-date" onclick="openCustomCalendar('start-date')">📅 Set Date</button>
       </div>
     </section>
 
@@ -1786,7 +1793,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
     </section>
 
     <section class="glass-card">
-      <div class="unit-header"><div class="unit-icon">🪐</div><div><h2 class="unit-title">UNIT 6 : Gravitation</h2></div></div>
+      <div class="unit-header"><div class="unit-icon">🪐</div><div><h2 class="unit-title">UNIT 1 : Gravitation</h2></div></div>
       <div class="table-responsive">
         <table>
           <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
@@ -1798,7 +1805,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
     </section>
 
     <section class="glass-card">
-      <div class="unit-header"><div class="unit-icon">🧊</div><div><h2 class="unit-title">UNIT 7 : Properties of Bulk Matter</h2></div></div>
+      <div class="unit-header"><div class="unit-icon">🧊</div><div><h2 class="unit-title">UNIT 2 : Properties of Bulk Matter</h2></div></div>
       <div class="table-responsive">
         <table>
           <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
@@ -1812,7 +1819,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
     </section>
 
     <section class="glass-card">
-      <div class="unit-header"><div class="unit-icon">🔥</div><div><h2 class="unit-title">UNIT 8 : Thermodynamics</h2></div></div>
+      <div class="unit-header"><div class="unit-icon">🔥</div><div><h2 class="unit-title">UNIT 3 : Thermodynamics</h2></div></div>
       <div class="table-responsive">
         <table>
           <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
@@ -1824,7 +1831,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
     </section>
 
     <section class="glass-card">
-      <div class="unit-header"><div class="unit-icon">💨</div><div><h2 class="unit-title">UNIT 9 : Behaviour of Perfect Gas and Kinetic Theory</h2></div></div>
+      <div class="unit-header"><div class="unit-icon">💨</div><div><h2 class="unit-title">UNIT 4 : Behaviour of Perfect Gas and Kinetic Theory</h2></div></div>
       <div class="table-responsive">
         <table>
           <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
@@ -1836,7 +1843,7 @@ input[type="checkbox"]:checked::after { content: '🌸'; font-size: 13px; positi
     </section>
 
     <section class="glass-card">
-      <div class="unit-header"><div class="unit-icon">🌊</div><div><h2 class="unit-title">UNIT 10 : Oscillations and Waves</h2></div></div>
+      <div class="unit-header"><div class="unit-icon">🌊</div><div><h2 class="unit-title">UNIT 5 : Oscillations and Waves</h2></div></div>
       <div class="table-responsive">
         <table>
           <thead><tr><th>Status</th><th>Ch.</th><th>Chapter Name</th><th>Date (DD/MM/YYYY)</th><th>Rev 1</th><th>Rev 2</th></tr></thead>
@@ -2910,19 +2917,25 @@ function releaseWakeLock() {
   if (wakeLock !== null) { wakeLock.release().then(() => { wakeLock = null; }); }
 }
 
-// 📱 INSTANT SINGLE-TAP FULLSCREEN HANDLER
-function enterTrueFullscreen() {
+// 📱 CROSS-DEVICE FULLSCREEN & LANDSCAPE ENFORCER
+async function enterTrueFullscreen() {
   const el = document.documentElement;
   try {
     if (el.requestFullscreen) {
-      el.requestFullscreen().catch(() => {});
+      await el.requestFullscreen();
     } else if (el.webkitRequestFullscreen) {
-      el.webkitRequestFullscreen();
+      await el.webkitRequestFullscreen();
     }
   } catch (err) {}
 
-  if (screen.orientation && screen.orientation.lock && window.innerWidth <= 1024) {
-    screen.orientation.lock('landscape').catch(() => {});
+  if (screen.orientation && screen.orientation.lock) {
+    try {
+      await screen.orientation.lock('landscape');
+    } catch (e) {
+      try {
+        await screen.orientation.lock('landscape-primary');
+      } catch (err) {}
+    }
   }
 }
 
