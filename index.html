@@ -229,7 +229,7 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .quote-author{font-size:.8rem;color:var(--text-muted);font-weight:600}
 
 /* ============ FULLSCREEN FOCUS TIMER — fully fluid, no forced rotation ============ */
-.fullscreen-timer-overlay{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;z-index:100005;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;padding:clamp(10px,3vmin,24px);backdrop-filter:blur(20px)}
+.fullscreen-timer-overlay{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;z-index:100005;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;padding:clamp(10px,3vmin,24px);backdrop-filter:blur(20px);overflow:hidden}
 .fullscreen-timer-overlay.active{opacity:1;visibility:visible;pointer-events:auto}
 .fullscreen-timer-overlay.fst-obsidian{background:radial-gradient(circle at 50% 50%,#180527 0%,#08010f 100%)}
 .fullscreen-timer-overlay.fst-sakura{background:radial-gradient(circle at 50% 50%,#4a0d33 0%,#1a0312 100%)}
@@ -1280,7 +1280,16 @@ function fitFullscreenTimerStage(){
     // then give literally everything left over to the clock.
     const clockW = clockBlock.offsetWidth, clockH = clockBlock.offsetHeight;
     const btnW = buttonsBlock.offsetWidth, btnH = buttonsBlock.offsetHeight;
-    if (!clockW || !clockH || !btnW || !btnH) return;
+    // If a measurement momentarily reads 0 (can happen if this run was
+    // triggered mid-layout-thrash, e.g. by a visualViewport resize/scroll
+    // event firing at an awkward instant), retry next frame instead of
+    // silently bailing — bailing here left transform:'none' in place
+    // permanently (natural, un-scaled size), which is exactly what made
+    // the clock/buttons overflow off the right edge of the screen.
+    if (!clockW || !clockH || !btnW || !btnH){
+      requestAnimationFrame(fitFullscreenTimerStage);
+      return;
+    }
 
     const stackGap = 22; // matches the deck's flex gap between the two blocks
     const usableH = Math.max(availH - stackGap, 1);
@@ -1309,7 +1318,10 @@ function fitFullscreenTimerStage(){
   } else {
     // Tablets and larger: keep scaling the whole stage as one unit.
     const stageW = deck.offsetWidth, stageH = deck.offsetHeight;
-    if (!stageW || !stageH) return;
+    if (!stageW || !stageH){
+      requestAnimationFrame(fitFullscreenTimerStage);
+      return;
+    }
     let scale = Math.min(availW / stageW, availH / stageH);
     if (!isFinite(scale) || scale <= 0) scale = 1;
     scale = Math.max(0.3, Math.min(scale, 1.6));
@@ -1332,10 +1344,17 @@ window.addEventListener('resize', scheduleFitFullscreenTimer);
 window.addEventListener('orientationchange', scheduleFitFullscreenTimer);
 if (screen.orientation) screen.orientation.addEventListener('change', scheduleFitFullscreenTimer);
 // visualViewport catches address-bar show/hide on mobile browsers, which
-// doesn't always fire a plain window 'resize' event.
+// doesn't always fire a plain window 'resize' event. Debounced slightly
+// since visualViewport can fire several times in quick succession during
+// a tap/scroll — we only need the settled final value, not every blip.
+let vvDebounce = null;
+function debouncedScheduleFit(){
+  clearTimeout(vvDebounce);
+  vvDebounce = setTimeout(scheduleFitFullscreenTimer, 80);
+}
 if (window.visualViewport){
-  window.visualViewport.addEventListener('resize', scheduleFitFullscreenTimer);
-  window.visualViewport.addEventListener('scroll', scheduleFitFullscreenTimer);
+  window.visualViewport.addEventListener('resize', debouncedScheduleFit);
+  window.visualViewport.addEventListener('scroll', debouncedScheduleFit);
 }
 
 /* ⏱️ Focus timer */
