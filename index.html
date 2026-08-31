@@ -1093,7 +1093,7 @@ function sanitizeInput(str){
 /* 🔔 Melodic ringtone */
 let audioCtx = null, alarmInterval = null, isAlarmRinging = false, alarmRingCount = 0;
 const ALARM_PEAK_VOLUME = 0.35;   // same ceiling as before — final volume is unchanged
-const ALARM_FADE_IN_RINGS = 6;    // how many repeats (~7s) it takes to build up to full volume
+const ALARM_FADE_IN_RINGS = 9;    // how many repeats (~11s) it takes to build up to full volume
 function playMelodicRingtone(){
   try {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1105,7 +1105,9 @@ function playMelodicRingtone(){
     // instead of blasting at max volume the instant the target is hit.
     alarmRingCount++;
     const rampProgress = Math.min(alarmRingCount / ALARM_FADE_IN_RINGS, 1);
-    const ringVolume = ALARM_PEAK_VOLUME * (0.15 + 0.85 * rampProgress);
+    // starts at ~6% of peak (barely-there) and climbs to 100% — a wide
+    // enough range to be unmistakable even on a small phone speaker
+    const ringVolume = ALARM_PEAK_VOLUME * (0.06 + 0.94 * rampProgress);
     notes.forEach((freq, idx) => {
       const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
       osc.type = 'sine';
@@ -1189,12 +1191,66 @@ function getFullscreenTimerFitPadding(modal){
   return Math.round(Math.min(modal.clientWidth, modal.clientHeight) * padPct);
 }
 
+/* 📐 JS-driven rotated-box geometry — replaces reliance on CSS dvh/dvw.
+   The CSS media-query rotation trick (used when true landscape lock isn't
+   available) sizes the rotated box with `width:100dvh;height:100dvw`. That
+   works great on modern engines (which is why the installed PWA — a newer
+   WebView — looks perfect), but `dvh`/`dvw` are NOT supported on every
+   mobile browser still in use (older Chrome/WebView/Samsung Internet
+   builds). On those, the browser drops the whole unsupported declaration
+   silently, so the rotated box never actually gets sized to the real
+   screen — it keeps rotating around instead. That mismatch is what makes
+   the stage look wrong in a plain mobile browser tab while the PWA is fine.
+   Fix: compute the same geometry ourselves in JS using plain pixel values
+   (which every browser supports) and set it via inline style, which always
+   wins over the CSS rule regardless of dvh/dvw support. */
+function applyFullscreenOverlayGeometry(){
+  const modal = document.getElementById('fullscreen-timer-modal');
+  if (!modal || !modal.classList.contains('active')) return;
+
+  const vv = window.visualViewport;
+  const vw = vv ? vv.width : window.innerWidth;
+  const vh = vv ? vv.height : window.innerHeight;
+  const isPortrait = vh >= vw; // matches the CSS media query's orientation:portrait
+  const smallerDim = Math.min(vw, vh);
+  // A real landscape lock succeeded if the OS itself reports landscape —
+  // in that case the viewport is already landscape and no rotation trick
+  // (or override) is needed at all.
+  const trueLandscapeLocked = screen.orientation && /landscape/i.test(screen.orientation.type || '');
+
+  const needsRotateTrick = isPortrait && smallerDim <= 900 && !trueLandscapeLocked;
+
+  if (needsRotateTrick){
+    modal.style.width = vh + 'px';
+    modal.style.height = vw + 'px';
+    modal.style.position = 'fixed';
+    modal.style.top = '50%';
+    modal.style.left = '50%';
+    modal.style.marginTop = (-vw / 2) + 'px';
+    modal.style.marginLeft = (-vh / 2) + 'px';
+    modal.style.transform = 'rotate(90deg)';
+  } else {
+    // Not rotated: clear the inline overrides so the normal (non-rotated)
+    // CSS — position:fixed;inset:0;width:100vw;height:100vh — takes over.
+    modal.style.width = '';
+    modal.style.height = '';
+    modal.style.position = '';
+    modal.style.top = '';
+    modal.style.left = '';
+    modal.style.marginTop = '';
+    modal.style.marginLeft = '';
+    modal.style.transform = '';
+  }
+}
+
 function fitFullscreenTimerStage(){
   const modal = document.getElementById('fullscreen-timer-modal');
   const deck = document.querySelector('.fs-content-deck');
   const clockBlock = document.querySelector('.fs-clock-block');
   const buttonsBlock = document.querySelector('.fs-buttons-block');
   if (!modal || !deck || !clockBlock || !buttonsBlock || !modal.classList.contains('active')) return;
+
+  applyFullscreenOverlayGeometry();
 
   // reset transforms before measuring natural (unscaled) sizes
   deck.style.transform = 'none';
@@ -1275,6 +1331,12 @@ function scheduleFitFullscreenTimer(){
 window.addEventListener('resize', scheduleFitFullscreenTimer);
 window.addEventListener('orientationchange', scheduleFitFullscreenTimer);
 if (screen.orientation) screen.orientation.addEventListener('change', scheduleFitFullscreenTimer);
+// visualViewport catches address-bar show/hide on mobile browsers, which
+// doesn't always fire a plain window 'resize' event.
+if (window.visualViewport){
+  window.visualViewport.addEventListener('resize', scheduleFitFullscreenTimer);
+  window.visualViewport.addEventListener('scroll', scheduleFitFullscreenTimer);
+}
 
 /* ⏱️ Focus timer */
 let globalTimerInterval = null, globalTimeRemaining = 0, isTimerRunning = false, savedInitialSeconds = 0;
