@@ -367,18 +367,29 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
    and desktop browsers where lock silently fails). On devices where
    screen.orientation.lock('landscape') succeeds, the OS itself rotates the
    viewport to landscape, so this media query (which only matches while the
-   viewport itself is still portrait) simply won't apply — no double-rotation. */
+   viewport itself is still portrait) simply won't apply — no double-rotation.
+
+   FIX: uses dvh/dvw (dynamic viewport units) instead of vh/vw. Plain vh/vw
+   resolve to the *large* viewport size (as if the browser toolbar were
+   fully collapsed), even while it's still visible in a normal mobile
+   browser tab. That mismatch made modal.clientWidth/clientHeight (read by
+   fitFullscreenTimerStage() in JS) disagree with window.innerWidth/
+   innerHeight (also read by that same function), which threw off the
+   scale math — shrinking the clock relative to the buttons. dvh/dvw always
+   track the real, currently-visible viewport, so both numbers now agree
+   in a plain browser tab exactly like they already did in the installed
+   PWA (which has no toolbar at all). */
 @media screen and (orientation:portrait) and (max-width:900px){
   .fullscreen-timer-overlay.active{
     transform:rotate(90deg);
     transform-origin:center center;
-    width:100vh;
-    height:100vw;
+    width:100dvh;
+    height:100dvw;
     position:fixed;
     top:50%;
     left:50%;
-    margin-top:-50vw;
-    margin-left:-50vh;
+    margin-top:-50dvw;
+    margin-left:-50dvh;
   }
 }
 </style>
