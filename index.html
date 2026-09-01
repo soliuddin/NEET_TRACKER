@@ -42,18 +42,19 @@
 <meta name="twitter:description" content="Live countdown, fullscreen focus timer, and a complete NCERT unit-wise PCB syllabus checklist for NEET 2027 aspirants.">
 <meta name="twitter:image" content="./icons/icon-512.png">
 
-<!-- Security headers (CSP/Permissions-Policy set here as a client-side baseline;
-     for full protection also send these as real HTTP response headers from
-     whatever server or CDN hosts this file — see the note near the closing
-     </html> tag). -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://*.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com wss://*.firebaseio.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+<!-- Security headers -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.google.com https://www.recaptcha.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; frame-src https://www.google.com https://www.recaptcha.net; connect-src 'self' https://firestore.googleapis.com https://*.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com wss://*.firebaseio.com https://www.google.com https://www.recaptcha.net; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), usb=()">
 
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+<!-- Google reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
 
 <!-- Structured data for search engines -->
 <script type="application/ld+json">
@@ -69,6 +70,7 @@
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
 }
 </script>
+
 <style>
 :root{
   --theme-name:"Sakura Dream";
@@ -127,14 +129,30 @@ button{font:inherit;color:inherit}
 h1{font-size:clamp(1.7rem,5.2vw,3rem);font-weight:800;background:var(--header-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.5px;margin-bottom:6px}
 .subtitle{font-size:clamp(.85rem,2.2vw,1.05rem);color:var(--bio-glow);font-weight:600}
 
-/* SYNC BAR */
-.sync-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--glass-bg);backdrop-filter:blur(16px);border:1.5px solid var(--glass-border);border-radius:20px;padding:12px 18px;box-shadow:var(--shadow);margin:0 0 18px}
-.sync-bar-label{font-size:.78rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--bio-accent);flex-shrink:0}
-.sync-bar input[type=text]#tracker-code-input{flex:1 1 220px;min-width:160px;margin:0}
-.sync-status-dot{width:8px;height:8px;border-radius:50%;background:var(--text-muted);flex-shrink:0}
-.sync-status-dot.synced{background:var(--success);box-shadow:0 0 8px var(--success)}
-.sync-status-dot.viewer{background:#38bdf8;box-shadow:0 0 8px #38bdf8}
-.sync-status-text{font-size:.78rem;font-weight:700;color:var(--text-muted);white-space:nowrap}
+/* ENHANCED SYNC BAR & LARGE CODE INPUT */
+.sync-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--glass-bg);backdrop-filter:blur(16px);border:1.5px solid var(--glass-border);border-radius:22px;padding:14px 20px;box-shadow:var(--shadow);margin:0 0 18px}
+.sync-bar-label{font-size:.84rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--bio-accent);flex-shrink:0}
+.sync-bar input[type=text]#tracker-code-input{
+  flex: 1 1 320px;
+  min-width: 240px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 13px 18px;
+  border-radius: 16px;
+  text-align: center;
+  margin: 0;
+  border: 2px solid var(--glass-border);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.4);
+}
+.sync-status-dot{width:10px;height:10px;border-radius:50%;background:var(--text-muted);flex-shrink:0}
+.sync-status-dot.synced{background:var(--success);box-shadow:0 0 10px var(--success)}
+.sync-status-dot.viewer{background:#38bdf8;box-shadow:0 0 10px #38bdf8}
+.sync-status-dot.viewing-active{background:#f43f5e;box-shadow:0 0 12px #f43f5e;animation:pulseDot 1s infinite alternate}
+@keyframes pulseDot{0%{transform:scale(1)}100%{transform:scale(1.35)}}
+.sync-status-text{font-size:.84rem;font-weight:700;color:var(--text-muted);white-space:nowrap}
 
 /* LIVE DASHBOARD */
 .live-dashboard-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px;margin-bottom:20px}
@@ -202,13 +220,7 @@ input:disabled:hover,button:disabled:hover{transform:none!important}
 .unit-title{font-size:clamp(.9rem,2.2vw,1.08rem);font-weight:700;color:#fff1f2}
 
 .table-responsive{overflow-x:auto;padding:6px;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:separate;border-spacing:0 6px;min-width:560px;table-layout:fixed}
-th:nth-child(1),td:nth-child(1){width:9%}
-th:nth-child(2),td:nth-child(2){width:7%}
-th:nth-child(3),td:nth-child(3){width:34%}
-th:nth-child(4),td:nth-child(4){width:28%}
-th:nth-child(5),td:nth-child(5){width:11%}
-th:nth-child(6),td:nth-child(6){width:11%}
+table{width:100%;border-collapse:separate;border-spacing:0 6px;min-width:560px}
 th,td{padding:11px 12px;text-align:center;white-space:nowrap}
 th{font-weight:700;color:var(--bio-glow);text-transform:uppercase;font-size:.72rem;letter-spacing:.8px}
 td{background:rgba(255,255,255,.03)}
@@ -246,7 +258,7 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .quote-text{font-size:1rem;font-weight:700;color:#fff1f2;font-style:italic;min-height:26px;transition:opacity .3s ease}
 .quote-author{font-size:.8rem;color:var(--text-muted);font-weight:600}
 
-/* ============ FULLSCREEN FOCUS TIMER — fully fluid, no forced rotation ============ */
+/* FULLSCREEN FOCUS TIMER */
 .fullscreen-timer-overlay{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;z-index:100005;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;padding:clamp(10px,3vmin,24px);backdrop-filter:blur(20px);overflow:hidden}
 .fullscreen-timer-overlay.active{opacity:1;visibility:visible;pointer-events:auto}
 .fullscreen-timer-overlay.fst-obsidian{background:radial-gradient(circle at 50% 50%,#180527 0%,#08010f 100%)}
@@ -294,7 +306,8 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .notes-hub-container{max-width:950px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:18px}
 .notes-header-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-bottom:14px;border-bottom:1.5px solid var(--glass-border)}
 .notes-input-area{display:flex;flex-direction:column;gap:12px;background:var(--glass-bg);padding:18px;border-radius:var(--radius);border:1.5px solid var(--glass-border)}
-.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:14px;margin-top:8px}.note-card{background:rgba(255,255,255,.05);border:1.5px solid var(--glass-border);border-radius:18px;padding:15px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 4px 15px rgba(0,0,0,.25);transition:all .25s ease}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:14px;margin-top:8px}
+.note-card{background:rgba(255,255,255,.05);border:1.5px solid var(--glass-border);border-radius:18px;padding:15px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 4px 15px rgba(0,0,0,.25);transition:all .25s ease}
 .note-card:hover{transform:translateY(-3px);border-color:var(--bio-accent);box-shadow:var(--btn-glow)}
 .note-card-text{font-size:.92rem;color:#fff1f2;white-space:pre-wrap;word-break:break-word}
 .note-card-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(244,114,182,.15);padding-top:8px}
@@ -356,31 +369,6 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .view-panel{display:none}
 .view-panel.active-view{display:block}
 
-/* 👀 Viewer (read-only mirror) mode — greys out and blocks every action
-   that would try to write data, since a viewer's edits can never reach
-   the owner's tracker anyway. Reading/browsing (fullscreen timer view,
-   fullscreen theme cycling, mock-test history, exiting fullscreen) stays
-   usable so a viewer can still comfortably watch along. */
-body.sync-viewer-mode #btn-notes-nav,
-body.sync-viewer-mode #btn-start-target-timer,
-body.sync-viewer-mode #btn-pause-target-timer,
-body.sync-viewer-mode #btn-reset-target-timer,
-body.sync-viewer-mode #btn-fs-toggle,
-body.sync-viewer-mode #btn-fs-pause,
-body.sync-viewer-mode #btn-fs-stop,
-body.sync-viewer-mode .fs-preset-btns button,
-body.sync-viewer-mode .flip-card,
-body.sync-viewer-mode #new-note-text,
-body.sync-viewer-mode .notes-input-area button,
-body.sync-viewer-mode #mt-name, body.sync-viewer-mode #mt-date,
-body.sync-viewer-mode #mt-phy, body.sync-viewer-mode #mt-chem, body.sync-viewer-mode #mt-bio,
-body.sync-viewer-mode #btn-mark-today{
-  pointer-events:none!important;
-  opacity:.4!important;
-  cursor:not-allowed!important;
-}
-body.sync-viewer-mode .sync-status-text{color:#38bdf8}
-
 @media (max-width:420px){
   .timer-buttons-group .btn{flex:1 1 calc(50% - 5px)}
   .hub-card-actions .btn-hub{flex:1 1 100%}
@@ -395,13 +383,11 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   .footer-actions-btn-row .btn{flex:1 1 calc(50% - 5px)}
 }
 
-/* TABLET refinements (portrait tablets / small laptops) */
 @media (min-width:600px) and (max-width:1024px){
   .container{max-width:94%}
   .hub-grid{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
 }
 
-/* BIG SCREEN refinements — keep content comfortably centered, don't stretch too wide */
 @media (min-width:1440px){
   .container,.app-footer-master{max-width:1320px}
   .live-dashboard-bar{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
@@ -411,23 +397,6 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   html{font-size:18px}
 }
 
-/* FULLSCREEN TIMER — force landscape via CSS rotation on phones when the
-   Screen Orientation Lock API is unavailable/blocked (notably iOS Safari,
-   and desktop browsers where lock silently fails). On devices where
-   screen.orientation.lock('landscape') succeeds, the OS itself rotates the
-   viewport to landscape, so this media query (which only matches while the
-   viewport itself is still portrait) simply won't apply — no double-rotation.
-
-   FIX: uses dvh/dvw (dynamic viewport units) instead of vh/vw. Plain vh/vw
-   resolve to the *large* viewport size (as if the browser toolbar were
-   fully collapsed), even while it's still visible in a normal mobile
-   browser tab. That mismatch made modal.clientWidth/clientHeight (read by
-   fitFullscreenTimerStage() in JS) disagree with window.innerWidth/
-   innerHeight (also read by that same function), which threw off the
-   scale math — shrinking the clock relative to the buttons. dvh/dvw always
-   track the real, currently-visible viewport, so both numbers now agree
-   in a plain browser tab exactly like they already did in the installed
-   PWA (which has no toolbar at all). */
 @media screen and (orientation:portrait) and (max-width:900px){
   .fullscreen-timer-overlay.active{
     transform:rotate(90deg);
@@ -461,7 +430,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
     </button>
     <div class="nav-actions-group">
       <div class="header-action-pill badge-tag-pill" tabindex="-1">✨ NEET 2027 ✨</div>
-      <button type="button" class="header-action-pill" id="btn-notes-nav" onclick="openNotesModal()">💌 Notes</button>
+      <button type="button" class="header-action-pill" onclick="openNotesModal()">💌 Notes</button>
       <button type="button" class="header-action-pill" id="btn-theme-switcher" onclick="cycleGlobalTheme()">🎨 <span id="current-theme-name">Sakura Dream</span></button>
       <button type="button" class="header-action-pill" id="btn-install-app" style="display:none;">⬇️ Install App</button>
     </div>
@@ -476,7 +445,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
 
   <div class="sync-bar" id="sync-bar">
     <span class="sync-bar-label">☁️ Tracker Code:</span>
-    <input type="text" id="tracker-code-input" placeholder="e.g. NEET-ARJUN-2027">
+    <input type="text" id="tracker-code-input" placeholder="NEET-XXXXX-XXXXX">
     <button type="button" class="btn btn-sync" id="btn-connect-code">🔌 Load / Connect</button>
     <button type="button" class="btn btn-secondary" id="btn-create-code" title="Turn this tracker into a shareable cloud tracker">✨ Create Shareable Code</button>
     <button type="button" class="btn btn-secondary" id="btn-copy-link" style="display:none;">🔗 Copy Link</button>
@@ -592,12 +561,13 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       <div>© 2026–2027 NEET Master Prep Suite 🌸</div>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <span>🎯 Target: May 2, 2027</span>
-        <span>⚡ V2.0</span>
+        <span>⚡ v22.1 (Live Mirror Sync)</span>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- CUSTOM NOTES MODAL (MIRRORED FOR VIEWERS) -->
 <div id="custom-notes-modal" class="custom-notes-modal">
   <div class="notes-hub-container">
     <div class="notes-header-bar">
@@ -607,11 +577,11 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       </div>
       <button class="btn btn-secondary" onclick="closeNotesModal()">🚪 Back to Tracker</button>
     </div>
-    <div class="notes-input-area">
+    <div class="notes-input-area" id="notes-creator-box">
       <label for="new-note-text" style="color:var(--bio-accent);font-weight:700;">Write New Card</label>
       <textarea id="new-note-text" placeholder="Type key formulas, mnemonics, or checklists here…" rows="4"></textarea>
       <div style="display:flex;justify-content:flex-end;">
-        <button class="btn btn-primary" onclick="saveNewCustomNote()">💾 Save Note</button>
+        <button class="btn btn-primary" id="btn-save-note" onclick="saveNewCustomNote()">💾 Save Note</button>
       </div>
     </div>
     <div>
@@ -621,6 +591,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   </div>
 </div>
 
+<!-- CALENDAR MODAL -->
 <div id="custom-calendar-modal" class="calendar-modal-overlay">
   <div class="custom-calendar-box">
     <div class="cal-header-bar">
@@ -641,6 +612,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   </div>
 </div>
 
+<!-- FULLSCREEN TIMER MODAL -->
 <div id="fullscreen-timer-modal" class="fullscreen-timer-overlay fst-obsidian">
   <div class="fs-edit-overlay" id="fs-edit-overlay">
     <div style="font-weight:800;color:#f472b6;letter-spacing:1px;">⚙️ SET TARGET DURATION</div>
@@ -725,6 +697,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   </div>
 </div>
 
+<!-- MOCK TEST MODAL (MANUAL DATE INPUT & MIRRORED FOR VIEWERS) -->
 <div id="mock-test-modal" class="custom-notes-modal">
   <div class="notes-hub-container">
     <div class="notes-header-bar">
@@ -734,17 +707,17 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       </div>
       <button class="btn btn-secondary" onclick="closeMockTestModal()">🚪 Back to Tracker</button>
     </div>
-    <div class="notes-input-area">
+    <div class="notes-input-area" id="mock-test-creator-box">
       <label style="color:var(--bio-accent);font-weight:700;">Log a New Test</label>
       <div class="info-card" style="padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:12px;">
         <div class="input-group"><label for="mt-name">Test Name</label><input type="text" id="mt-name" placeholder="e.g. AITS Full Test 4"></div>
-        <div class="input-group"><label for="mt-date">Date</label><input type="text" id="mt-date" placeholder="DD/MM/YYYY"></div>
+        <div class="input-group"><label for="mt-date">Date (Manual)</label><input type="text" id="mt-date" placeholder="DD/MM/YYYY"></div>
         <div class="input-group"><label for="mt-phy">Physics (/180)</label><input type="number" id="mt-phy" min="0" max="180" placeholder="0"></div>
         <div class="input-group"><label for="mt-chem">Chemistry (/180)</label><input type="number" id="mt-chem" min="0" max="180" placeholder="0"></div>
         <div class="input-group"><label for="mt-bio">Biology (/360)</label><input type="number" id="mt-bio" min="0" max="360" placeholder="0"></div>
       </div>
       <div style="display:flex;justify-content:flex-end;">
-        <button class="btn btn-primary" onclick="saveMockTest()">💾 Save Score</button>
+        <button class="btn btn-primary" id="btn-save-mock-test" onclick="saveMockTest()">💾 Save Score</button>
       </div>
     </div>
     <div>
@@ -845,7 +818,6 @@ function sanitizeInputStatic(str){
 function chapterCount(subj){ return subj.units.reduce((a,u)=>a+u.chapters.length,0); }
 function unitCount(subj){ return subj.units.length; }
 
-/* build subject id list: e.g. u1-c1, u2-c5 ... continuing chapter numbers across whole subject */
 function buildTableRows(subjKey, subj){
   let rows = '';
   let chNo = 0;
@@ -994,12 +966,8 @@ function rotateMotivationalQuote(){
 }
 setInterval(rotateMotivationalQuote, 10000);
 
-/* 🌟 Custom Notes Hub */
+/* ============================= NOTES HUB (MIRROR READY) ============================= */
 function openNotesModal(){
-  if (document.body.classList.contains('sync-viewer-mode')){
-    showCustomMessage('Notes are private to the tracker owner — read-only view here.', 'info');
-    return;
-  }
   renderCustomNotes();
   document.getElementById('custom-notes-modal').classList.add('active');
   document.documentElement.classList.add('no-scroll');
@@ -1011,6 +979,10 @@ function closeNotesModal(){
   document.body.classList.remove('no-scroll');
 }
 function saveNewCustomNote(){
+  if (window.isViewerMode) {
+    showCustomMessage('Viewer mode: Notes are read-only.', 'error');
+    return;
+  }
   const noteInput = document.getElementById('new-note-text');
   const text = noteInput.value.trim();
   if (!text){ showCustomMessage('Please enter text for your note.', 'error'); return; }
@@ -1022,32 +994,39 @@ function saveNewCustomNote(){
   noteInput.value = '';
   renderCustomNotes();
   showCustomMessage('Note card saved! 🌸', 'success');
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function deleteCustomNote(noteId){
+  if (window.isViewerMode) {
+    showCustomMessage('Viewer mode: You cannot delete notes.', 'error');
+    return;
+  }
   let notes = JSON.parse(localStorage.getItem('neet_custom_saved_notes') || '[]');
   notes = notes.filter(n => n.id !== noteId);
   localStorage.setItem('neet_custom_saved_notes', JSON.stringify(notes));
   renderCustomNotes();
   showCustomMessage('Note card removed.', 'info');
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function renderCustomNotes(){
   const container = document.getElementById('notes-grid-container');
   const notes = JSON.parse(localStorage.getItem('neet_custom_saved_notes') || '[]');
   if (!notes.length){
-    container.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:26px;">No saved notes yet. Write one above! 📝</div>';
+    container.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:26px;">No saved notes yet. 📝</div>';
     return;
   }
+  const isViewer = !!window.isViewerMode;
   container.innerHTML = notes.map(note => `
     <div class="note-card">
       <div class="note-card-text">${note.text}</div>
       <div class="note-card-footer">
         <span class="note-card-time">${note.time}</span>
-        <button class="note-del-btn" onclick="deleteCustomNote('${note.id}')">🗑️ Delete</button>
+        ${!isViewer ? `<button class="note-del-btn" onclick="deleteCustomNote('${note.id}')">🗑️ Delete</button>` : ''}
       </div>
     </div>`).join('');
 }
 
-/* 📊 Mock Test Score Tracker */
+/* ============================= MOCK TEST TRACKER ============================= */
 function openMockTestModal(){
   renderMockTests();
   document.getElementById('mock-test-modal').classList.add('active');
@@ -1064,8 +1043,8 @@ function getMockTests(){
   catch(e){ return []; }
 }
 function saveMockTest(){
-  if (document.body.classList.contains('sync-viewer-mode')){
-    showCustomMessage('Read-only view — only the tracker owner can log scores.', 'info');
+  if (window.isViewerMode) {
+    showCustomMessage('Viewer mode: Mock tests are read-only.', 'error');
     return;
   }
   const name = document.getElementById('mt-name').value.trim();
@@ -1086,27 +1065,32 @@ function saveMockTest(){
   ['mt-name','mt-date','mt-phy','mt-chem','mt-bio'].forEach(id => document.getElementById(id).value = '');
   renderMockTests();
   showCustomMessage('Test score saved! 📊', 'success');
-  scheduleCloudPush();
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function deleteMockTest(id){
+  if (window.isViewerMode) {
+    showCustomMessage('Viewer mode: You cannot delete test scores.', 'error');
+    return;
+  }
   let tests = getMockTests().filter(t => t.id !== id);
   localStorage.setItem('neet_mock_test_scores', JSON.stringify(tests));
   renderMockTests();
   showCustomMessage('Test entry removed.', 'info');
-  scheduleCloudPush();
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function renderMockTests(){
   const container = document.getElementById('mock-test-grid-container');
   const label = document.getElementById('mock-test-avg-label');
   const tests = getMockTests();
   if (!tests.length){
-    container.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:26px;">No tests logged yet. Add your first score above! 📝</div>';
+    container.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:26px;">No tests logged yet. 📝</div>';
     label.innerText = 'Log every full-length test to track your NEET trend.';
     return;
   }
   const avg = Math.round(tests.reduce((a,t)=>a+t.total,0) / tests.length);
   const best = Math.max(...tests.map(t=>t.total));
   label.innerText = `${tests.length} tests logged · Average ${avg}/720 · Best ${best}/720`;
+  const isViewer = !!window.isViewerMode;
   container.innerHTML = tests.map(t => `
     <div class="note-card">
       <div class="note-card-text">
@@ -1116,12 +1100,12 @@ function renderMockTests(){
       </div>
       <div class="note-card-footer">
         <span class="note-card-time">${t.date}</span>
-        <button class="note-del-btn" onclick="deleteMockTest('${t.id}')">🗑️ Delete</button>
+        ${!isViewer ? `<button class="note-del-btn" onclick="deleteMockTest('${t.id}')">🗑️ Delete</button>` : ''}
       </div>
     </div>`).join('');
 }
 
-/* 🔥 Study Streak Tracker */
+/* ============================= STUDY STREAK ============================= */
 function openStreakModal(){
   renderStreakStats();
   document.getElementById('streak-modal').classList.add('active');
@@ -1135,8 +1119,8 @@ function getStreakDates(){
 }
 function dateKey(d){ return `${pad2(d.getDate())}/${pad2(d.getMonth()+1)}/${d.getFullYear()}`; }
 function markTodayStudied(){
-  if (document.body.classList.contains('sync-viewer-mode')){
-    showCustomMessage('Read-only view — only the tracker owner can log study days.', 'info');
+  if (window.isViewerMode) {
+    showCustomMessage('Viewer mode: Streak is read-only.', 'error');
     return;
   }
   const dates = getStreakDates();
@@ -1145,7 +1129,7 @@ function markTodayStudied(){
     dates.push(today);
     localStorage.setItem('neet_streak_dates', JSON.stringify(dates));
     showCustomMessage("Today's study logged! Keep the streak alive 🔥", 'success');
-    scheduleCloudPush();
+    if (window.scheduleCloudPush) window.scheduleCloudPush(true);
   } else {
     showCustomMessage('Already marked for today ✨', 'info');
   }
@@ -1155,7 +1139,6 @@ function computeStreakStats(){
   const dates = new Set(getStreakDates());
   let current = 0;
   const cursor = new Date();
-  // if today isn't logged yet, streak counts back from yesterday
   if (!dates.has(dateKey(cursor))) cursor.setDate(cursor.getDate()-1);
   while (dates.has(dateKey(cursor))){
     current++;
@@ -1191,17 +1174,19 @@ function renderStreakStats(){
   row.innerHTML = cells;
 }
 
-/* 📅 Universal calendar (event-delegated for all date buttons, present + future) */
+/* ============================= UNIVERSAL CALENDAR ============================= */
 let activeDateElementId = null;
 let calViewDate = new Date();
 const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 document.addEventListener('click', (e) => {
+  if (window.isViewerMode) return;
   const btn = e.target.closest('[data-date-btn]');
   if (btn) openCustomCalendar(btn.id);
 });
 
 function openCustomCalendar(elementId){
+  if (window.isViewerMode) return;
   activeDateElementId = elementId;
   const currentVal = localStorage.getItem(elementId) || '';
   if (currentVal && currentVal.length === 10){
@@ -1244,7 +1229,7 @@ function renderCalendarGrid(){
   }
 }
 function selectCalendarDate(formattedDate){
-  if (!activeDateElementId) return;
+  if (!activeDateElementId || window.isViewerMode) return;
   const btn = document.getElementById(activeDateElementId);
   if (btn){
     const textSpan = btn.querySelector('.date-text-val');
@@ -1253,14 +1238,14 @@ function selectCalendarDate(formattedDate){
   localStorage.setItem(activeDateElementId, formattedDate);
   showCustomMessage(`Date set to ${formattedDate} 🌸`, 'success');
   closeCustomCalendar();
-  persistDateToCloud(activeDateElementId, formattedDate);
+  if (window.persistDateToCloud) window.persistDateToCloud(activeDateElementId, formattedDate);
 }
 function setCalendarToday(){
   const today = new Date();
   selectCalendarDate(`${pad2(today.getDate())}/${pad2(today.getMonth()+1)}/${today.getFullYear()}`);
 }
 function clearActiveDate(){
-  if (!activeDateElementId) return;
+  if (!activeDateElementId || window.isViewerMode) return;
   const btn = document.getElementById(activeDateElementId);
   if (btn){
     const textSpan = btn.querySelector('.date-text-val');
@@ -1269,12 +1254,12 @@ function clearActiveDate(){
   localStorage.removeItem(activeDateElementId);
   showCustomMessage('Date cleared.', 'info');
   closeCustomCalendar();
-  persistDateToCloud(activeDateElementId, '');
+  if (window.persistDateToCloud) window.persistDateToCloud(activeDateElementId, '');
 }
 document.getElementById('cal-prev-month').addEventListener('click', () => { calViewDate.setMonth(calViewDate.getMonth()-1); renderCalendarGrid(); });
 document.getElementById('cal-next-month').addEventListener('click', () => { calViewDate.setMonth(calViewDate.getMonth()+1); renderCalendarGrid(); });
 
-/* 🎨 Themes */
+/* ============================= THEMES ============================= */
 const globalThemes = [
   { className:'', name:'Sakura Dream' }, { className:'theme-cyber-lilac', name:'Cyber Lilac' },
   { className:'theme-midnight-amethyst', name:'Midnight Amethyst' }, { className:'theme-neon-candy', name:'Neon Candy' },
@@ -1285,18 +1270,21 @@ const globalThemes = [
 ];
 let currentGlobalThemeIdx = 0;
 function cycleGlobalTheme(){
+  if (window.isViewerMode) return;
   currentGlobalThemeIdx = (currentGlobalThemeIdx+1) % globalThemes.length;
   applyThemeByIndex(currentGlobalThemeIdx);
   localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
   showCustomMessage(`Theme set to ${globalThemes[currentGlobalThemeIdx].name} ✨`, 'info');
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function applyThemeByIndex(idx){
   globalThemes.forEach(t => { if (t.className) document.body.classList.remove(t.className); });
-  if (globalThemes[idx].className) document.body.classList.add(globalThemes[idx].className);
-  document.getElementById('current-theme-name').innerText = globalThemes[idx].name;
+  if (globalThemes[idx] && globalThemes[idx].className) document.body.classList.add(globalThemes[idx].className);
+  const themeNameEl = document.getElementById('current-theme-name');
+  if (themeNameEl && globalThemes[idx]) themeNameEl.innerText = globalThemes[idx].name;
 }
 
-/* ⏰ Live clock + countdown */
+/* ============================= LIVE CLOCK ============================= */
 const targetNeetDate = new Date('May 2, 2027 14:00:00').getTime();
 function updateLiveClockAndCountdown(){
   const now = new Date();
@@ -1321,7 +1309,7 @@ function updateLiveClockAndCountdown(){
 setInterval(updateLiveClockAndCountdown, 1000);
 updateLiveClockAndCountdown();
 
-/* 🚀 View switcher */
+/* ============================= VIEW SWITCHER ============================= */
 function showOnlyView(viewId){
   document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active-view'));
   const target = document.getElementById(viewId);
@@ -1343,23 +1331,18 @@ function sanitizeInput(str){
   return str.replace(/[&<>'"]/g, tag => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[tag] || tag));
 }
 
-/* 🔔 Melodic ringtone */
+/* ============================= MELODIC RINGTONE ============================= */
 let audioCtx = null, alarmInterval = null, isAlarmRinging = false, alarmRingCount = 0;
-const ALARM_PEAK_VOLUME = 0.35;   // same ceiling as before — final volume is unchanged
-const ALARM_FADE_IN_RINGS = 9;    // how many repeats (~11s) it takes to build up to full volume
+const ALARM_PEAK_VOLUME = 0.35;
+const ALARM_FADE_IN_RINGS = 9;
 function playMelodicRingtone(){
   try {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === 'suspended') audioCtx.resume();
     const now = audioCtx.currentTime;
     const notes = [1046.50, 1318.51, 1567.98, 2093.00];
-    // 🔊 Gradual volume ramp-up: the ringtone starts soft on the first
-    // repeats and gets louder each cycle until it reaches full volume,
-    // instead of blasting at max volume the instant the target is hit.
     alarmRingCount++;
     const rampProgress = Math.min(alarmRingCount / ALARM_FADE_IN_RINGS, 1);
-    // starts at ~6% of peak (barely-there) and climbs to 100% — a wide
-    // enough range to be unmistakable even on a small phone speaker
     const ringVolume = ALARM_PEAK_VOLUME * (0.06 + 0.94 * rampProgress);
     notes.forEach((freq, idx) => {
       const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
@@ -1401,7 +1384,7 @@ function stopAlarmRingtone(){
   showCustomMessage('Alarm stopped.', 'info');
 }
 
-/* 📱 Fullscreen + soft orientation lock (no forced CSS rotation — layout is fluid via vmin clamp) */
+/* ============================= FULLSCREEN FIT ============================= */
 let wakeLock = null;
 async function requestWakeLock(){
   if ('wakeLock' in navigator){ try { wakeLock = await navigator.wakeLock.request('screen'); } catch(e){} }
@@ -1427,50 +1410,24 @@ function exitTrueFullscreenAndLandscape(){
   } catch(e){}
 }
 
-/* 🔍 Auto-fit: scale the whole clock+buttons stage as one unit so it always
-   fills the available space correctly on any phone, tablet, or desktop
-   screen — this keeps the clock and the buttons in the same proportion to
-   each other instead of sizing them independently. */
 function getFullscreenTimerFitPadding(modal){
-  // Smaller viewport dimension is a reliable phone-vs-tablet-vs-desktop
-  // signal, and it's unaffected by the landscape-rotation CSS trick (unlike
-  // modal.clientWidth/Height, which get swapped when that trick is active).
   const smallerDim = Math.min(window.innerWidth, window.innerHeight);
   let padPct;
-  if (smallerDim <= 480) padPct = 0.07;        // phones: more breathing room on all sides
-  else if (smallerDim <= 1024) padPct = 0.11;  // tablets: extra breathing room → smaller
-  else padPct = 0.04;                          // laptops/desktops/large screens
-
+  if (smallerDim <= 480) padPct = 0.07;
+  else if (smallerDim <= 1024) padPct = 0.11;
+  else padPct = 0.04;
   return Math.round(Math.min(modal.clientWidth, modal.clientHeight) * padPct);
 }
 
-/* 📐 JS-driven rotated-box geometry — replaces reliance on CSS dvh/dvw.
-   The CSS media-query rotation trick (used when true landscape lock isn't
-   available) sizes the rotated box with `width:100dvh;height:100dvw`. That
-   works great on modern engines (which is why the installed PWA — a newer
-   WebView — looks perfect), but `dvh`/`dvw` are NOT supported on every
-   mobile browser still in use (older Chrome/WebView/Samsung Internet
-   builds). On those, the browser drops the whole unsupported declaration
-   silently, so the rotated box never actually gets sized to the real
-   screen — it keeps rotating around instead. That mismatch is what makes
-   the stage look wrong in a plain mobile browser tab while the PWA is fine.
-   Fix: compute the same geometry ourselves in JS using plain pixel values
-   (which every browser supports) and set it via inline style, which always
-   wins over the CSS rule regardless of dvh/dvw support. */
 function applyFullscreenOverlayGeometry(){
   const modal = document.getElementById('fullscreen-timer-modal');
   if (!modal || !modal.classList.contains('active')) return;
-
   const vv = window.visualViewport;
   const vw = vv ? vv.width : window.innerWidth;
   const vh = vv ? vv.height : window.innerHeight;
-  const isPortrait = vh >= vw; // matches the CSS media query's orientation:portrait
+  const isPortrait = vh >= vw;
   const smallerDim = Math.min(vw, vh);
-  // A real landscape lock succeeded if the OS itself reports landscape —
-  // in that case the viewport is already landscape and no rotation trick
-  // (or override) is needed at all.
   const trueLandscapeLocked = screen.orientation && /landscape/i.test(screen.orientation.type || '');
-
   const needsRotateTrick = isPortrait && smallerDim <= 900 && !trueLandscapeLocked;
 
   if (needsRotateTrick){
@@ -1483,8 +1440,6 @@ function applyFullscreenOverlayGeometry(){
     modal.style.marginLeft = (-vh / 2) + 'px';
     modal.style.transform = 'rotate(90deg)';
   } else {
-    // Not rotated: clear the inline overrides so the normal (non-rotated)
-    // CSS — position:fixed;inset:0;width:100vw;height:100vh — takes over.
     modal.style.width = '';
     modal.style.height = '';
     modal.style.position = '';
@@ -1505,7 +1460,6 @@ function fitFullscreenTimerStage(){
 
   applyFullscreenOverlayGeometry();
 
-  // reset transforms before measuring natural (unscaled) sizes
   deck.style.transform = 'none';
   clockBlock.style.transform = 'none';
   buttonsBlock.style.transform = 'none';
@@ -1517,43 +1471,18 @@ function fitFullscreenTimerStage(){
   const isPhone = smallerDim <= 480;
 
   if (isPhone){
-    // Phones: scale the clock and the button rows independently, giving the
-    // clock the lion's share of the available height so it stays the clear
-    // visual focus instead of shrinking to match the buttons.
-    //
-    // FIX: previously the button row always claimed a fixed 20% height slice
-    // regardless of whether it actually needed that much. On an installed
-    // PWA (no browser chrome) there's plenty of dvh to go around, so that
-    // fixed slice was harmless. But in a normal mobile browser tab the real
-    // visible height is shorter (address bar, etc.), so that same fixed 20%
-    // ate into height the clock needed — the clock ended up height-bound and
-    // shrank, while the (already small) buttons stayed at their own bound,
-    // making buttons look disproportionately big next to the digits.
-    // Now: size the button row to only what it needs (fit by width, capped),
-    // then give literally everything left over to the clock.
     const clockW = clockBlock.offsetWidth, clockH = clockBlock.offsetHeight;
     const btnW = buttonsBlock.offsetWidth, btnH = buttonsBlock.offsetHeight;
-    // If a measurement momentarily reads 0 (can happen if this run was
-    // triggered mid-layout-thrash, e.g. by a visualViewport resize/scroll
-    // event firing at an awkward instant), retry next frame instead of
-    // silently bailing — bailing here left transform:'none' in place
-    // permanently (natural, un-scaled size), which is exactly what made
-    // the clock/buttons overflow off the right edge of the screen.
     if (!clockW || !clockH || !btnW || !btnH){
       requestAnimationFrame(fitFullscreenTimerStage);
       return;
     }
-
-    const stackGap = 22; // matches the deck's flex gap between the two blocks
+    const stackGap = 22;
     const usableH = Math.max(availH - stackGap, 1);
-
-    // Button row: fit to width, never upscale past natural size.
     let btnScale = availW / btnW;
     if (!isFinite(btnScale) || btnScale <= 0) btnScale = 1;
     btnScale = Math.max(0.3, Math.min(btnScale, 1.0));
 
-    // Guarantee the clock at least 62% of the usable height even if the
-    // button row would otherwise be allowed to take more than that.
     const minClockShare = usableH * 0.62;
     let btnAvailH = usableH - (btnH * btnScale);
     if (btnAvailH < minClockShare){
@@ -1566,8 +1495,6 @@ function fitFullscreenTimerStage(){
     if (!isFinite(clockScale) || clockScale <= 0) clockScale = 1;
     clockScale = Math.max(0.35, Math.min(clockScale, 1.9));
 
-    // Small safety margin on both, so everything sits comfortably inside
-    // the screen with a bit of breathing room instead of hugging the edges.
     const PHONE_FIT_SAFETY = 0.84;
     clockScale *= PHONE_FIT_SAFETY;
     btnScale *= PHONE_FIT_SAFETY;
@@ -1582,7 +1509,6 @@ function fitFullscreenTimerStage(){
     buttonsBlock.style.marginTop = btnMarginV + 'px';
     buttonsBlock.style.marginBottom = btnMarginV + 'px';
   } else {
-    // Tablets and larger: keep scaling the whole stage as one unit.
     const stageW = deck.offsetWidth, stageH = deck.offsetHeight;
     if (!stageW || !stageH){
       requestAnimationFrame(fitFullscreenTimerStage);
@@ -1617,32 +1543,7 @@ if (window.visualViewport){
   window.visualViewport.addEventListener('scroll', debouncedScheduleFit);
 }
 
-/* 👀 Viewer-side live timer mirror. Runs a local, display-only interval
-   driven off the owner's synced end-timestamp — this is what makes the
-   countdown visibly tick for a viewer every second without needing a
-   Firestore write every second. */
-let viewerTimerMirrorInterval = null;
-function mirrorTimerFromPayload(payload){
-  clearInterval(viewerTimerMirrorInterval);
-  const running = !!payload['__timer_running'];
-  const endAt = payload['__timer_end_at'];
-  const staticRemaining = payload['__timer_remaining'] || 0;
-  if (running && endAt){
-    const tick = () => {
-      const remaining = Math.max(0, Math.round((endAt - Date.now()) / 1000));
-      globalTimeRemaining = remaining;
-      syncAllTimerDisplays();
-      if (remaining <= 0) clearInterval(viewerTimerMirrorInterval);
-    };
-    tick();
-    viewerTimerMirrorInterval = setInterval(tick, 1000);
-  } else {
-    globalTimeRemaining = staticRemaining;
-    syncAllTimerDisplays();
-  }
-}
-
-/* ⏱️ Focus timer */
+/* ============================= STUDY SPRINT TIMER ============================= */
 let globalTimerInterval = null, globalTimeRemaining = 0, isTimerRunning = false, savedInitialSeconds = 0;
 const startTargetBtn = document.getElementById('btn-start-target-timer');
 const pauseTargetBtn = document.getElementById('btn-pause-target-timer');
@@ -1675,10 +1576,11 @@ function syncAllTimerDisplays(){
 }
 function updateInputsStyleState(running){
   const boxes = [document.getElementById('box-hrs'), document.getElementById('box-mins'), document.getElementById('box-secs')];
-  [inHrs, inMins, inSecs].forEach(inp => inp.disabled = running);
+  [inHrs, inMins, inSecs].forEach(inp => inp.disabled = (running || window.isViewerMode));
   boxes.forEach(b => running ? b.classList.add('running') : b.classList.remove('running'));
 }
 function startGlobalTimer(){
+  if (window.isViewerMode) return;
   if (isAlarmRinging) stopAlarmRingtone();
   if (isTimerRunning) return;
   if (globalTimeRemaining <= 0) globalTimeRemaining = getInputsTotalSeconds();
@@ -1695,9 +1597,10 @@ function startGlobalTimer(){
     syncAllTimerDisplays();
     if (globalTimeRemaining <= 0) stopGlobalTimer(true);
   }, 1000);
-  scheduleCloudPush(true);
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function pauseGlobalTimer(){
+  if (window.isViewerMode) return;
   clearInterval(globalTimerInterval);
   isTimerRunning = false;
   updateInputsStyleState(false);
@@ -1706,7 +1609,7 @@ function pauseGlobalTimer(){
   fsToggleBtn.style.display = 'inline-flex'; fsToggleBtn.innerText = '▶️ Resume Session';
   fsPauseBtn.style.display = 'none';
   showCustomMessage('Timer paused.', 'info');
-  scheduleCloudPush(true);
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function stopGlobalTimer(isCompleted){
   clearInterval(globalTimerInterval);
@@ -1715,14 +1618,15 @@ function stopGlobalTimer(isCompleted){
     updateInputsStyleState(false);
     globalTimeRemaining = 0;
     syncAllTimerDisplays();
-    startAlarmRingtone();
+    if (!window.isViewerMode) startAlarmRingtone();
     showCustomMessage('🎯 Target completed! Great job! 🌸', 'success');
-    scheduleCloudPush(true);
   } else {
     resetGlobalTimer();
   }
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function resetGlobalTimer(){
+  if (window.isViewerMode) return;
   clearInterval(globalTimerInterval);
   isTimerRunning = false;
   if (isAlarmRinging) stopAlarmRingtone();
@@ -1734,15 +1638,16 @@ function resetGlobalTimer(){
   globalTimeRemaining = savedInitialSeconds > 0 ? savedInitialSeconds : getInputsTotalSeconds();
   syncAllTimerDisplays();
   showCustomMessage('Timer reset.', 'info');
-  scheduleCloudPush(true);
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 function setTimerPreset(h, m, s){
+  if (window.isViewerMode) return;
   resetGlobalTimer();
   inHrs.value = pad2(h); inMins.value = pad2(m); inSecs.value = pad2(s);
   globalTimeRemaining = (h*3600) + (m*60) + s;
   savedInitialSeconds = globalTimeRemaining;
   syncAllTimerDisplays();
-  scheduleCloudPush(true);
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 }
 startTargetBtn.addEventListener('click', startGlobalTimer);
 pauseTargetBtn.addEventListener('click', pauseGlobalTimer);
@@ -1772,8 +1677,9 @@ fsThemeBtn.addEventListener('click', () => {
 });
 
 [inHrs, inMins, inSecs].forEach(inp => {
-  inp.addEventListener('focus', function(){ this.select(); });
+  inp.addEventListener('focus', function(){ if (!window.isViewerMode) this.select(); });
   inp.addEventListener('blur', function(){
+    if (window.isViewerMode) return;
     let val = parseInt(this.value,10);
     if (isNaN(val) || val < 0) val = 0;
     const max = parseInt(this.max,10);
@@ -1793,7 +1699,7 @@ const fsEditHrs = document.getElementById('fs-edit-hrs'), fsEditMins = document.
   const el = document.getElementById(`fscard-${idx}`);
   if (!el) return;
   const openEdit = () => {
-    if (isTimerRunning || isAlarmRinging) return;
+    if (window.isViewerMode || isTimerRunning || isAlarmRinging) return;
     fsEditHrs.value = inHrs.value; fsEditMins.value = inMins.value; fsEditSecs.value = inSecs.value;
     fsEditOverlay.classList.add('active');
     setTimeout(() => { fsEditHrs.focus(); fsEditHrs.select(); }, 50);
@@ -1802,6 +1708,7 @@ const fsEditHrs = document.getElementById('fs-edit-hrs'), fsEditMins = document.
   el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEdit(); } });
 });
 document.getElementById('btn-save-fs-edit').addEventListener('click', () => {
+  if (window.isViewerMode) return;
   let h = parseInt(fsEditHrs.value,10) || 0, m = parseInt(fsEditMins.value,10) || 0, s = parseInt(fsEditSecs.value,10) || 0;
   if (h > 23) h = 23; if (m > 59) m = 59; if (s > 59) s = 59;
   inHrs.value = pad2(h); inMins.value = pad2(m); inSecs.value = pad2(s);
@@ -1810,6 +1717,7 @@ document.getElementById('btn-save-fs-edit').addEventListener('click', () => {
   syncAllTimerDisplays();
   fsEditOverlay.classList.remove('active');
   showCustomMessage('Target saved!', 'success');
+  if (window.scheduleCloudPush) window.scheduleCloudPush(true);
 });
 document.getElementById('btn-cancel-fs-edit').addEventListener('click', () => fsEditOverlay.classList.remove('active'));
 
@@ -1909,7 +1817,9 @@ function openSecurityModal(title, desc, icon, confirmAction, confirmText, isDang
   securityModal.classList.add('active');
 }
 
-/* 📦 Init: restore saved theme/dates/checkboxes/text, bind persistence */
+/* ============================= DOM INIT ============================= */
+const PAYLOAD_INPUT_SELECTOR = 'input:not([type="file"]):not(#tracker-code-input):not(#mt-name):not(#mt-date):not(#mt-phy):not(#mt-chem):not(#mt-bio):not(#in-hrs):not(#in-mins):not(#in-secs):not(#fs-edit-hrs):not(#fs-edit-mins):not(#fs-edit-secs), textarea:not(#new-note-text)';
+
 document.addEventListener('DOMContentLoaded', () => {
   const savedThemeIdx = localStorage.getItem('neet_active_theme_idx');
   if (savedThemeIdx !== null){
@@ -1925,7 +1835,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const allInputs = document.querySelectorAll('input:not([type="file"]):not(#tracker-code-input):not(#mt-name):not(#mt-date):not(#mt-phy):not(#mt-chem):not(#mt-bio), textarea:not(#new-note-text)');
+  const allInputs = document.querySelectorAll(PAYLOAD_INPUT_SELECTOR);
   let textTimeout;
   allInputs.forEach(input => {
     const saved = localStorage.getItem(input.id);
@@ -1934,16 +1844,20 @@ document.addEventListener('DOMContentLoaded', () => {
       else input.value = saved;
     }
     input.addEventListener('input', (e) => {
+      if (window.isViewerMode) return;
       const val = e.target.type === 'checkbox' ? (e.target.checked ? 'true':'false') : sanitizeInput(e.target.value);
       localStorage.setItem(e.target.id, val);
       if (e.target.type === 'checkbox'){
         showCustomMessage('Progress saved 🌸', 'success');
         refreshAllProgress();
+        if (window.scheduleCloudPush) window.scheduleCloudPush(true);
       } else {
         clearTimeout(textTimeout);
-        textTimeout = setTimeout(() => showCustomMessage('Saved ✨', 'info'), 800);
+        textTimeout = setTimeout(() => {
+          showCustomMessage('Saved ✨', 'info');
+          if (window.scheduleCloudPush) window.scheduleCloudPush(false);
+        }, 300);
       }
-      scheduleCloudPush();
     });
   });
 
@@ -1954,8 +1868,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-close-streak').addEventListener('click', closeStreakModal);
   document.getElementById('btn-mark-today').addEventListener('click', markTodayStudied);
 });
-
-const PAYLOAD_INPUT_SELECTOR = 'input:not([type="file"]):not(#tracker-code-input):not(#mt-name):not(#mt-date):not(#mt-phy):not(#mt-chem):not(#mt-bio), textarea:not(#new-note-text)';
 
 function collectFullPayload(){
   const payload = {};
@@ -1970,15 +1882,6 @@ function collectFullPayload(){
   payload['__mock_test_scores'] = localStorage.getItem('neet_mock_test_scores') || '[]';
   payload['__streak_dates'] = localStorage.getItem('neet_streak_dates') || '[]';
   payload['__theme_idx'] = String(currentGlobalThemeIdx);
-  // Timer state: __timer_end_at is an absolute clock time (ms since epoch),
-  // not a countdown of seconds — a viewer's browser recomputes "seconds
-  // left" from it every tick locally. That's what lets the countdown mirror
-  // tick smoothly every second for a viewer without needing a Firestore
-  // write every single second (which would be slow and burn through quota).
-  payload['__timer_running'] = isTimerRunning;
-  payload['__timer_end_at'] = isTimerRunning ? (Date.now() + globalTimeRemaining * 1000) : null;
-  payload['__timer_remaining'] = globalTimeRemaining;
-  payload['__timer_initial'] = savedInitialSeconds;
   return payload;
 }
 
@@ -2001,43 +1904,33 @@ function applyPayloadToDom(payload){
       localStorage.setItem(k, val);
     } else {
       val = sanitizeInput(String(val));
-      el.value = val;
+      if (document.activeElement !== el) {
+        el.value = val;
+      }
     }
     localStorage.setItem(k, val);
   }
-  if (payload['__custom_saved_notes']) localStorage.setItem('neet_custom_saved_notes', payload['__custom_saved_notes']);
-  if (payload['__mock_test_scores']) localStorage.setItem('neet_mock_test_scores', payload['__mock_test_scores']);
-  if (payload['__streak_dates']) localStorage.setItem('neet_streak_dates', payload['__streak_dates']);
+  if (payload['__custom_saved_notes'] !== undefined) localStorage.setItem('neet_custom_saved_notes', payload['__custom_saved_notes']);
+  if (payload['__mock_test_scores'] !== undefined) localStorage.setItem('neet_mock_test_scores', payload['__mock_test_scores']);
+  if (payload['__streak_dates'] !== undefined) localStorage.setItem('neet_streak_dates', payload['__streak_dates']);
   if (payload['__theme_idx'] !== undefined){
     currentGlobalThemeIdx = parseInt(payload['__theme_idx'],10) || 0;
     applyThemeByIndex(currentGlobalThemeIdx);
     localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
   }
-  // Only touch the timer display here if nothing is actively counting down
-  // locally right now — this keeps a genuinely-running local timer (the
-  // owner's own) from stuttering every time a routine sync round-trips.
-  // The live per-second mirror for a viewer is handled separately by
-  // mirrorTimerFromPayload(), called only for viewer role.
-  if (!isTimerRunning && payload['__timer_remaining'] !== undefined){
-    if (payload['__timer_initial']) savedInitialSeconds = payload['__timer_initial'];
-    globalTimeRemaining = payload['__timer_remaining'];
-    syncAllTimerDisplays();
-  }
   refreshAllProgress();
+  if (document.getElementById('custom-notes-modal').classList.contains('active')) renderCustomNotes();
   if (document.getElementById('mock-test-modal').classList.contains('active')) renderMockTests();
   if (document.getElementById('streak-modal').classList.contains('active')) renderStreakStats();
 }
 
-/* 🔧 PWA: service worker registration for offline support + installability */
+/* ============================= SERVICE WORKER & PWA ============================= */
 if ('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {
-      /* offline support just won't be available; app still works online */
-    });
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
   });
 }
 
-/* 📲 PWA: custom "Install App" button, shown only when the browser offers it */
 let deferredInstallPrompt = null;
 const installBtn = document.getElementById('btn-install-app');
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -2060,8 +1953,6 @@ window.addEventListener('appinstalled', () => {
   deferredInstallPrompt = null;
 });
 
-/* 🔗 PWA shortcut deep-link: manifest's "Open Focus Timer" shortcut opens
-   straight into the fullscreen sprint timer */
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   if (params.get('action') === 'timer'){
@@ -2069,14 +1960,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openBtn) setTimeout(() => openBtn.click(), 300);
   }
 });
-
-/* placeholder — overridden by the Firestore module below once it loads */
-function persistDateToCloud(){}
-function scheduleCloudPush(){}
 </script>
 
 <!-- ============================================================
-     ☁️ FIRESTORE CLOUD SYNC (Read-Only Share)
+     ☁️ FIRESTORE REAL-TIME CLOUD SYNC, VIEWER MIRROR & PRESENCE
      ============================================================ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -2087,9 +1974,7 @@ import {
   getAuth, signInAnonymously, onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-/* 🔧 STEP 1 — paste your Firebase project config here.
-   Get this from: Firebase Console → Project settings → General →
-   "Your apps" → Web app → SDK setup and configuration → Config. */
+/* 🔧 PASTE YOUR FIREBASE CONFIG HERE */
 const firebaseConfig = {
   apiKey: "AIzaSyD1eqC3eniQZ5DXuZAUFqhGwvmtfzzgBH4",
   authDomain: "neet-tracker-bf11b.firebaseapp.com",
@@ -2099,19 +1984,23 @@ const firebaseConfig = {
   appId: "1:213987564275:web:01090a8ba57db2f8abb586"
 };
 
+const RECAPTCHA_SITE_KEY = "YOUR_RECAPTCHA_SITE_KEY";
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
 const COLLECTION = "trackers";
 const LS_CODE_KEY = "neet_cloud_tracker_code";
-const LS_ROLE_KEY = "neet_cloud_tracker_role"; // 'owner' | 'viewer'
+const LS_ROLE_KEY = "neet_cloud_tracker_role";
 
 let currentUid = null;
 let activeCode = localStorage.getItem(LS_CODE_KEY) || null;
 let activeRole = localStorage.getItem(LS_ROLE_KEY) || null;
 let unsubscribeLive = null;
 let cloudPushTimer = null;
+let viewerHeartbeatTimer = null;
+window.isViewerMode = false;
 
 const codeInput = document.getElementById('tracker-code-input');
 const btnConnect = document.getElementById('btn-connect-code');
@@ -2121,39 +2010,84 @@ const btnRevoke = document.getElementById('btn-revoke-code');
 const statusDot = document.getElementById('sync-status-dot');
 const statusText = document.getElementById('sync-status-text');
 
-// Local copy — modules can't see `const`/`let` declared in the other
-// (non-module) script block, only functions (which attach to window).
-// Referencing the other script's PAYLOAD_INPUT_SELECTOR directly here used
-// to throw a ReferenceError the instant setSyncUI() ran — which happened
-// BEFORE attachLiveListener() in both connect/create, so the live listener
-// was silently never attaching. This local copy fixes that.
-const MODULE_INPUT_SELECTOR = 'input:not([type="file"]):not(#tracker-code-input):not(#mt-name):not(#mt-date):not(#mt-phy):not(#mt-chem):not(#mt-bio), textarea:not(#new-note-text)';
-
-function setSyncUI(state, label){
-  statusDot.className = 'sync-status-dot' + (state === 'owner' ? ' synced' : state === 'viewer' ? ' viewer' : '');
+function setSyncUI(state, label, isViewerActiveOnOwner){
+  window.isViewerMode = (state === 'viewer');
+  
+  if (state === 'owner' && isViewerActiveOnOwner) {
+    statusDot.className = 'sync-status-dot viewing-active';
+  } else {
+    statusDot.className = 'sync-status-dot' + (state === 'owner' ? ' synced' : state === 'viewer' ? ' viewer' : '');
+  }
+  
   statusText.innerText = label;
   const isViewer = state === 'viewer';
-  document.body.classList.toggle('sync-viewer-mode', isViewer);
-  document.querySelectorAll(MODULE_INPUT_SELECTOR).forEach(el => { el.disabled = isViewer; });
-  document.querySelectorAll('.date-badge-btn').forEach(btn => { btn.disabled = isViewer; btn.style.pointerEvents = isViewer ? 'none' : ''; });
+  
+  // Disable progress edits for viewers
+  document.querySelectorAll(PAYLOAD_INPUT_SELECTOR).forEach(el => { el.disabled = isViewer; });
+  document.querySelectorAll('.date-badge-btn').forEach(btn => { 
+    btn.disabled = isViewer; 
+    btn.style.pointerEvents = isViewer ? 'none' : ''; 
+  });
+  
+  // Read-only Notes & Mock Tests Creator Boxes for Viewers
+  const noteCreator = document.getElementById('notes-creator-box');
+  if (noteCreator) noteCreator.style.display = isViewer ? 'none' : 'flex';
+  
+  const mockCreator = document.getElementById('mock-test-creator-box');
+  if (mockCreator) mockCreator.style.display = isViewer ? 'none' : 'flex';
+
+  const dreamBoard = document.getElementById('personal-notes');
+  if (dreamBoard) dreamBoard.disabled = isViewer;
+
+  // Hide timer control triggers for viewers
+  ['btn-start-target-timer', 'btn-pause-target-timer', 'btn-reset-target-timer', 'btn-fs-toggle', 'btn-fs-pause', 'btn-fs-stop', 'btn-alarm-stop-target', 'btn-fs-alarm-stop'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  
+  // Lock preset duration pills
+  document.querySelectorAll('.fs-preset-btns button').forEach(b => b.disabled = isViewer);
+  ['in-hrs', 'in-mins', 'in-secs'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.disabled = isViewer;
+  });
+
+  const markTodayBtn = document.getElementById('btn-mark-today');
+  if (markTodayBtn) markTodayBtn.disabled = isViewer;
+
   btnCopyLink.style.display = (state === 'owner' || state === 'viewer') ? 'inline-flex' : 'none';
   btnRevoke.style.display = (state === 'owner') ? 'inline-flex' : 'none';
   document.getElementById('btn-theme-switcher').style.display = isViewer ? 'none' : 'inline-flex';
+  
+  renderCustomNotes();
+  renderMockTests();
+}
+
+function collectFullPayloadState(){
+  const payload = collectFullPayload();
+  payload['__timer_running'] = isTimerRunning;
+  payload['__timer_remaining'] = globalTimeRemaining;
+  payload['__timer_target_end'] = isTimerRunning ? (Date.now() + (globalTimeRemaining * 1000)) : null;
+  return payload;
 }
 
 function makeReadableCode(){
-  // High-entropy on purpose: this code is the *only* thing standing between
-  // a stranger and read access to this tracker (Firestore rules allow read
-  // to anyone who knows the doc id). A short word+4-digit code is guessable
-  // by a simple script. 10 random base36 characters = 36^10 (~3.6 x 10^15)
-  // possibilities — not practically guessable, while still short enough to
-  // read aloud or paste into a message.
   const bytes = new Uint32Array(10);
   crypto.getRandomValues(bytes);
-  const chars = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ'; // no O/I to avoid confusion
+  const chars = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
   let rand = '';
   for (let i=0;i<10;i++) rand += chars[bytes[i] % chars.length];
   return `NEET-${rand.slice(0,5)}-${rand.slice(5)}`;
+}
+
+async function verifyRecaptcha(actionName){
+  if (typeof grecaptcha === 'undefined' || !RECAPTCHA_SITE_KEY || RECAPTCHA_SITE_KEY === 'YOUR_RECAPTCHA_SITE_KEY') return true;
+  try {
+    const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: actionName });
+    return !!token;
+  } catch(e) {
+    return true; 
+  }
 }
 
 async function waitForAuth(){
@@ -2163,12 +2097,31 @@ async function waitForAuth(){
       if (user){ currentUid = user.uid; unsub(); resolve(currentUid); }
     });
     signInAnonymously(auth).catch((err) => {
-      showCustomMessage('Cloud sign-in failed: ' + err.message, 'error');
+      showCustomMessage('Cloud sign-in error: ' + err.message, 'error');
     });
   });
 }
 
+function startViewerPresenceHeartbeat(code){
+  clearInterval(viewerHeartbeatTimer);
+  const ping = async () => {
+    if (activeRole !== 'viewer' || !activeCode) return;
+    try {
+      await updateDoc(doc(db, COLLECTION, code), {
+        lastViewerAt: Date.now()
+      });
+    } catch(e){}
+  };
+  ping();
+  viewerHeartbeatTimer = setInterval(ping, 20000);
+}
+
 async function createShareableTracker(){
+  const verified = await verifyRecaptcha('create_tracker');
+  if (!verified) {
+    showCustomMessage('Captcha verification failed. Please try again.', 'error');
+    return;
+  }
   await waitForAuth();
   let code = (codeInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g,'');
   if (!code) code = makeReadableCode();
@@ -2176,14 +2129,15 @@ async function createShareableTracker(){
   const ref = doc(db, COLLECTION, code);
   const existing = await getDoc(ref);
   if (existing.exists()){
-    showCustomMessage('That code is already taken — try another or leave blank for a random one.', 'error');
+    showCustomMessage('Code already in use. Please choose another or leave empty.', 'error');
     return;
   }
 
-  const payload = collectFullPayload();
+  const payload = collectFullPayloadState();
   await setDoc(ref, {
     ownerUid: currentUid,
     payload,
+    lastViewerAt: null,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp()
   });
@@ -2192,7 +2146,7 @@ async function createShareableTracker(){
   localStorage.setItem(LS_CODE_KEY, activeCode);
   localStorage.setItem(LS_ROLE_KEY, activeRole);
   codeInput.value = activeCode;
-  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`);
+  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`, false);
   showCustomMessage(`Shareable code created: ${activeCode} 🌸`, 'success');
   attachLiveListener(code);
 }
@@ -2216,33 +2170,66 @@ async function connectToCode(){
   localStorage.setItem(LS_ROLE_KEY, activeRole);
 
   applyPayloadToDom(data.payload || {});
-  setSyncUI(activeRole, isOwner
-    ? `☁️ Synced as owner · ${activeCode}`
-    : `👀 Viewing (read-only) · ${activeCode}`);
-  showCustomMessage(isOwner ? 'Reconnected as owner ✨' : 'Connected — read-only view 👀', 'success');
+  
+  if (isOwner) {
+    const isViewerActive = data.lastViewerAt && (Date.now() - data.lastViewerAt < 45000);
+    setSyncUI('owner', isViewerActive 
+      ? `☁️ Synced as owner · ${activeCode} (👀 Someone is viewing!)` 
+      : `☁️ Synced as owner · ${activeCode}`, isViewerActive);
+    showCustomMessage('Connected as owner ✨', 'success');
+  } else {
+    setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`, false);
+    showCustomMessage('Connected — live mirror view 👀', 'success');
+    startViewerPresenceHeartbeat(code);
+  }
+  
   attachLiveListener(code);
 }
 
 function attachLiveListener(code){
   if (unsubscribeLive) unsubscribeLive();
   const ref = doc(db, COLLECTION, code);
-  // includeMetadataChanges:true lets us see snap.metadata.hasPendingWrites,
-  // which is true the instant *this* browser fires a write (before the
-  // server has confirmed it) and false once it's the confirmed server copy.
-  // Skipping pending-write snapshots means: we never re-apply our own
-  // in-flight edit back onto ourselves (no cursor-jumping while typing),
-  // but any change that genuinely came from the server — i.e. from the
-  // OTHER person's browser — always gets applied. That's what gives a
-  // true, near-instant mirror for a read-only viewer.
+  
   unsubscribeLive = onSnapshot(ref, { includeMetadataChanges: true }, (snap) => {
     if (!snap.exists()) return;
     if (snap.metadata.hasPendingWrites) return;
     const data = snap.data();
-    if (activeRole === 'viewer' || document.activeElement === document.body){
-      applyPayloadToDom(data.payload || {});
-    }
-    if (activeRole === 'viewer'){
-      mirrorTimerFromPayload(data.payload || {});
+    const payload = data.payload || {};
+
+    if (activeRole === 'owner'){
+      const isViewerActive = data.lastViewerAt && (Date.now() - data.lastViewerAt < 45000);
+      setSyncUI('owner', isViewerActive 
+        ? `☁️ Synced as owner · ${activeCode} (👀 Someone is viewing!)` 
+        : `☁️ Synced as owner · ${activeCode}`, isViewerActive);
+    } else if (activeRole === 'viewer'){
+      applyPayloadToDom(payload);
+      setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`, false);
+      
+      // Real-time Timer Sync for Viewer
+      clearInterval(globalTimerInterval);
+      if (payload['__timer_running'] && payload['__timer_target_end']) {
+        const remaining = Math.max(0, Math.round((payload['__timer_target_end'] - Date.now()) / 1000));
+        globalTimeRemaining = remaining;
+        isTimerRunning = true;
+        updateInputsStyleState(true);
+        syncAllTimerDisplays();
+        
+        globalTimerInterval = setInterval(() => {
+          if (globalTimeRemaining > 0) {
+            globalTimeRemaining--;
+            syncAllTimerDisplays();
+          } else {
+            clearInterval(globalTimerInterval);
+            isTimerRunning = false;
+            updateInputsStyleState(false);
+          }
+        }, 1000);
+      } else {
+        globalTimeRemaining = payload['__timer_remaining'] || 0;
+        isTimerRunning = false;
+        updateInputsStyleState(false);
+        syncAllTimerDisplays();
+      }
     }
   }, (err) => {
     showCustomMessage('Live sync error: ' + err.message, 'error');
@@ -2255,17 +2242,17 @@ function scheduleCloudPush(immediate){
   const run = async () => {
     try {
       await updateDoc(doc(db, COLLECTION, activeCode), {
-        payload: collectFullPayload(),
+        payload: collectFullPayloadState(),
         updatedAt: serverTimestamp()
       });
     } catch(err){
-      showCustomMessage('Cloud save failed: ' + err.message, 'error');
+      showCustomMessage('Cloud sync save failed: ' + err.message, 'error');
     }
   };
-  if (immediate) run(); else cloudPushTimer = setTimeout(run, 900);
+  if (immediate) run(); else cloudPushTimer = setTimeout(run, 250);
 }
 
-function persistDateToCloud(){ scheduleCloudPush(); }
+function persistDateToCloud(){ scheduleCloudPush(true); }
 
 async function revokeAndRegenerateCode(){
   if (activeRole !== 'owner' || !activeCode) return;
@@ -2274,7 +2261,8 @@ async function revokeAndRegenerateCode(){
   try {
     await setDoc(doc(db, COLLECTION, newCode), {
       ownerUid: currentUid,
-      payload: collectFullPayload(),
+      payload: collectFullPayloadState(),
+      lastViewerAt: null,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     });
@@ -2288,15 +2276,15 @@ async function revokeAndRegenerateCode(){
   localStorage.setItem(LS_CODE_KEY, activeCode);
   localStorage.setItem(LS_ROLE_KEY, activeRole);
   codeInput.value = activeCode;
-  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`);
-  showCustomMessage(`Old code revoked. New code: ${activeCode} — reshare this one 🔒`, 'success');
+  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`, false);
+  showCustomMessage(`Old code revoked. New active code: ${activeCode} 🔒`, 'success');
   attachLiveListener(newCode);
 }
 
 btnCreate.addEventListener('click', () => {
   openSecurityModal(
     'Create Shareable Tracker',
-    'This uploads your current progress to the cloud under a new code. Anyone with the code can view it (read-only). Continue?',
+    'This uploads your progress to the cloud under a code. Anyone with the code can view it (read-only). Continue?',
     '☁️', createShareableTracker, 'Create', false
   );
 });
@@ -2304,7 +2292,7 @@ btnConnect.addEventListener('click', connectToCode);
 btnRevoke.addEventListener('click', () => {
   openSecurityModal(
     'Revoke & Regenerate Code',
-    `This immediately deletes "${activeCode}" — anyone who had that code (or link) loses access from now on — and issues you a brand-new code with the same progress. Use this if you shared the code somewhere you regret. Continue?`,
+    `This deletes "${activeCode}" immediately and issues a new code. Old shared links will stop working. Continue?`,
     '🔒', revokeAndRegenerateCode, 'Revoke & Regenerate', true
   );
 });
@@ -2318,8 +2306,6 @@ btnCopyLink.addEventListener('click', () => {
   });
 });
 
-/* Auto-connect on load: from ?code= in the URL, or from a previously
-   remembered code/role in this browser. */
 (async function initCloudSync(){
   await waitForAuth();
   const params = new URLSearchParams(window.location.search);
@@ -2340,57 +2326,24 @@ btnCopyLink.addEventListener('click', () => {
       activeRole = isOwner ? 'owner' : 'viewer';
       localStorage.setItem(LS_ROLE_KEY, activeRole);
       applyPayloadToDom(data.payload || {});
-      setSyncUI(activeRole, isOwner ? `☁️ Synced as owner · ${activeCode}` : `👀 Viewing (read-only) · ${activeCode}`);
+      
+      if (isOwner){
+        const isViewerActive = data.lastViewerAt && (Date.now() - data.lastViewerAt < 45000);
+        setSyncUI('owner', isViewerActive 
+          ? `☁️ Synced as owner · ${activeCode} (👀 Someone is viewing!)` 
+          : `☁️ Synced as owner · ${activeCode}`, isViewerActive);
+      } else {
+        setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`, false);
+        startViewerPresenceHeartbeat(activeCode);
+      }
+      
       attachLiveListener(activeCode);
     }
   }
 })();
 
-// expose the two hooks the main script calls into
 window.scheduleCloudPush = scheduleCloudPush;
 window.persistDateToCloud = persistDateToCloud;
 </script>
-
-<!--
-  SECURITY NOTE FOR WHOEVER DEPLOYS THIS FILE:
-  Meta tags can only carry Content-Security-Policy, Referrer-Policy, and
-  Permissions-Policy — a handful of headers (X-Frame-Options,
-  Strict-Transport-Security, X-Content-Type-Options as an enforced header
-  rather than a hint) can only be set by the server/CDN, not by HTML. For
-  full protection, also set these as real HTTP response headers wherever
-  this is hosted (Netlify _headers file, Vercel headers config, Nginx,
-  Cloudflare Pages, etc.):
-    Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-    X-Frame-Options: DENY
-    X-Content-Type-Options: nosniff
-    Referrer-Policy: strict-origin-when-cross-origin
-    Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=()
-  Always serve over HTTPS (required for the service worker and install
-  prompt to work at all) and update the placeholder canonical/og:url URLs
-  above to your real domain once deployed.
-
-  FIRESTORE SECURITY RULES (read-only share mode) — paste into
-  Firebase Console → Firestore Database → Rules:
-
-  rules_version = '2';
-  service cloud.firestore {
-    match /databases/{database}/documents {
-      match /trackers/{code} {
-        allow read: if true;
-        allow create: if request.auth != null
-                      && request.resource.data.ownerUid == request.auth.uid
-                      && request.resource.data.keys().hasAll(['ownerUid','payload']);
-        allow update: if request.auth != null
-                      && resource.data.ownerUid == request.auth.uid
-                      && request.resource.data.ownerUid == resource.data.ownerUid;
-        allow delete: if request.auth != null
-                      && resource.data.ownerUid == request.auth.uid;
-      }
-    }
-  }
-
-  Also enable Anonymous Authentication:
-  Firebase Console → Authentication → Sign-in method → Anonymous → Enable.
--->
 </body>
 </html>
