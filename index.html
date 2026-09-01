@@ -129,7 +129,7 @@ button{font:inherit;color:inherit}
 h1{font-size:clamp(1.7rem,5.2vw,3rem);font-weight:800;background:var(--header-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.5px;margin-bottom:6px}
 .subtitle{font-size:clamp(.85rem,2.2vw,1.05rem);color:var(--bio-glow);font-weight:600}
 
-/* ENHANCED SYNC BAR & LARGE CODE INPUT */
+/* ENHANCED SYNC BAR */
 .sync-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--glass-bg);backdrop-filter:blur(16px);border:1.5px solid var(--glass-border);border-radius:22px;padding:14px 20px;box-shadow:var(--shadow);margin:0 0 18px}
 .sync-bar-label{font-size:.84rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--bio-accent);flex-shrink:0}
 .sync-bar input[type=text]#tracker-code-input{
@@ -153,6 +153,11 @@ h1{font-size:clamp(1.7rem,5.2vw,3rem);font-weight:800;background:var(--header-gr
 .sync-status-dot.viewing-active{background:#f43f5e;box-shadow:0 0 12px #f43f5e;animation:pulseDot 1s infinite alternate}
 @keyframes pulseDot{0%{transform:scale(1)}100%{transform:scale(1.35)}}
 .sync-status-text{font-size:.84rem;font-weight:700;color:var(--text-muted);white-space:nowrap}
+
+/* LIVE VIEWER EYE BADGE */
+.live-eye-badge{display:none;align-items:center;gap:6px;padding:5px 12px;background:rgba(244,63,94,.18);border:1.5px solid #fb7185;border-radius:30px;color:#fff1f2;font-size:.76rem;font-weight:800;letter-spacing:.5px;box-shadow:0 0 14px rgba(244,63,94,.35);animation:pulseEye 1.2s infinite alternate ease-in-out}
+.live-eye-badge.active{display:inline-flex}
+@keyframes pulseEye{0%{transform:scale(0.97);opacity:0.9}100%{transform:scale(1.03);opacity:1}}
 
 /* LIVE DASHBOARD */
 .live-dashboard-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px;margin-bottom:20px}
@@ -369,17 +374,26 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .view-panel{display:none}
 .view-panel.active-view{display:block}
 
+/* Responsive code input */
+@media (max-width:768px){
+  .sync-bar input[type=text]#tracker-code-input {
+    font-size: 1.35rem !important;
+    padding: 16px 14px !important;
+    letter-spacing: 2.5px !important;
+    min-height: 54px !important;
+  }
+}
+
 @media (max-width:420px){
+  .sync-bar{flex-direction:column;align-items:stretch}
+  .sync-bar-label{text-align:center}
+  .sync-bar #tracker-code-input{flex:1 1 auto;width:100%;font-size:1.4rem !important;}
+  .sync-bar .btn{width:100%}
+  .sync-status-text{text-align:center;white-space:normal}
   .timer-buttons-group .btn{flex:1 1 calc(50% - 5px)}
   .hub-card-actions .btn-hub{flex:1 1 100%}
   th,td{padding:9px 8px;font-size:.85rem}
   .toast-container{left:10px;right:10px;bottom:10px}
-  .sync-bar{flex-direction:column;align-items:stretch}
-  .sync-bar-label{text-align:center}
-  .sync-bar #tracker-code-input{flex:1 1 auto;width:100%}
-  .sync-bar .btn{width:100%}
-  .sync-status-text{text-align:center;white-space:normal}
-  .sync-status-dot{display:none}
   .footer-actions-btn-row .btn{flex:1 1 calc(50% - 5px)}
 }
 
@@ -430,6 +444,7 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
     </button>
     <div class="nav-actions-group">
       <div class="header-action-pill badge-tag-pill" tabindex="-1">✨ NEET 2027 ✨</div>
+      <div id="owner-eye-pill" class="live-eye-badge">👁️ Someone is viewing</div>
       <button type="button" class="header-action-pill" onclick="openNotesModal()">💌 Notes</button>
       <button type="button" class="header-action-pill" id="btn-theme-switcher" onclick="cycleGlobalTheme()">🎨 <span id="current-theme-name">Sakura Dream</span></button>
       <button type="button" class="header-action-pill" id="btn-install-app" style="display:none;">⬇️ Install App</button>
@@ -561,13 +576,13 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
       <div>© 2026–2027 NEET Master Prep Suite 🌸</div>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <span>🎯 Target: May 2, 2027</span>
-        <span>⚡ v22.1 (Live Mirror Sync)</span>
+        <span>⚡ v22.2 (Presence &amp; Mirror Engine)</span>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- CUSTOM NOTES MODAL (MIRRORED FOR VIEWERS) -->
+<!-- CUSTOM NOTES MODAL -->
 <div id="custom-notes-modal" class="custom-notes-modal">
   <div class="notes-hub-container">
     <div class="notes-header-bar">
@@ -697,7 +712,7 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
   </div>
 </div>
 
-<!-- MOCK TEST MODAL (MANUAL DATE INPUT & MIRRORED FOR VIEWERS) -->
+<!-- MOCK TEST MODAL -->
 <div id="mock-test-modal" class="custom-notes-modal">
   <div class="notes-hub-container">
     <div class="notes-header-bar">
@@ -966,7 +981,7 @@ function rotateMotivationalQuote(){
 }
 setInterval(rotateMotivationalQuote, 10000);
 
-/* ============================= NOTES HUB (MIRROR READY) ============================= */
+/* ============================= NOTES HUB ============================= */
 function openNotesModal(){
   renderCustomNotes();
   document.getElementById('custom-notes-modal').classList.add('active');
@@ -1963,7 +1978,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <!-- ============================================================
-     ☁️ FIRESTORE REAL-TIME CLOUD SYNC, VIEWER MIRROR & PRESENCE
+     ☁️ FIRESTORE REAL-TIME PRESENCE & VIEWER MIRROR ENGINE
      ============================================================ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -1999,7 +2014,7 @@ let activeCode = localStorage.getItem(LS_CODE_KEY) || null;
 let activeRole = localStorage.getItem(LS_ROLE_KEY) || null;
 let unsubscribeLive = null;
 let cloudPushTimer = null;
-let viewerHeartbeatTimer = null;
+let lastHeartbeatSent = 0;
 window.isViewerMode = false;
 
 const codeInput = document.getElementById('tracker-code-input');
@@ -2009,19 +2024,33 @@ const btnCopyLink = document.getElementById('btn-copy-link');
 const btnRevoke = document.getElementById('btn-revoke-code');
 const statusDot = document.getElementById('sync-status-dot');
 const statusText = document.getElementById('sync-status-text');
+const ownerEyePill = document.getElementById('owner-eye-pill');
 
-function setSyncUI(state, label, isViewerActiveOnOwner){
-  window.isViewerMode = (state === 'viewer');
-  
-  if (state === 'owner' && isViewerActiveOnOwner) {
-    statusDot.className = 'sync-status-dot viewing-active';
-  } else {
-    statusDot.className = 'sync-status-dot' + (state === 'owner' ? ' synced' : state === 'viewer' ? ' viewer' : '');
+function updateOwnerLivePresence(lastViewerAt){
+  if (activeRole !== 'owner') {
+    ownerEyePill.classList.remove('active');
+    return;
   }
-  
+  const isViewing = lastViewerAt && (Date.now() - lastViewerAt < 12000);
+  if (isViewing){
+    ownerEyePill.classList.add('active');
+    statusDot.className = 'sync-status-dot viewing-active';
+    statusText.innerText = `☁️ Synced as owner · ${activeCode} (👀 Someone is viewing!)`;
+  } else {
+    ownerEyePill.classList.remove('active');
+    statusDot.className = 'sync-status-dot synced';
+    statusText.innerText = `☁️ Synced as owner · ${activeCode}`;
+  }
+}
+
+function setSyncUI(state, label){
+  window.isViewerMode = (state === 'viewer');
   statusText.innerText = label;
   const isViewer = state === 'viewer';
-  
+
+  statusDot.className = 'sync-status-dot' + (state === 'owner' ? ' synced' : state === 'viewer' ? ' viewer' : '');
+  if (state !== 'owner') ownerEyePill.classList.remove('active');
+
   // Disable progress edits for viewers
   document.querySelectorAll(PAYLOAD_INPUT_SELECTOR).forEach(el => { el.disabled = isViewer; });
   document.querySelectorAll('.date-badge-btn').forEach(btn => { 
@@ -2039,18 +2068,43 @@ function setSyncUI(state, label, isViewerActiveOnOwner){
   const dreamBoard = document.getElementById('personal-notes');
   if (dreamBoard) dreamBoard.disabled = isViewer;
 
-  // Hide timer control triggers for viewers
-  ['btn-start-target-timer', 'btn-pause-target-timer', 'btn-reset-target-timer', 'btn-fs-toggle', 'btn-fs-pause', 'btn-fs-stop', 'btn-alarm-stop-target', 'btn-fs-alarm-stop'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
+  // Restore & Configure Study Sprint Timer Buttons for Owner vs Viewer
+  const startBtn = document.getElementById('btn-start-target-timer');
+  const pauseBtn = document.getElementById('btn-pause-target-timer');
+  const resetBtn = document.getElementById('btn-reset-target-timer');
+  const alarmStopBtn = document.getElementById('btn-alarm-stop-target');
   
-  // Lock preset duration pills
-  document.querySelectorAll('.fs-preset-btns button').forEach(b => b.disabled = isViewer);
-  ['in-hrs', 'in-mins', 'in-secs'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.disabled = isViewer;
-  });
+  const fsStart = document.getElementById('btn-fs-toggle');
+  const fsPause = document.getElementById('btn-fs-pause');
+  const fsStop = document.getElementById('btn-fs-stop');
+  const fsAlarmStop = document.getElementById('btn-fs-alarm-stop');
+
+  if (isViewer) {
+    [startBtn, pauseBtn, resetBtn, alarmStopBtn, fsStart, fsPause, fsStop, fsAlarmStop].forEach(el => {
+      if (el) el.style.display = 'none';
+    });
+    document.querySelectorAll('.fs-preset-btns button').forEach(b => b.disabled = true);
+    ['in-hrs', 'in-mins', 'in-secs'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.disabled = true;
+    });
+  } else {
+    if (startBtn) startBtn.style.display = isTimerRunning ? 'none' : 'inline-flex';
+    if (pauseBtn) pauseBtn.style.display = isTimerRunning ? 'inline-flex' : 'none';
+    if (resetBtn) resetBtn.style.display = 'inline-flex';
+    if (alarmStopBtn) alarmStopBtn.style.display = isAlarmRinging ? 'inline-flex' : 'none';
+
+    if (fsStart) fsStart.style.display = isTimerRunning ? 'none' : 'inline-flex';
+    if (fsPause) fsPause.style.display = isTimerRunning ? 'inline-flex' : 'none';
+    if (fsStop) fsStop.style.display = 'inline-flex';
+    if (fsAlarmStop) fsAlarmStop.style.display = isAlarmRinging ? 'inline-flex' : 'none';
+
+    document.querySelectorAll('.fs-preset-btns button').forEach(b => b.disabled = false);
+    ['in-hrs', 'in-mins', 'in-secs'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.disabled = isTimerRunning;
+    });
+  }
 
   const markTodayBtn = document.getElementById('btn-mark-today');
   if (markTodayBtn) markTodayBtn.disabled = isViewer;
@@ -2102,19 +2156,24 @@ async function waitForAuth(){
   });
 }
 
-function startViewerPresenceHeartbeat(code){
-  clearInterval(viewerHeartbeatTimer);
-  const ping = async () => {
-    if (activeRole !== 'viewer' || !activeCode) return;
-    try {
-      await updateDoc(doc(db, COLLECTION, code), {
-        lastViewerAt: Date.now()
-      });
-    } catch(e){}
-  };
-  ping();
-  viewerHeartbeatTimer = setInterval(ping, 20000);
+// Viewer instant activity transmission
+function sendViewerActivityPing(code){
+  if (activeRole !== 'viewer' || !activeCode) return;
+  const now = Date.now();
+  if (now - lastHeartbeatSent < 2500) return;
+  lastHeartbeatSent = now;
+  try {
+    updateDoc(doc(db, COLLECTION, code || activeCode), {
+      lastViewerAt: now
+    }).catch(()=>{});
+  } catch(e){}
 }
+
+['scroll', 'mousemove', 'touchstart', 'click'].forEach(evt => {
+  window.addEventListener(evt, () => {
+    if (activeRole === 'viewer' && activeCode) sendViewerActivityPing(activeCode);
+  }, { passive: true });
+});
 
 async function createShareableTracker(){
   const verified = await verifyRecaptcha('create_tracker');
@@ -2146,7 +2205,7 @@ async function createShareableTracker(){
   localStorage.setItem(LS_CODE_KEY, activeCode);
   localStorage.setItem(LS_ROLE_KEY, activeRole);
   codeInput.value = activeCode;
-  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`, false);
+  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`);
   showCustomMessage(`Shareable code created: ${activeCode} 🌸`, 'success');
   attachLiveListener(code);
 }
@@ -2172,18 +2231,32 @@ async function connectToCode(){
   applyPayloadToDom(data.payload || {});
   
   if (isOwner) {
-    const isViewerActive = data.lastViewerAt && (Date.now() - data.lastViewerAt < 45000);
-    setSyncUI('owner', isViewerActive 
-      ? `☁️ Synced as owner · ${activeCode} (👀 Someone is viewing!)` 
-      : `☁️ Synced as owner · ${activeCode}`, isViewerActive);
+    setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`);
     showCustomMessage('Connected as owner ✨', 'success');
+    updateOwnerLivePresence(data.lastViewerAt);
   } else {
-    setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`, false);
+    setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`);
     showCustomMessage('Connected — live mirror view 👀', 'success');
-    startViewerPresenceHeartbeat(code);
+    sendViewerActivityPing(code);
   }
   
   attachLiveListener(code);
+}
+
+function handleCloudRevocation(){
+  if (unsubscribeLive) unsubscribeLive();
+  activeCode = null; activeRole = null;
+  localStorage.removeItem(LS_CODE_KEY);
+  localStorage.removeItem(LS_ROLE_KEY);
+  codeInput.value = '';
+  setSyncUI('offline', 'Offline / Local Mode');
+  
+  openSecurityModal(
+    'Tracker Revoked / Disconnected',
+    'The owner of this tracker has revoked access or regenerated a new code. This mirror session has been disconnected.',
+    '🔒', () => {}, 'Understood', true
+  );
+  showCustomMessage('Tracker was revoked by owner 🔒', 'error');
 }
 
 function attachLiveListener(code){
@@ -2191,21 +2264,25 @@ function attachLiveListener(code){
   const ref = doc(db, COLLECTION, code);
   
   unsubscribeLive = onSnapshot(ref, { includeMetadataChanges: true }, (snap) => {
-    if (!snap.exists()) return;
+    // Detect doc deletion (Revocation)
+    if (!snap.exists()) {
+      if (activeRole === 'viewer') {
+        handleCloudRevocation();
+      }
+      return;
+    }
+
     if (snap.metadata.hasPendingWrites) return;
     const data = snap.data();
     const payload = data.payload || {};
 
     if (activeRole === 'owner'){
-      const isViewerActive = data.lastViewerAt && (Date.now() - data.lastViewerAt < 45000);
-      setSyncUI('owner', isViewerActive 
-        ? `☁️ Synced as owner · ${activeCode} (👀 Someone is viewing!)` 
-        : `☁️ Synced as owner · ${activeCode}`, isViewerActive);
+      updateOwnerLivePresence(data.lastViewerAt);
     } else if (activeRole === 'viewer'){
       applyPayloadToDom(payload);
-      setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`, false);
+      setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`);
       
-      // Real-time Timer Sync for Viewer
+      // Live Focus Timer Real-time Sync for Viewer
       clearInterval(globalTimerInterval);
       if (payload['__timer_running'] && payload['__timer_target_end']) {
         const remaining = Math.max(0, Math.round((payload['__timer_target_end'] - Date.now()) / 1000));
@@ -2266,6 +2343,7 @@ async function revokeAndRegenerateCode(){
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     });
+    // This immediately triggers the revocation modal on the viewer's screen
     await deleteDoc(doc(db, COLLECTION, oldCode));
   } catch(err){
     showCustomMessage('Could not regenerate code: ' + err.message, 'error');
@@ -2276,7 +2354,7 @@ async function revokeAndRegenerateCode(){
   localStorage.setItem(LS_CODE_KEY, activeCode);
   localStorage.setItem(LS_ROLE_KEY, activeRole);
   codeInput.value = activeCode;
-  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`, false);
+  setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`);
   showCustomMessage(`Old code revoked. New active code: ${activeCode} 🔒`, 'success');
   attachLiveListener(newCode);
 }
@@ -2328,13 +2406,11 @@ btnCopyLink.addEventListener('click', () => {
       applyPayloadToDom(data.payload || {});
       
       if (isOwner){
-        const isViewerActive = data.lastViewerAt && (Date.now() - data.lastViewerAt < 45000);
-        setSyncUI('owner', isViewerActive 
-          ? `☁️ Synced as owner · ${activeCode} (👀 Someone is viewing!)` 
-          : `☁️ Synced as owner · ${activeCode}`, isViewerActive);
+        setSyncUI('owner', `☁️ Synced as owner · ${activeCode}`);
+        updateOwnerLivePresence(data.lastViewerAt);
       } else {
-        setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`, false);
-        startViewerPresenceHeartbeat(activeCode);
+        setSyncUI('viewer', `👀 Connected (Mirror View) · ${activeCode}`);
+        sendViewerActivityPing(activeCode);
       }
       
       attachLiveListener(activeCode);
