@@ -37,10 +37,13 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
 
   const url = new URL(req.url);
+  const hostname = url.hostname.toLowerCase();
+  const isGoogleApisHost = hostname === 'googleapis.com' || hostname.endsWith('.googleapis.com');
+  const isFirebaseIoHost = hostname === 'firebaseio.com' || hostname.endsWith('.firebaseio.com');
 
   // Never cache Firestore/Auth traffic — that must always hit the network
   // live, or the whole point of "live sync" breaks.
-  if (url.hostname.includes('googleapis.com') || url.hostname.includes('firebaseio.com')) {
+  if (isGoogleApisHost || isFirebaseIoHost) {
     return;
   }
 
