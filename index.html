@@ -498,7 +498,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       </div>
       <div class="header-action-pill badge-tag-pill" tabindex="-1">✨ NEET 2027 ✨</div>
       <button type="button" class="header-action-pill" id="btn-notes-nav" onclick="openNotesModal()">💌 Notes</button>
-      <button type="button" class="header-action-pill" id="btn-theme-switcher" onclick="cycleGlobalTheme()" title="Change theme">🎨 Theme</button>
+      <button type="button" class="header-action-pill" id="btn-theme-switcher" onclick="cycleGlobalTheme()" title="Change theme">🎨</button>
       <button type="button" class="header-action-pill" id="btn-install-app" style="display:none;">⬇️ Install App</button>
     </div>
   </div>
@@ -514,7 +514,6 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
     <span class="sync-bar-label">☁️ Tracker Code:</span>
     <input type="text" id="tracker-code-input" placeholder="e.g. NEET-ARJUN-2027">
     <button type="button" class="btn btn-sync" id="btn-connect-code">🔌 Load / Connect</button>
-    <button type="button" class="btn btn-danger" id="btn-disconnect-code" style="display:none;" title="Stop watching this shared tracker and return to your own local progress">🔌 Disconnect</button>
     <button type="button" class="btn btn-secondary" id="btn-create-code" title="Turn this tracker into a shareable cloud tracker">✨ Create Shareable Code</button>
     <button type="button" class="btn btn-secondary" id="btn-copy-link" style="display:none;">🔗 Copy Link</button>
     <button type="button" class="btn btn-danger" id="btn-revoke-code" style="display:none;" title="Invalidate this code and get a fresh one — old links stop working immediately">🔒 Revoke &amp; Regenerate</button>
@@ -1064,7 +1063,7 @@ function saveNewCustomNote(){
   noteInput.value = '';
   renderCustomNotes();
   showCustomMessage('Note card saved! 🌸', 'success');
-  scheduleCloudPush(true); // discrete action — push instantly so a viewer sees it right away
+  scheduleCloudPush(true);
 }
 function deleteCustomNote(noteId){
   if (document.body.classList.contains('sync-viewer-mode')){
@@ -1076,7 +1075,7 @@ function deleteCustomNote(noteId){
   localStorage.setItem('neet_custom_saved_notes', JSON.stringify(notes));
   renderCustomNotes();
   showCustomMessage('Note card removed.', 'info');
-  scheduleCloudPush(true); // discrete action — push instantly so a viewer sees it right away
+  scheduleCloudPush(true);
 }
 function renderCustomNotes(){
   const container = document.getElementById('notes-grid-container');
@@ -1341,9 +1340,6 @@ function cycleGlobalTheme(){
   applyThemeByIndex(currentGlobalThemeIdx);
   localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
   showCustomMessage(`Theme set to ${globalThemes[currentGlobalThemeIdx].name} ✨`, 'info');
-  scheduleCloudPush(true); // push the new theme immediately so a refresh (which re-pulls
-                            // the cloud copy for a synced owner/viewer) can't reapply a
-                            // now-stale theme over this local choice
 }
 function applyThemeByIndex(idx){
   globalThemes.forEach(t => { if (t.className) document.body.classList.remove(t.className); });
@@ -2160,13 +2156,14 @@ const firebaseConfig = {
   appId: "1:890536038866:web:0a12d83d395de81781b80b"
 };
 
-/* 🔧 STEP 1b — paste your reCAPTCHA ENTERPRISE SITE key here (the public
-   key, not the API key/"secret" from Google Cloud — see the chat reply for
-   exactly where to get this). Get it from: Firebase Console → Project
-   settings → App Check tab → register your web app → reCAPTCHA Enterprise
-   → this is the key it shows you (also visible later at
-   https://console.cloud.google.com/security/recaptcha). */
-const RECAPTCHA_ENTERPRISE_SITE_KEY = "6Lc4F6gtAAAAABonY5RZ0s-1k1EmJQtos0ZeFTWJ";
+/* 🔧 STEP 1b — paste your reCAPTCHA ENTERPRISE key ID here.
+   Get it from: Google Cloud Console → Security → reCAPTCHA Enterprise →
+   click your key → copy the Key ID. Then in Firebase Console →
+   Project settings → App Check → your web app, confirm it shows
+   "reCAPTCHA Enterprise · Registered". No secret key is entered here —
+   Enterprise verification is tied to your Google Cloud project, not a
+   manually-pasted secret like classic reCAPTCHA v3 required. */
+const RECAPTCHA_V3_SITE_KEY = "6Lc4F6gtAAAAABonY5RZ0s-1k1EmJQtos0ZeFTWJ";
 
 const app = initializeApp(firebaseConfig);
 
@@ -2176,7 +2173,7 @@ const app = initializeApp(firebaseConfig);
 // isTokenAutoRefreshEnabled keeps that token silently refreshed in the
 // background so a long-open tab doesn't suddenly start failing requests.
 initializeAppCheck(app, {
-  provider: new ReCaptchaEnterpriseProvider(RECAPTCHA_ENTERPRISE_SITE_KEY),
+  provider: new ReCaptchaEnterpriseProvider(RECAPTCHA_V3_SITE_KEY),
   isTokenAutoRefreshEnabled: true
 });
 
@@ -2199,13 +2196,12 @@ let presenceLastSeenMap = {};        // owner: uid -> last-known activity timest
 let presenceStaleCheckInterval = null;
 let viewerPresenceThrottleTimer = null;
 let viewerHeartbeatInterval = null;
-const PRESENCE_STALE_MS = 20000;     // no update in 20s = treat that viewer as gone
+const PRESENCE_STALE_MS = 9000;      // no update in 9s = treat that viewer as gone
 const presenceBadge = document.getElementById('viewer-presence-badge');
 const presenceCountLabel = document.getElementById('viewer-presence-count');
 
 const codeInput = document.getElementById('tracker-code-input');
 const btnConnect = document.getElementById('btn-connect-code');
-const btnDisconnect = document.getElementById('btn-disconnect-code');
 const btnCreate = document.getElementById('btn-create-code');
 const btnCopyLink = document.getElementById('btn-copy-link');
 const btnRevoke = document.getElementById('btn-revoke-code');
@@ -2237,7 +2233,6 @@ function setSyncUI(state, label){
   document.querySelectorAll('.date-badge-btn').forEach(btn => { btn.disabled = isViewer; btn.style.pointerEvents = isViewer ? 'none' : ''; });
   btnCopyLink.style.display = (state === 'owner' || state === 'viewer') ? 'inline-flex' : 'none';
   btnRevoke.style.display = (state === 'owner') ? 'inline-flex' : 'none';
-  btnDisconnect.style.display = isViewer ? 'inline-flex' : 'none';
   document.getElementById('btn-theme-switcher').style.display = isViewer ? 'none' : 'inline-flex';
 }
 
@@ -2286,7 +2281,7 @@ function attachPresenceListener(code){
     });
     updatePresenceBadgeState();
   }, (err) => { console.warn('Presence listener error:', err.message); });
-  presenceStaleCheckInterval = setInterval(updatePresenceBadgeState, 4000);
+  presenceStaleCheckInterval = setInterval(updatePresenceBadgeState, 2000);
 }
 function updatePresenceBadgeState(){
   const now = Date.now();
@@ -2324,7 +2319,7 @@ function startViewerPresence(code){
     }, { merge: true }).catch(() => {});
   };
   pushPresence();
-  viewerHeartbeatInterval = setInterval(pushPresence, 12000);
+  viewerHeartbeatInterval = setInterval(pushPresence, 4000);
   const throttledPing = () => {
     if (viewerPresenceThrottleTimer) return;
     pushPresence();
@@ -2460,26 +2455,6 @@ function handleTrackerRevoked(){
   }, 1800);
 }
 
-/* 🔌 Lets a VIEWER voluntarily stop watching a shared tracker and return to
-   their own local progress — distinct from Revoke (owner-only, destructive:
-   kills the code for everyone). This only tears down this browser's own
-   listeners/role; it never touches the cloud doc itself. */
-function disconnectFromViewing(){
-  if (activeRole !== 'viewer') return;
-  if (unsubscribeLive) unsubscribeLive();
-  stopViewerPresence();
-  activeRole = null; activeCode = null;
-  localStorage.removeItem(LS_CODE_KEY);
-  localStorage.removeItem(LS_ROLE_KEY);
-  showCustomMessage('🔌 Disconnected — back to your own local progress.', 'info');
-  // Reload to the bare URL (no ?code=) so a refresh doesn't just reconnect
-  // to the same tracker, and so local data (not the owner's mirrored copy)
-  // is what loads next.
-  setTimeout(() => {
-    window.location.href = window.location.origin + window.location.pathname;
-  }, 600);
-}
-
 function scheduleCloudPush(immediate){
   if (activeRole !== 'owner' || !activeCode) return;
   clearTimeout(cloudPushTimer);
@@ -2533,7 +2508,6 @@ btnCreate.addEventListener('click', () => {
   );
 });
 btnConnect.addEventListener('click', connectToCode);
-btnDisconnect.addEventListener('click', disconnectFromViewing);
 btnRevoke.addEventListener('click', () => {
   openSecurityModal(
     'Revoke & Regenerate Code',
