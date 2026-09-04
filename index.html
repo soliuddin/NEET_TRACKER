@@ -42,10 +42,7 @@
 <meta name="twitter:description" content="Live countdown, fullscreen focus timer, and a complete NCERT unit-wise PCB syllabus checklist for NEET 2027 aspirants.">
 <meta name="twitter:image" content="./icons/icon-512.png">
 
-<!-- Security headers (CSP/Permissions-Policy set here as a client-side baseline;
-     for full protection also send these as real HTTP response headers from
-     whatever server or CDN hosts this file — see the note near the closing
-     </html> tag). -->
+<!-- Security headers -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.google.com https://www.recaptcha.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.gstatic.com; connect-src 'self' https://firestore.googleapis.com https://*.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com wss://*.firebaseio.com https://www.google.com https://www.recaptcha.net; frame-src https://www.google.com https://www.recaptcha.net; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -58,7 +55,6 @@
 <link rel="preconnect" href="https://www.google.com">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
-<!-- Structured data for search engines -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -125,9 +121,7 @@ button{font:inherit;color:inherit}
 .badge-tag-pill{background:var(--btn-primary-grad);color:#fff;font-weight:800;letter-spacing:.6px;cursor:default}
 .badge-tag-pill:hover{transform:none}
 
-/* 👁️ Owner-side live viewer-presence badge — hidden until a viewer with
-   this code is actively on the page, then pulses continuously while
-   they're there and flashes brighter each time they scroll/tap/interact. */
+/* Viewer Presence Badge */
 .viewer-presence-badge{display:none;align-items:center;gap:7px;padding:6px 13px;border-radius:30px;font-size:.8rem;font-weight:800;letter-spacing:.3px;background:rgba(52,211,153,.14);border:1.5px solid #34d399;color:#34d399;user-select:none}
 .viewer-presence-badge.show{display:inline-flex}
 .viewer-presence-badge .eye-pulse{display:inline-block;animation:eyePulseAnim 1.6s infinite ease-in-out}
@@ -260,7 +254,7 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .quote-text{font-size:1rem;font-weight:700;color:#fff1f2;font-style:italic;min-height:26px;transition:opacity .3s ease}
 .quote-author{font-size:.8rem;color:var(--text-muted);font-weight:600}
 
-/* ============ FULLSCREEN FOCUS TIMER — fully fluid, no forced rotation ============ */
+/* Fullscreen Timer */
 .fullscreen-timer-overlay{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;z-index:100005;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;padding:clamp(10px,3vmin,24px);backdrop-filter:blur(20px);overflow:hidden}
 .fullscreen-timer-overlay.active{opacity:1;visibility:visible;pointer-events:auto}
 .fullscreen-timer-overlay.fst-obsidian{background:radial-gradient(circle at 50% 50%,#180527 0%,#08010f 100%)}
@@ -308,7 +302,8 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .notes-hub-container{max-width:950px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:18px}
 .notes-header-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-bottom:14px;border-bottom:1.5px solid var(--glass-border)}
 .notes-input-area{display:flex;flex-direction:column;gap:12px;background:var(--glass-bg);padding:18px;border-radius:var(--radius);border:1.5px solid var(--glass-border)}
-.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:14px;margin-top:8px}.note-card{background:rgba(255,255,255,.05);border:1.5px solid var(--glass-border);border-radius:18px;padding:15px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 4px 15px rgba(0,0,0,.25);transition:all .25s ease}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:14px;margin-top:8px}
+.note-card{background:rgba(255,255,255,.05);border:1.5px solid var(--glass-border);border-radius:18px;padding:15px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 4px 15px rgba(0,0,0,.25);transition:all .25s ease}
 .note-card:hover{transform:translateY(-3px);border-color:var(--bio-accent);box-shadow:var(--btn-glow)}
 .note-card-text{font-size:.92rem;color:#fff1f2;white-space:pre-wrap;word-break:break-word}
 .note-card-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(244,114,182,.15);padding-top:8px}
@@ -370,11 +365,7 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .view-panel{display:none}
 .view-panel.active-view{display:block}
 
-/* 👀 Viewer (read-only mirror) mode — greys out and blocks every action
-   that would try to write data, since a viewer's edits can never reach
-   the owner's tracker anyway. Reading/browsing (Notes/Mock Test history,
-   fullscreen timer view, fullscreen theme cycling, exiting fullscreen)
-   stays usable so a viewer can still comfortably watch along. */
+/* Viewer read-only mode */
 body.sync-viewer-mode #btn-start-target-timer,
 body.sync-viewer-mode #btn-pause-target-timer,
 body.sync-viewer-mode #btn-reset-target-timer,
@@ -411,9 +402,6 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   .viewer-presence-badge{padding:5px 10px;font-size:.72rem}
 }
 
-/* Tracker-code input on phones/small tablets — same size as every other
-   text input (e.g. Aspirant Name), just full-width and stacked here since
-   the sync bar itself goes column-layout below 420px. */
 @media (max-width:600px){
   .sync-bar input[type=text]#tracker-code-input{
     flex:1 1 auto;
@@ -427,13 +415,11 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   }
 }
 
-/* TABLET refinements (portrait tablets / small laptops) */
 @media (min-width:600px) and (max-width:1024px){
   .container{max-width:94%}
   .hub-grid{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
 }
 
-/* BIG SCREEN refinements — keep content comfortably centered, don't stretch too wide */
 @media (min-width:1440px){
   .container,.app-footer-master{max-width:1320px}
   .live-dashboard-bar{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
@@ -443,23 +429,6 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
   html{font-size:18px}
 }
 
-/* FULLSCREEN TIMER — force landscape via CSS rotation on phones when the
-   Screen Orientation Lock API is unavailable/blocked (notably iOS Safari,
-   and desktop browsers where lock silently fails). On devices where
-   screen.orientation.lock('landscape') succeeds, the OS itself rotates the
-   viewport to landscape, so this media query (which only matches while the
-   viewport itself is still portrait) simply won't apply — no double-rotation.
-
-   FIX: uses dvh/dvw (dynamic viewport units) instead of vh/vw. Plain vh/vw
-   resolve to the *large* viewport size (as if the browser toolbar were
-   fully collapsed), even while it's still visible in a normal mobile
-   browser tab. That mismatch made modal.clientWidth/clientHeight (read by
-   fitFullscreenTimerStage() in JS) disagree with window.innerWidth/
-   innerHeight (also read by that same function), which threw off the
-   scale math — shrinking the clock relative to the buttons. dvh/dvw always
-   track the real, currently-visible viewport, so both numbers now agree
-   in a plain browser tab exactly like they already did in the installed
-   PWA (which has no toolbar at all). */
 @media screen and (orientation:portrait) and (max-width:900px){
   .fullscreen-timer-overlay.active{
     transform:rotate(90deg);
@@ -887,7 +856,6 @@ function sanitizeInputStatic(str){
 function chapterCount(subj){ return subj.units.reduce((a,u)=>a+u.chapters.length,0); }
 function unitCount(subj){ return subj.units.length; }
 
-/* build subject id list: e.g. u1-c1, u2-c5 ... continuing chapter numbers across whole subject */
 function buildTableRows(subjKey, subj){
   let rows = '';
   let chNo = 0;
@@ -1064,7 +1032,7 @@ function saveNewCustomNote(){
   noteInput.value = '';
   renderCustomNotes();
   showCustomMessage('Note card saved! 🌸', 'success');
-  scheduleCloudPush(true); // discrete action — push instantly so a viewer sees it right away
+  scheduleCloudPush(true);
 }
 function deleteCustomNote(noteId){
   if (document.body.classList.contains('sync-viewer-mode')){
@@ -1076,7 +1044,7 @@ function deleteCustomNote(noteId){
   localStorage.setItem('neet_custom_saved_notes', JSON.stringify(notes));
   renderCustomNotes();
   showCustomMessage('Note card removed.', 'info');
-  scheduleCloudPush(true); // discrete action — push instantly so a viewer sees it right away
+  scheduleCloudPush(true);
 }
 function renderCustomNotes(){
   const container = document.getElementById('notes-grid-container');
@@ -1207,7 +1175,6 @@ function computeStreakStats(){
   const dates = new Set(getStreakDates());
   let current = 0;
   const cursor = new Date();
-  // if today isn't logged yet, streak counts back from yesterday
   if (!dates.has(dateKey(cursor))) cursor.setDate(cursor.getDate()-1);
   while (dates.has(dateKey(cursor))){
     current++;
@@ -1243,7 +1210,7 @@ function renderStreakStats(){
   row.innerHTML = cells;
 }
 
-/* 📅 Universal calendar (event-delegated for all date buttons, present + future) */
+/* 📅 Universal calendar */
 let activeDateElementId = null;
 let calViewDate = new Date();
 const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -1341,9 +1308,7 @@ function cycleGlobalTheme(){
   applyThemeByIndex(currentGlobalThemeIdx);
   localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
   showCustomMessage(`Theme set to ${globalThemes[currentGlobalThemeIdx].name} ✨`, 'info');
-  scheduleCloudPush(true); // push the new theme immediately so a refresh (which re-pulls
-                            // the cloud copy for a synced owner/viewer) can't reapply a
-                            // now-stale theme over this local choice
+  scheduleCloudPush(true);
 }
 function applyThemeByIndex(idx){
   globalThemes.forEach(t => { if (t.className) document.body.classList.remove(t.className); });
@@ -1399,21 +1364,16 @@ function sanitizeInput(str){
 
 /* 🔔 Melodic ringtone */
 let audioCtx = null, alarmInterval = null, isAlarmRinging = false, alarmRingCount = 0;
-const ALARM_PEAK_VOLUME = 0.35;   // same ceiling as before — final volume is unchanged
-const ALARM_FADE_IN_RINGS = 9;    // how many repeats (~11s) it takes to build up to full volume
+const ALARM_PEAK_VOLUME = 0.35;
+const ALARM_FADE_IN_RINGS = 9;
 function playMelodicRingtone(){
   try {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === 'suspended') audioCtx.resume();
     const now = audioCtx.currentTime;
     const notes = [1046.50, 1318.51, 1567.98, 2093.00];
-    // 🔊 Gradual volume ramp-up: the ringtone starts soft on the first
-    // repeats and gets louder each cycle until it reaches full volume,
-    // instead of blasting at max volume the instant the target is hit.
     alarmRingCount++;
     const rampProgress = Math.min(alarmRingCount / ALARM_FADE_IN_RINGS, 1);
-    // starts at ~6% of peak (barely-there) and climbs to 100% — a wide
-    // enough range to be unmistakable even on a small phone speaker
     const ringVolume = ALARM_PEAK_VOLUME * (0.06 + 0.94 * rampProgress);
     notes.forEach((freq, idx) => {
       const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
@@ -1455,7 +1415,7 @@ function stopAlarmRingtone(){
   showCustomMessage('Alarm stopped.', 'info');
 }
 
-/* 📱 Fullscreen + soft orientation lock (no forced CSS rotation — layout is fluid via vmin clamp) */
+/* 📱 Fullscreen controls */
 let wakeLock = null;
 async function requestWakeLock(){
   if ('wakeLock' in navigator){ try { wakeLock = await navigator.wakeLock.request('screen'); } catch(e){} }
@@ -1481,21 +1441,15 @@ function exitTrueFullscreenAndLandscape(){
   } catch(e){}
 }
 
-/* 🔍 Auto-fit: scale the whole clock+buttons stage as one unit so it always
-   fills the available space correctly on any phone, tablet, or desktop
-   screen — this keeps the clock and the buttons in the same proportion to
-   each other instead of sizing them independently. */
 function getFullscreenTimerFitPadding(modal){
   const smallerDim = Math.min(window.innerWidth, window.innerHeight);
   let padPct;
-  if (smallerDim <= 480) padPct = 0.07;        // phones: more breathing room on all sides
-  else if (smallerDim <= 1024) padPct = 0.11;  // tablets: extra breathing room → smaller
-  else padPct = 0.04;                          // laptops/desktops/large screens
-
+  if (smallerDim <= 480) padPct = 0.07;
+  else if (smallerDim <= 1024) padPct = 0.11;
+  else padPct = 0.04;
   return Math.round(Math.min(modal.clientWidth, modal.clientHeight) * padPct);
 }
 
-/* 📐 JS-driven rotated-box geometry */
 function applyFullscreenOverlayGeometry(){
   const modal = document.getElementById('fullscreen-timer-modal');
   if (!modal || !modal.classList.contains('active')) return;
@@ -1624,7 +1578,7 @@ if (window.visualViewport){
   window.visualViewport.addEventListener('scroll', debouncedScheduleFit);
 }
 
-/* 👀 Viewer-side live timer mirror */
+/* 👀 Viewer timer mirror */
 let viewerTimerMirrorInterval = null;
 function mirrorTimerFromPayload(payload){
   clearInterval(viewerTimerMirrorInterval);
@@ -1646,7 +1600,7 @@ function mirrorTimerFromPayload(payload){
   }
 }
 
-/* ⏱️ Focus timer */
+/* ⏱️ Focus timer setup */
 let globalTimerInterval = null, globalTimeRemaining = 0, isTimerRunning = false, savedInitialSeconds = 0;
 const startTargetBtn = document.getElementById('btn-start-target-timer');
 const pauseTargetBtn = document.getElementById('btn-pause-target-timer');
@@ -1913,7 +1867,7 @@ function openSecurityModal(title, desc, icon, confirmAction, confirmText, isDang
   securityModal.classList.add('active');
 }
 
-/* 📦 Init: restore saved theme/dates/checkboxes/text, bind persistence */
+/* 📦 Init */
 document.addEventListener('DOMContentLoaded', () => {
   const savedThemeIdx = localStorage.getItem('neet_active_theme_idx');
   if (savedThemeIdx !== null){
@@ -1943,11 +1897,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target.type === 'checkbox'){
         showCustomMessage('Progress saved 🌸', 'success');
         refreshAllProgress();
-        scheduleCloudPush(true); // discrete action — push instantly, no debounce
+        scheduleCloudPush(true);
       } else {
         clearTimeout(textTimeout);
         textTimeout = setTimeout(() => showCustomMessage('Saved ✨', 'info'), 800);
-        scheduleCloudPush(); // continuous typing — stays debounced
+        scheduleCloudPush();
       }
     });
   });
@@ -1972,7 +1926,8 @@ function collectFullPayload(){
   });
   document.querySelectorAll('.date-badge-btn').forEach(btn => {
     const saved = localStorage.getItem(btn.id);
-    if (saved) payload[btn.id] = saved;
+    // Explicitly send empty string when cleared so viewer knows it was removed
+    payload[btn.id] = saved || '';
   });
   payload['__custom_saved_notes'] = localStorage.getItem('neet_custom_saved_notes') || '[]';
   payload['__mock_test_scores'] = localStorage.getItem('neet_mock_test_scores') || '[]';
@@ -1998,15 +1953,21 @@ function applyPayloadToDom(payload){
     if (el.type === 'checkbox'){
       val = (val === true || val === 'true') ? 'true' : 'false';
       el.checked = (val === 'true');
+      localStorage.setItem(k, val);
     } else if (el.classList.contains('date-badge-btn')){
       const textSpan = el.querySelector('.date-text-val');
-      if (textSpan) textSpan.innerText = val;
-      localStorage.setItem(k, val);
+      if (val && String(val).trim() !== ''){
+        if (textSpan) textSpan.innerText = val;
+        localStorage.setItem(k, val);
+      } else {
+        if (textSpan) textSpan.innerText = 'Set Date';
+        localStorage.removeItem(k);
+      }
     } else {
       val = sanitizeInput(String(val));
       el.value = val;
+      localStorage.setItem(k, val);
     }
-    localStorage.setItem(k, val);
   }
   if (payload['__custom_saved_notes']) localStorage.setItem('neet_custom_saved_notes', payload['__custom_saved_notes']);
   if (payload['__mock_test_scores']) localStorage.setItem('neet_mock_test_scores', payload['__mock_test_scores']);
@@ -2027,16 +1988,15 @@ function applyPayloadToDom(payload){
   if (document.getElementById('streak-modal').classList.contains('active')) renderStreakStats();
 }
 
-/* 🔧 PWA: service worker registration for offline support + installability */
+/* 🔧 PWA Service Worker (Auto-updates on load so GitHub Pages never stays on stale cached scripts) */
 if ('serviceWorker' in navigator){
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {
-      /* offline support just won't be available; app still works online */
-    });
+    navigator.serviceWorker.register('./sw.js').then((reg) => {
+      reg.update();
+    }).catch(() => {});
   });
 }
 
-/* 📲 PWA: custom "Install App" button, shown only when the browser offers it */
 let deferredInstallPrompt = null;
 const installBtn = document.getElementById('btn-install-app');
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -2059,7 +2019,6 @@ window.addEventListener('appinstalled', () => {
   deferredInstallPrompt = null;
 });
 
-/* 🔗 PWA shortcut deep-link */
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   if (params.get('action') === 'timer'){
@@ -2068,7 +2027,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-/* placeholder — overridden by the Firestore module below once it loads */
 function persistDateToCloud(){}
 function scheduleCloudPush(){}
 </script>
@@ -2111,7 +2069,7 @@ const auth = getAuth(app);
 
 const COLLECTION = "trackers";
 const LS_CODE_KEY = "neet_cloud_tracker_code";
-const LS_ROLE_KEY = "neet_cloud_tracker_role"; // 'owner' | 'viewer'
+const LS_ROLE_KEY = "neet_cloud_tracker_role";
 
 let currentUid = null;
 let activeCode = localStorage.getItem(LS_CODE_KEY) || null;
@@ -2119,13 +2077,12 @@ let activeRole = localStorage.getItem(LS_ROLE_KEY) || null;
 let unsubscribeLive = null;
 let cloudPushTimer = null;
 
-// 👁️ Presence system
-let unsubscribePresence = null;      // owner: listens to the presence subcollection
-let presenceLastSeenMap = {};        // owner: uid -> last-known activity timestamp (ms)
+let unsubscribePresence = null;
+let presenceLastSeenMap = {};
 let presenceStaleCheckInterval = null;
 let viewerPresenceThrottleTimer = null;
 let viewerHeartbeatInterval = null;
-const PRESENCE_STALE_MS = 20000;     // no update in 20s = treat that viewer as gone
+const PRESENCE_STALE_MS = 20000;
 const presenceBadge = document.getElementById('viewer-presence-badge');
 const presenceCountLabel = document.getElementById('viewer-presence-count');
 
@@ -2179,7 +2136,6 @@ async function waitForAuth(){
   });
 }
 
-/* 👁️ OWNER SIDE */
 function attachPresenceListener(code){
   detachPresenceListener();
   const presenceRef = collection(db, COLLECTION, code, 'presence');
@@ -2222,7 +2178,6 @@ function detachPresenceListener(){
   presenceBadge.classList.remove('show','pulse-now');
 }
 
-/* 👁️ VIEWER SIDE */
 function startViewerPresence(code){
   stopViewerPresence();
   const pushPresence = () => {
@@ -2357,7 +2312,6 @@ async function disconnectFromViewing(){
   if (unsubscribeLive) unsubscribeLive();
   stopViewerPresence();
   
-  // Instantly remove presence document from Firestore so owner screen updates right away
   if (activeCode && currentUid){
     try {
       await deleteDoc(doc(db, COLLECTION, activeCode, 'presence', currentUid));
@@ -2444,7 +2398,6 @@ btnCopyLink.addEventListener('click', () => {
   });
 });
 
-/* Auto-connect on load */
 (async function initCloudSync(){
   await waitForAuth();
   const params = new URLSearchParams(window.location.search);
