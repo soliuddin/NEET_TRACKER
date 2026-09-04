@@ -1486,9 +1486,6 @@ function exitTrueFullscreenAndLandscape(){
    screen — this keeps the clock and the buttons in the same proportion to
    each other instead of sizing them independently. */
 function getFullscreenTimerFitPadding(modal){
-  // Smaller viewport dimension is a reliable phone-vs-tablet-vs-desktop
-  // signal, and it's unaffected by the landscape-rotation CSS trick (unlike
-  // modal.clientWidth/Height, which get swapped when that trick is active).
   const smallerDim = Math.min(window.innerWidth, window.innerHeight);
   let padPct;
   if (smallerDim <= 480) padPct = 0.07;        // phones: more breathing room on all sides
@@ -1498,19 +1495,7 @@ function getFullscreenTimerFitPadding(modal){
   return Math.round(Math.min(modal.clientWidth, modal.clientHeight) * padPct);
 }
 
-/* 📐 JS-driven rotated-box geometry — replaces reliance on CSS dvh/dvw.
-   The CSS media-query rotation trick (used when true landscape lock isn't
-   available) sizes the rotated box with `width:100dvh;height:100dvw`. That
-   works great on modern engines (which is why the installed PWA — a newer
-   WebView — looks perfect), but `dvh`/`dvw` are NOT supported on every
-   mobile browser still in use (older Chrome/WebView/Samsung Internet
-   builds). On those, the browser drops the whole unsupported declaration
-   silently, so the rotated box never actually gets sized to the real
-   screen — it keeps rotating around instead. That mismatch is what makes
-   the stage look wrong in a plain mobile browser tab while the PWA is fine.
-   Fix: compute the same geometry ourselves in JS using plain pixel values
-   (which every browser supports) and set it via inline style, which always
-   wins over the CSS rule regardless of dvh/dvw support. */
+/* 📐 JS-driven rotated-box geometry */
 function applyFullscreenOverlayGeometry(){
   const modal = document.getElementById('fullscreen-timer-modal');
   if (!modal || !modal.classList.contains('active')) return;
@@ -1518,11 +1503,8 @@ function applyFullscreenOverlayGeometry(){
   const vv = window.visualViewport;
   const vw = vv ? vv.width : window.innerWidth;
   const vh = vv ? vv.height : window.innerHeight;
-  const isPortrait = vh >= vw; // matches the CSS media query's orientation:portrait
+  const isPortrait = vh >= vw;
   const smallerDim = Math.min(vw, vh);
-  // A real landscape lock succeeded if the OS itself reports landscape —
-  // in that case the viewport is already landscape and no rotation trick
-  // (or override) is needed at all.
   const trueLandscapeLocked = screen.orientation && /landscape/i.test(screen.orientation.type || '');
 
   const needsRotateTrick = isPortrait && smallerDim <= 900 && !trueLandscapeLocked;
@@ -1537,8 +1519,6 @@ function applyFullscreenOverlayGeometry(){
     modal.style.marginLeft = (-vh / 2) + 'px';
     modal.style.transform = 'rotate(90deg)';
   } else {
-    // Not rotated: clear the inline overrides so the normal (non-rotated)
-    // CSS — position:fixed;inset:0;width:100vw;height:100vh — takes over.
     modal.style.width = '';
     modal.style.height = '';
     modal.style.position = '';
@@ -1559,7 +1539,6 @@ function fitFullscreenTimerStage(){
 
   applyFullscreenOverlayGeometry();
 
-  // reset transforms before measuring natural (unscaled) sizes
   deck.style.transform = 'none';
   clockBlock.style.transform = 'none';
   buttonsBlock.style.transform = 'none';
@@ -1571,43 +1550,20 @@ function fitFullscreenTimerStage(){
   const isPhone = smallerDim <= 480;
 
   if (isPhone){
-    // Phones: scale the clock and the button rows independently, giving the
-    // clock the lion's share of the available height so it stays the clear
-    // visual focus instead of shrinking to match the buttons.
-    //
-    // FIX: previously the button row always claimed a fixed 20% height slice
-    // regardless of whether it actually needed that much. On an installed
-    // PWA (no browser chrome) there's plenty of dvh to go around, so that
-    // fixed slice was harmless. But in a normal mobile browser tab the real
-    // visible height is shorter (address bar, etc.), so that same fixed 20%
-    // ate into height the clock needed — the clock ended up height-bound and
-    // shrank, while the (already small) buttons stayed at their own bound,
-    // making buttons look disproportionately big next to the digits.
-    // Now: size the button row to only what it needs (fit by width, capped),
-    // then give literally everything left over to the clock.
     const clockW = clockBlock.offsetWidth, clockH = clockBlock.offsetHeight;
     const btnW = buttonsBlock.offsetWidth, btnH = buttonsBlock.offsetHeight;
-    // If a measurement momentarily reads 0 (can happen if this run was
-    // triggered mid-layout-thrash, e.g. by a visualViewport resize/scroll
-    // event firing at an awkward instant), retry next frame instead of
-    // silently bailing — bailing here left transform:'none' in place
-    // permanently (natural, un-scaled size), which is exactly what made
-    // the clock/buttons overflow off the right edge of the screen.
     if (!clockW || !clockH || !btnW || !btnH){
       requestAnimationFrame(fitFullscreenTimerStage);
       return;
     }
 
-    const stackGap = 22; // matches the deck's flex gap between the two blocks
+    const stackGap = 22;
     const usableH = Math.max(availH - stackGap, 1);
 
-    // Button row: fit to width, never upscale past natural size.
     let btnScale = availW / btnW;
     if (!isFinite(btnScale) || btnScale <= 0) btnScale = 1;
     btnScale = Math.max(0.3, Math.min(btnScale, 1.0));
 
-    // Guarantee the clock at least 62% of the usable height even if the
-    // button row would otherwise be allowed to take more than that.
     const minClockShare = usableH * 0.62;
     let btnAvailH = usableH - (btnH * btnScale);
     if (btnAvailH < minClockShare){
@@ -1620,8 +1576,6 @@ function fitFullscreenTimerStage(){
     if (!isFinite(clockScale) || clockScale <= 0) clockScale = 1;
     clockScale = Math.max(0.35, Math.min(clockScale, 1.9));
 
-    // Small safety margin on both, so everything sits comfortably inside
-    // the screen with a bit of breathing room instead of hugging the edges.
     const PHONE_FIT_SAFETY = 0.84;
     clockScale *= PHONE_FIT_SAFETY;
     btnScale *= PHONE_FIT_SAFETY;
@@ -1636,7 +1590,6 @@ function fitFullscreenTimerStage(){
     buttonsBlock.style.marginTop = btnMarginV + 'px';
     buttonsBlock.style.marginBottom = btnMarginV + 'px';
   } else {
-    // Tablets and larger: keep scaling the whole stage as one unit.
     const stageW = deck.offsetWidth, stageH = deck.offsetHeight;
     if (!stageW || !stageH){
       requestAnimationFrame(fitFullscreenTimerStage);
@@ -1671,10 +1624,7 @@ if (window.visualViewport){
   window.visualViewport.addEventListener('scroll', debouncedScheduleFit);
 }
 
-/* 👀 Viewer-side live timer mirror. Runs a local, display-only interval
-   driven off the owner's synced end-timestamp — this is what makes the
-   countdown visibly tick for a viewer every second without needing a
-   Firestore write every second. */
+/* 👀 Viewer-side live timer mirror */
 let viewerTimerMirrorInterval = null;
 function mirrorTimerFromPayload(payload){
   clearInterval(viewerTimerMirrorInterval);
@@ -2028,11 +1978,6 @@ function collectFullPayload(){
   payload['__mock_test_scores'] = localStorage.getItem('neet_mock_test_scores') || '[]';
   payload['__streak_dates'] = localStorage.getItem('neet_streak_dates') || '[]';
   payload['__theme_idx'] = String(currentGlobalThemeIdx);
-  // Timer state: __timer_end_at is an absolute clock time (ms since epoch),
-  // not a countdown of seconds — a viewer's browser recomputes "seconds
-  // left" from it every tick locally. That's what lets the countdown mirror
-  // tick smoothly every second for a viewer without needing a Firestore
-  // write every single second (which would be slow and burn through quota).
   payload['__timer_running'] = isTimerRunning;
   payload['__timer_end_at'] = isTimerRunning ? (Date.now() + globalTimeRemaining * 1000) : null;
   payload['__timer_remaining'] = globalTimeRemaining;
@@ -2071,17 +2016,13 @@ function applyPayloadToDom(payload){
     applyThemeByIndex(currentGlobalThemeIdx);
     localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
   }
-  // Only touch the timer display here if nothing is actively counting down
-  // locally right now — this keeps a genuinely-running local timer (the
-  // owner's own) from stuttering every time a routine sync round-trips.
-  // The live per-second mirror for a viewer is handled separately by
-  // mirrorTimerFromPayload(), called only for viewer role.
   if (!isTimerRunning && payload['__timer_remaining'] !== undefined){
     if (payload['__timer_initial']) savedInitialSeconds = payload['__timer_initial'];
     globalTimeRemaining = payload['__timer_remaining'];
     syncAllTimerDisplays();
   }
   refreshAllProgress();
+  if (document.getElementById('custom-notes-modal').classList.contains('active')) renderCustomNotes();
   if (document.getElementById('mock-test-modal').classList.contains('active')) renderMockTests();
   if (document.getElementById('streak-modal').classList.contains('active')) renderStreakStats();
 }
@@ -2118,8 +2059,7 @@ window.addEventListener('appinstalled', () => {
   deferredInstallPrompt = null;
 });
 
-/* 🔗 PWA shortcut deep-link: manifest's "Open Focus Timer" shortcut opens
-   straight into the fullscreen sprint timer */
+/* 🔗 PWA shortcut deep-link */
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   if (params.get('action') === 'timer'){
@@ -2148,9 +2088,6 @@ import {
   initializeAppCheck, ReCaptchaEnterpriseProvider
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 
-/* 🔧 STEP 1 — paste your Firebase project config here.
-   Get this from: Firebase Console → Project settings → General →
-   "Your apps" → Web app → SDK setup and configuration → Config. */
 const firebaseConfig = {
   apiKey: "AIzaSyCN67I7tavS3jeDfhj5mmLb21SoSP0jcsc",
   authDomain: "neet-tracker-26917.firebaseapp.com",
@@ -2160,21 +2097,10 @@ const firebaseConfig = {
   appId: "1:890536038866:web:0a12d83d395de81781b80b"
 };
 
-/* 🔧 STEP 1b — paste your reCAPTCHA ENTERPRISE SITE key here (the public
-   key, not the API key/"secret" from Google Cloud — see the chat reply for
-   exactly where to get this). Get it from: Firebase Console → Project
-   settings → App Check tab → register your web app → reCAPTCHA Enterprise
-   → this is the key it shows you (also visible later at
-   https://console.cloud.google.com/security/recaptcha). */
 const RECAPTCHA_ENTERPRISE_SITE_KEY = "6Lc4F6gtAAAAABonY5RZ0s-1k1EmJQtos0ZeFTWJ";
 
 const app = initializeApp(firebaseConfig);
 
-// App Check must be initialized before any other Firebase service call
-// (getFirestore/getAuth included) so every request from this page — reads,
-// writes, sign-ins — automatically carries a verified App Check token.
-// isTokenAutoRefreshEnabled keeps that token silently refreshed in the
-// background so a long-open tab doesn't suddenly start failing requests.
 initializeAppCheck(app, {
   provider: new ReCaptchaEnterpriseProvider(RECAPTCHA_ENTERPRISE_SITE_KEY),
   isTokenAutoRefreshEnabled: true
@@ -2212,17 +2138,8 @@ const btnRevoke = document.getElementById('btn-revoke-code');
 const statusDot = document.getElementById('sync-status-dot');
 const statusText = document.getElementById('sync-status-text');
 
-// Local copy — modules can't see `const`/`let` declared in the other
-// (non-module) script block, only functions (which attach to window).
-// Referencing the other script's PAYLOAD_INPUT_SELECTOR directly here used
-// to throw a ReferenceError the instant setSyncUI() ran — which happened
-// BEFORE attachLiveListener() in both connect/create, so the live listener
-// was silently never attaching. This local copy fixes that.
 const MODULE_INPUT_SELECTOR = 'input:not([type="file"]):not(#tracker-code-input):not(#mt-name):not(#mt-date):not(#mt-phy):not(#mt-chem):not(#mt-bio), textarea:not(#new-note-text)';
 
-// Wraps the tracker code in its own distinct-font span so the unique ID
-// visually stands out from the surrounding status sentence. activeCode is
-// always pre-sanitized to [A-Z0-9-] before use, so this is safe as HTML.
 function codeSpan(code){
   return `<span class="code-highlight">${code}</span>`;
 }
@@ -2242,15 +2159,9 @@ function setSyncUI(state, label){
 }
 
 function makeReadableCode(){
-  // High-entropy on purpose: this code is the *only* thing standing between
-  // a stranger and read access to this tracker (Firestore rules allow read
-  // to anyone who knows the doc id). A short word+4-digit code is guessable
-  // by a simple script. 10 random base36 characters = 36^10 (~3.6 x 10^15)
-  // possibilities — not practically guessable, while still short enough to
-  // read aloud or paste into a message.
   const bytes = new Uint32Array(10);
   crypto.getRandomValues(bytes);
-  const chars = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ'; // no O/I to avoid confusion
+  const chars = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ';
   let rand = '';
   for (let i=0;i<10;i++) rand += chars[bytes[i] % chars.length];
   return `NEET-${rand.slice(0,5)}-${rand.slice(5)}`;
@@ -2268,21 +2179,21 @@ async function waitForAuth(){
   });
 }
 
-/* 👁️ OWNER SIDE — listens to trackers/{code}/presence/* and shows/pulses
-   the eye badge. A viewer is only counted "here" if their last write was
-   within PRESENCE_STALE_MS — Firestore has no real "disconnect" event, so
-   this timeout-based check is what makes the badge disappear again once a
-   viewer closes the tab or loses connection, instead of staying stuck on. */
+/* 👁️ OWNER SIDE */
 function attachPresenceListener(code){
   detachPresenceListener();
   const presenceRef = collection(db, COLLECTION, code, 'presence');
   unsubscribePresence = onSnapshot(presenceRef, (snap) => {
     snap.docChanges().forEach((change) => {
-      if (change.type === 'removed'){ delete presenceLastSeenMap[change.doc.id]; return; }
+      if (change.type === 'removed'){ 
+        delete presenceLastSeenMap[change.doc.id]; 
+        updatePresenceBadgeState();
+        return; 
+      }
       const data = change.doc.data();
       const ts = (data.lastActivity && data.lastActivity.toMillis) ? data.lastActivity.toMillis() : Date.now();
       presenceLastSeenMap[change.doc.id] = ts;
-      flashPresenceBadge(); // every fresh write = a scroll/tap/heartbeat from a viewer
+      flashPresenceBadge();
     });
     updatePresenceBadgeState();
   }, (err) => { console.warn('Presence listener error:', err.message); });
@@ -2301,7 +2212,7 @@ function updatePresenceBadgeState(){
 function flashPresenceBadge(){
   presenceBadge.classList.add('show');
   presenceBadge.classList.remove('pulse-now');
-  void presenceBadge.offsetWidth; // force reflow so the flash can replay if it's already mid-animation
+  void presenceBadge.offsetWidth;
   presenceBadge.classList.add('pulse-now');
 }
 function detachPresenceListener(){
@@ -2311,10 +2222,7 @@ function detachPresenceListener(){
   presenceBadge.classList.remove('show','pulse-now');
 }
 
-/* 👁️ VIEWER SIDE — pings its own presence doc on connect, on a slow
-   heartbeat (so "Viewing" doesn't flicker off just from sitting still),
-   and (throttled) on scroll/touch/click — matching "whenever they scroll
-   or touch, the owner sees it" without hammering Firestore with writes. */
+/* 👁️ VIEWER SIDE */
 function startViewerPresence(code){
   stopViewerPresence();
   const pushPresence = () => {
@@ -2407,14 +2315,6 @@ async function connectToCode(){
 function attachLiveListener(code){
   if (unsubscribeLive) unsubscribeLive();
   const ref = doc(db, COLLECTION, code);
-  // includeMetadataChanges:true lets us see snap.metadata.hasPendingWrites,
-  // which is true the instant *this* browser fires a write (before the
-  // server has confirmed it) and false once it's the confirmed server copy.
-  // Skipping pending-write snapshots means: we never re-apply our own
-  // in-flight edit back onto ourselves (no cursor-jumping while typing),
-  // but any change that genuinely came from the server — i.e. from the
-  // OTHER person's browser — always gets applied. That's what gives a
-  // true, near-instant mirror for a read-only viewer.
   unsubscribeLive = onSnapshot(ref, { includeMetadataChanges: true }, (snap) => {
     if (!snap.exists()){
       if (activeRole === 'viewer' && activeCode === code) handleTrackerRevoked();
@@ -2433,11 +2333,6 @@ function attachLiveListener(code){
   });
 }
 
-/* 🔌 Fires on a viewer's screen the instant the owner revokes/regenerates
-   the code they were watching — Firestore reports this as "the document
-   they were listening to no longer exists". Shown as both a toast (via
-   showCustomMessage) and a modal popup, matching on mobile web, desktop
-   web, and an installed PWA alike since it's all the same DOM/JS. */
 function handleTrackerRevoked(){
   if (unsubscribeLive) unsubscribeLive();
   stopViewerPresence();
@@ -2452,32 +2347,30 @@ function handleTrackerRevoked(){
     "The tracker owner revoked this code, so this live view has ended. Ask them for the new code or link if you'd like to keep following their progress.",
     '🔌', () => {}, 'OK', false
   );
-  // Instantly hand the screen back to the viewer's own local progress —
-  // reload the bare URL (no ?code=) so it doesn't just retry the now-dead
-  // code again on refresh.
   setTimeout(() => {
     window.location.href = window.location.origin + window.location.pathname;
   }, 1800);
 }
 
-/* 🔌 Lets a VIEWER voluntarily stop watching a shared tracker and return to
-   their own local progress — distinct from Revoke (owner-only, destructive:
-   kills the code for everyone). This only tears down this browser's own
-   listeners/role; it never touches the cloud doc itself. */
-function disconnectFromViewing(){
+async function disconnectFromViewing(){
   if (activeRole !== 'viewer') return;
   if (unsubscribeLive) unsubscribeLive();
   stopViewerPresence();
+  
+  // Instantly remove presence document from Firestore so owner screen updates right away
+  if (activeCode && currentUid){
+    try {
+      await deleteDoc(doc(db, COLLECTION, activeCode, 'presence', currentUid));
+    } catch(e){}
+  }
+
   activeRole = null; activeCode = null;
   localStorage.removeItem(LS_CODE_KEY);
   localStorage.removeItem(LS_ROLE_KEY);
   showCustomMessage('🔌 Disconnected — back to your own local progress.', 'info');
-  // Reload to the bare URL (no ?code=) so a refresh doesn't just reconnect
-  // to the same tracker, and so local data (not the owner's mirrored copy)
-  // is what loads next.
   setTimeout(() => {
     window.location.href = window.location.origin + window.location.pathname;
-  }, 600);
+  }, 400);
 }
 
 function scheduleCloudPush(immediate){
@@ -2551,8 +2444,7 @@ btnCopyLink.addEventListener('click', () => {
   });
 });
 
-/* Auto-connect on load: from ?code= in the URL, or from a previously
-   remembered code/role in this browser. */
+/* Auto-connect on load */
 (async function initCloudSync(){
   await waitForAuth();
   const params = new URLSearchParams(window.location.search);
@@ -2580,60 +2472,8 @@ btnCopyLink.addEventListener('click', () => {
   }
 })();
 
-// expose the two hooks the main script calls into
 window.scheduleCloudPush = scheduleCloudPush;
 window.persistDateToCloud = persistDateToCloud;
 </script>
-
-<!--
-  SECURITY NOTE FOR WHOEVER DEPLOYS THIS FILE:
-  Meta tags can only carry Content-Security-Policy, Referrer-Policy, and
-  Permissions-Policy — a handful of headers (X-Frame-Options,
-  Strict-Transport-Security, X-Content-Type-Options as an enforced header
-  rather than a hint) can only be set by the server/CDN, not by HTML. For
-  full protection, also set these as real HTTP response headers wherever
-  this is hosted (Netlify _headers file, Vercel headers config, Nginx,
-  Cloudflare Pages, etc.):
-    Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-    X-Frame-Options: DENY
-    X-Content-Type-Options: nosniff
-    Referrer-Policy: strict-origin-when-cross-origin
-    Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=()
-  Always serve over HTTPS (required for the service worker and install
-  prompt to work at all) and update the placeholder canonical/og:url URLs
-  above to your real domain once deployed.
-
-  FIRESTORE SECURITY RULES (read-only share mode, now with viewer
-  presence) — paste into Firebase Console → Firestore Database → Rules:
-
-  rules_version = '2';
-  service cloud.firestore {
-    match /databases/{database}/documents {
-      match /trackers/{code} {
-        allow read: if true;
-        allow create: if request.auth != null
-                      && request.resource.data.ownerUid == request.auth.uid
-                      && request.resource.data.keys().hasAll(['ownerUid','payload']);
-        allow update: if request.auth != null
-                      && resource.data.ownerUid == request.auth.uid
-                      && request.resource.data.ownerUid == resource.data.ownerUid;
-        allow delete: if request.auth != null
-                      && resource.data.ownerUid == request.auth.uid;
-
-        // Presence heartbeats — each signed-in (anonymous) visitor may only
-        // ever write to the doc matching THEIR OWN uid, never anyone
-        // else's, and never the tracker doc itself. Read is open so the
-        // owner (and anyone with the code) can see who's currently viewing.
-        match /presence/{uid} {
-          allow read: if true;
-          allow write: if request.auth != null && request.auth.uid == uid;
-        }
-      }
-    }
-  }
-
-  Also enable Anonymous Authentication:
-  Firebase Console → Authentication → Sign-in method → Anonymous → Enable.
--->
 </body>
 </html>
