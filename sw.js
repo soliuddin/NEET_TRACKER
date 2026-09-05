@@ -1,7 +1,7 @@
 /* NEET Tracker service worker — app-shell caching for offline support.
    Bump CACHE_NAME whenever index.html/manifest/icons change so returning
    visitors pick up the new version instead of a stale cached copy. */
-const CACHE_NAME = 'neet-tracker-v2';
+const CACHE_NAME = 'neet-tracker-v3';
 const APP_SHELL = [
   './',
   './index.html',
