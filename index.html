@@ -1905,7 +1905,7 @@ document.getElementById('btn-save-fs-edit').addEventListener('click', () => {
 });
 document.getElementById('btn-cancel-fs-edit').addEventListener('click', () => fsEditOverlay.classList.remove('active'));
 
-document.getElementById('btn-open-fullscreen-timer').addEventListener('click', async () => {
+async function openFullscreenTimer(){
   if (!isTimerRunning && globalTimeRemaining <= 0) globalTimeRemaining = getInputsTotalSeconds();
   syncAllTimerDisplays();
   await enterTrueFullscreenAndLandscape();
@@ -1914,7 +1914,25 @@ document.getElementById('btn-open-fullscreen-timer').addEventListener('click', a
   document.documentElement.classList.add('no-scroll');
   document.body.classList.add('no-scroll');
   scheduleFitFullscreenTimer();
-});
+  // A programmatic .click() (e.g. the PWA shortcut auto-launch below) isn't
+  // a real user gesture, so requestFullscreen() above silently fails and
+  // the overlay opens windowed. Arm a one-shot listener so the very next
+  // real tap anywhere on the overlay finishes entering true fullscreen,
+  // instead of requiring the user to notice and press the button again.
+  if (!document.fullscreenElement && !document.webkitFullscreenElement){
+    const retryOnce = () => {
+      fsModal.removeEventListener('click', retryOnce);
+      fsModal.removeEventListener('touchstart', retryOnce);
+      if (fsModal.classList.contains('active')){
+        enterTrueFullscreenAndLandscape();
+        requestWakeLock();
+      }
+    };
+    fsModal.addEventListener('click', retryOnce, { once: true });
+    fsModal.addEventListener('touchstart', retryOnce, { once: true, passive: true });
+  }
+}
+document.getElementById('btn-open-fullscreen-timer').addEventListener('click', openFullscreenTimer);
 document.getElementById('btn-fs-close').addEventListener('click', closeFullscreenOverlay);
 function closeFullscreenOverlay(){
   fsModal.classList.remove('active');
@@ -2071,6 +2089,27 @@ function collectFullPayload(){
   payload['__timer_remaining'] = globalTimeRemaining;
   payload['__timer_initial'] = savedInitialSeconds;
   return payload;
+}
+
+function clearMirroredCloudData(){
+  // Wipes everything a connected owner's payload could have written into
+  // THIS browser's localStorage/DOM, so a disconnect or revoke never
+  // leaves the previous owner's progress lingering for the next load.
+  document.querySelectorAll(PAYLOAD_INPUT_SELECTOR).forEach(input => {
+    localStorage.removeItem(input.id);
+    if (input.type === 'checkbox') input.checked = false;
+    else input.value = '';
+  });
+  document.querySelectorAll('.date-badge-btn').forEach(btn => {
+    localStorage.removeItem(btn.id);
+    const textSpan = btn.querySelector('.date-text-val');
+    if (textSpan) textSpan.innerText = 'Set Date';
+  });
+  localStorage.removeItem('neet_custom_saved_notes');
+  localStorage.removeItem('neet_mock_test_scores');
+  localStorage.removeItem('neet_streak_dates');
+  localStorage.removeItem('neet_active_theme_idx');
+  refreshAllProgress();
 }
 
 function applyPayloadToDom(payload){
@@ -2472,6 +2511,7 @@ function handleTrackerRevoked(){
   activeRole = null; activeCode = null;
   localStorage.removeItem(LS_CODE_KEY);
   localStorage.removeItem(LS_ROLE_KEY);
+  clearMirroredCloudData();
   codeInput.value = '';
   setSyncUI(null, '❌ Disconnected — code revoked by owner');
   showCustomMessage('🔌 Disconnected — the owner revoked this code.', 'error');
@@ -2499,6 +2539,7 @@ async function disconnectFromViewing(){
   activeRole = null; activeCode = null;
   localStorage.removeItem(LS_CODE_KEY);
   localStorage.removeItem(LS_ROLE_KEY);
+  clearMirroredCloudData();
   showCustomMessage('🔌 Disconnected — back to your own local progress.', 'info');
   setTimeout(() => {
     window.location.href = window.location.origin + window.location.pathname;
