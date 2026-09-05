@@ -9,7 +9,7 @@
 <meta name="author" content="NEET Master Prep">
 <meta name="robots" content="index, follow">
 <meta name="language" content="English">
-<link rel="canonical" href="https://neet-master-prep.example.com/">
+<link rel="canonical" href="https://soliuddin.github.io/NEET_TRACKER/">
 
 <!-- PWA -->
 <link rel="manifest" href="./manifest.webmanifest">
@@ -33,14 +33,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="NEET 2027 PCB Master Tracker">
 <meta property="og:description" content="Live countdown, fullscreen focus timer, and a complete NCERT unit-wise PCB syllabus checklist for NEET 2027 aspirants.">
-<meta property="og:image" content="./icons/icon-512.png">
-<meta property="og:url" content="https://neet-master-prep.example.com/">
+<meta property="og:image" content="https://soliuddin.github.io/NEET_TRACKER/icons/icon-512.png">
+<meta property="og:url" content="https://soliuddin.github.io/NEET_TRACKER/">
 <meta property="og:site_name" content="NEET Master Prep">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NEET 2027 PCB Master Tracker">
 <meta name="twitter:description" content="Live countdown, fullscreen focus timer, and a complete NCERT unit-wise PCB syllabus checklist for NEET 2027 aspirants.">
-<meta name="twitter:image" content="./icons/icon-512.png">
+<meta name="twitter:image" content="https://soliuddin.github.io/NEET_TRACKER/icons/icon-512.png">
 
 <!-- Security headers -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.google.com https://www.recaptcha.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.gstatic.com; connect-src 'self' https://firestore.googleapis.com https://*.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com wss://*.firebaseio.com https://www.google.com https://www.recaptcha.net; frame-src https://www.google.com https://www.recaptcha.net; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
@@ -60,7 +60,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "NEET 2027 PCB Master Tracker",
-  "url": "https://neet-master-prep.example.com/",
+  "url": "https://soliuddin.github.io/NEET_TRACKER/",
   "description": "Live countdown, fullscreen sprint focus timer, and a complete NCERT unit-wise Physics, Chemistry and Biology syllabus checklist for NEET 2027 aspirants.",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "Any",
@@ -595,6 +595,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       <div class="live-widget-info">
         <span class="live-widget-label">NEET 2027 Countdown · 2 May 2027</span>
         <div class="countdown-digits-row">
+          <div class="cd-box"><div class="cd-num" id="cd-months">--</div><div class="cd-lbl">Months</div></div>
           <div class="cd-box"><div class="cd-num" id="cd-days">--</div><div class="cd-lbl">Days</div></div>
           <div class="cd-box"><div class="cd-num" id="cd-hours">--</div><div class="cd-lbl">Hrs</div></div>
           <div class="cd-box"><div class="cd-num" id="cd-mins">--</div><div class="cd-lbl">Min</div></div>
@@ -632,6 +633,18 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       <div class="input-group">
         <label for="student-name">Aspirant Name</label>
         <input type="text" id="student-name" placeholder="Enter your full name">
+      </div>
+      <div class="input-group">
+        <label for="target-score-phy">Physics Target Score</label>
+        <input type="text" id="target-score-phy" placeholder="e.g., 160/180">
+      </div>
+      <div class="input-group">
+        <label for="target-score-chem">Chemistry Target Score</label>
+        <input type="text" id="target-score-chem" placeholder="e.g., 165/180">
+      </div>
+      <div class="input-group">
+        <label for="target-score-bio">Biology Target Score</label>
+        <input type="text" id="target-score-bio" placeholder="e.g., 350/360">
       </div>
       <div class="input-group">
         <label for="target-score">Target NEET Score</label>
@@ -676,8 +689,8 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
         <p style="font-size:.85rem;color:var(--text-muted);max-width:560px;">Log your mock test scores and keep your daily study streak alive.</p>
       </div>
       <div class="footer-actions-btn-row">
-        <button class="btn btn-import" id="btn-mock-tests">📊 Mock Tests</button>
-        <button class="btn btn-export" id="btn-streak">🔥 Study Streak</button>
+        <button type="button" class="btn btn-import" id="btn-mock-tests" onclick="openMockTestModal()">📊 Mock Tests</button>
+        <button type="button" class="btn btn-export" id="btn-streak" onclick="openStreakModal()">🔥 Study Streak</button>
         <button class="btn btn-log" id="btn-footer-log" onclick="openLogModal()">📋 Activity</button>
       </div>
     </div>
@@ -945,7 +958,7 @@ const SYLLABUS = {
     {title:'Chemical Kinetics', icon:'⏱️', chapters:['Chemical Kinetics']},
     {title:'The d- and f-Block Elements', icon:'🧱', chapters:['The d- and f-Block Elements']},
     {title:'Coordination Compounds', icon:'💠', chapters:['Coordination Compounds']},
-    {title:'Haloalkanes and Haloarenes', icon:'🧪', chapters:['Haloalkanes and Haloarenes']},
+    {title:'Haloalkanes and Haloareres', icon:'🧪', chapters:['Haloalkanes and Haloarenes']},
     {title:'Alcohols, Phenols and Ethers', icon:'🍷', chapters:['Alcohols, Phenols and Ethers']},
     {title:'Aldehydes, Ketones and Carboxylic Acids', icon:'🍋', chapters:['Aldehydes, Ketones and Carboxylic Acids']},
     {title:'Amines', icon:'🧬', chapters:['Amines']},
@@ -1434,10 +1447,25 @@ function updateLiveClockAndCountdown(){
   const dateEl = document.getElementById('live-clock-date');
   if (dateEl) dateEl.innerText = now.toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' });
   const distance = targetNeetDate - now.getTime();
-  const days = Math.max(0, Math.floor(distance / 86400000));
-  const hrs = Math.max(0, Math.floor((distance % 86400000) / 3600000));
-  const mins = Math.max(0, Math.floor((distance % 3600000) / 60000));
-  const secs = Math.max(0, Math.floor((distance % 60000) / 1000));
+
+  // Calendar-accurate Months + Days breakdown (not a flat ÷30, so it stays
+  // correct across months of different lengths all the way to the target).
+  let months = 0, days = 0, hrs = 0, mins = 0, secs = 0;
+  if (distance > 0){
+    const target = new Date(targetNeetDate);
+    months = (target.getFullYear() - now.getFullYear()) * 12 + (target.getMonth() - now.getMonth());
+    let cursor = new Date(now.getFullYear(), now.getMonth() + months, now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+    if (cursor.getTime() > target.getTime()){
+      months--;
+      cursor = new Date(now.getFullYear(), now.getMonth() + months, now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
+    }
+    const remainderMs = target.getTime() - cursor.getTime();
+    days = Math.floor(remainderMs / 86400000);
+    hrs = Math.floor((remainderMs % 86400000) / 3600000);
+    mins = Math.floor((remainderMs % 3600000) / 60000);
+    secs = Math.floor((remainderMs % 60000) / 1000);
+  }
+  document.getElementById('cd-months').innerText = distance > 0 ? months : '00';
   document.getElementById('cd-days').innerText = distance > 0 ? days : '00';
   document.getElementById('cd-hours').innerText = distance > 0 ? pad2(hrs) : '00';
   document.getElementById('cd-mins').innerText = distance > 0 ? pad2(mins) : '00';
@@ -2181,6 +2209,47 @@ let activeCode = localStorage.getItem(LS_CODE_KEY) || null;
 let activeRole = localStorage.getItem(LS_ROLE_KEY) || null;
 let unsubscribeLive = null;
 let cloudPushTimer = null;
+let lastViewerPayload = null;
+
+/* 📢 Section-change notifications for viewers (live in-app toast, not OS push) */
+const SECTION_LABELS = {
+  bio11: 'Class 11 Biology', bio12: 'Class 12 Biology',
+  phy11: 'Class 11 Physics', phy12: 'Class 12 Physics',
+  chem11: 'Class 11 Chemistry', chem12: 'Class 12 Chemistry'
+};
+function sectionLabelForKey(key){
+  const chMatch = key.match(/^([a-z]+\d{2})-ch\d+-/);
+  if (chMatch && SECTION_LABELS[chMatch[1]]) return SECTION_LABELS[chMatch[1]];
+  if (key === 'student-name' || key.indexOf('target-score') === 0) return 'Profile Info';
+  if (key === 'start-date') return 'Prep Start Date';
+  if (key === 'personal-notes') return 'Dream Board & Affirmations';
+  if (key === '__custom_saved_notes') return 'Study Notes';
+  if (key === '__mock_test_scores') return 'Mock Test Scores';
+  if (key === '__streak_dates') return 'Study Streak';
+  if (key === '__theme_idx') return 'Theme';
+  if (key.indexOf('__timer_') === 0) return 'Focus Timer';
+  return null;
+}
+function notifyViewerOfSectionChanges(oldPayload, newPayload){
+  if (activeRole !== 'viewer') return;
+  if (!oldPayload) return;
+  const changedSections = new Set();
+  const allKeys = new Set([...Object.keys(oldPayload), ...Object.keys(newPayload)]);
+  allKeys.forEach(key => {
+    if (oldPayload[key] === newPayload[key]) return;
+    const label = sectionLabelForKey(key);
+    if (label) changedSections.add(label);
+  });
+  if (changedSections.size === 0) return;
+  const list = Array.from(changedSections);
+  if (list.length <= 3){
+    list.forEach((label, i) => {
+      setTimeout(() => showCustomMessage(`✏️ ${label} updated by owner`, 'info'), i * 350);
+    });
+  } else {
+    showCustomMessage(`✏️ Owner updated ${list.length} sections`, 'info');
+  }
+}
 
 let unsubscribePresence = null;
 let presenceLastSeenMap = {};
@@ -2374,6 +2443,7 @@ async function connectToCode(){
 
 function attachLiveListener(code){
   if (unsubscribeLive) unsubscribeLive();
+  lastViewerPayload = null; // fresh baseline each time we (re)connect — avoids a false "everything changed" burst on first load
   const ref = doc(db, COLLECTION, code);
   unsubscribeLive = onSnapshot(ref, { includeMetadataChanges: true }, (snap) => {
     if (!snap.exists()){
@@ -2382,11 +2452,14 @@ function attachLiveListener(code){
     }
     if (snap.metadata.hasPendingWrites) return;
     const data = snap.data();
+    const newPayload = data.payload || {};
+    notifyViewerOfSectionChanges(lastViewerPayload, newPayload);
+    lastViewerPayload = newPayload;
     if (activeRole === 'viewer' || document.activeElement === document.body){
-      applyPayloadToDom(data.payload || {});
+      applyPayloadToDom(newPayload);
     }
     if (activeRole === 'viewer'){
-      mirrorTimerFromPayload(data.payload || {});
+      mirrorTimerFromPayload(newPayload);
     }
   }, (err) => {
     showCustomMessage('Live sync error: ' + err.message, 'error');
