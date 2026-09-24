@@ -2560,7 +2560,7 @@ window.renderChatMessages = function() {
           <div>${msg.text}</div>
           ${isMe ? `
             <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:6px; border-top:1px solid rgba(255,255,255,0.1); padding-top:4px;">
-              <button style="background:none; border:none; color:var(--bio-glow); font-size:0.75rem; cursor:pointer; font-weight:700;" onclick="startEditMessage('${msg.id}', \`${msg.text.replace(/`/g, '\\`')}\`)">✏️ Edit</button>
+              <button style="background:none; border:none; color:var(--bio-glow); font-size:0.75rem; cursor:pointer; font-weight:700;" onclick="startEditMessage('${msg.id}', \`${msg.text.replace(/\\/g, '\\\\').replace(/`/g, '\\`')}\`)">✏️ Edit</button>
               <button style="background:none; border:none; color:var(--danger); font-size:0.75rem; cursor:pointer; font-weight:700;" onclick="deleteMessageForEveryone('${msg.id}')">🗑️ Delete for everyone</button>
             </div>
           ` : ''}
