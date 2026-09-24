@@ -1,0 +1,6 @@
+# These owners will be the default owners for everything in the repo.
+* @soliuddin
+
+# Require specific review for sensitive configuration or security files
+/package.json @your-username
+.github/workflows/ @your-username
