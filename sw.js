@@ -40,7 +40,9 @@ self.addEventListener('fetch', (event) => {
 
   // Never cache Firestore/Auth traffic — that must always hit the network
   // live, or the whole point of "live sync" breaks.
-  if (url.hostname.includes('googleapis.com') || url.hostname.includes('firebaseio.com')) {
+  const isGoogleApisHost = url.hostname === 'googleapis.com' || url.hostname.endsWith('.googleapis.com');
+  const isFirebaseIoHost = url.hostname === 'firebaseio.com' || url.hostname.endsWith('.firebaseio.com');
+  if (isGoogleApisHost || isFirebaseIoHost) {
     return;
   }
 
