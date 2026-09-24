@@ -1,0 +1,37 @@
+name: PR Security & Integrity Checks
+
+on:
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  security-audit:
+    name: Code Security & Syntax Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate HTML & Inline Scripts
+        run: |
+          if [ -f index.html ]; then
+            npx htmlhint index.html
+          else
+            echo "No index.html found yet, skipping check."
+          fi
+
+      - name: Check for Vulnerable Dependencies
+        run: |
+          if [ -f package.json ]; then
+            npm audit --audit-level=high
+          else
+            echo "No package.json found, skipping npm audit."
+          fi
