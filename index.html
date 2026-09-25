@@ -512,6 +512,12 @@ body.sync-viewer-mode #btn-mark-today{
   opacity:.4!important;
   cursor:not-allowed!important;
 }
+
+/* Hide mock test input form on viewer screen */
+body.sync-viewer-mode #mock-test-modal .notes-input-area {
+  display: none !important;
+}
+
 body.sync-viewer-mode .sync-status-text{color:#38bdf8}
 body.sync-viewer-mode [onclick="openNotesModal()"]{
   display:none!important;
@@ -2289,6 +2295,19 @@ function applyPayloadToDom(payload){
     if (payload['__custom_saved_notes']) localStorage.setItem('neet_custom_saved_notes', payload['__custom_saved_notes']);
     if (payload['__mock_test_scores']) localStorage.setItem('neet_mock_test_scores', payload['__mock_test_scores']);
     if (payload['__streak_dates']) localStorage.setItem('neet_streak_dates', payload['__streak_dates']);
+  } else {
+    if (payload['__custom_saved_notes']) {
+      localStorage.setItem('neet_custom_saved_notes', payload['__custom_saved_notes']);
+      if (document.getElementById('custom-notes-modal').classList.contains('active')) renderCustomNotes();
+    }
+    if (payload['__mock_test_scores']) {
+      localStorage.setItem('neet_mock_test_scores', payload['__mock_test_scores']);
+      if (document.getElementById('mock-test-modal').classList.contains('active')) renderMockTests();
+    }
+    if (payload['__streak_dates']) {
+      localStorage.setItem('neet_streak_dates', payload['__streak_dates']);
+      if (document.getElementById('streak-modal').classList.contains('active')) computeStreakStats();
+    }
   }
   if (payload['__theme_idx'] !== undefined){
     currentGlobalThemeIdx = parseInt(payload['__theme_idx'],10) || 0;
@@ -2350,8 +2369,8 @@ function scheduleCloudPush(){}
 </script>
 
 <!-- ============================================================
-     ☁️ FIRESTORE CLOUD SYNC & SECURE LIVE MESSAGING (UNLOCKED)
-     ============================================================ -->
+      ☁️ FIRESTORE CLOUD SYNC & SECURE LIVE MESSAGING (UNLOCKED)
+      ============================================================ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -2711,15 +2730,12 @@ const SECTION_LABELS = {
   chem11: 'Class 11 Chemistry', chem12: 'Class 12 Chemistry'
 };
 function sectionLabelForKey(key){
+  if (key === '__custom_saved_notes' || key === '__mock_test_scores' || key === '__streak_dates' || key === '__theme_idx') return null;
   const chMatch = key.match(/^([a-z]+\d{2})-ch\d+-/);
   if (chMatch && SECTION_LABELS[chMatch[1]]) return SECTION_LABELS[chMatch[1]];
   if (key === 'student-name' || key.indexOf('target-score') === 0) return 'Profile Info';
   if (key === 'start-date') return 'Prep Start Date';
   if (key === 'personal-notes') return 'Dream Board & Affirmations';
-  if (key === '__custom_saved_notes') return 'Study Notes';
-  if (key === '__mock_test_scores') return 'Mock Test Scores';
-  if (key === '__streak_dates') return 'Study Streak';
-  if (key === '__theme_idx') return 'Theme';
   if (key.indexOf('__timer_') === 0) return 'Focus Timer';
   return null;
 }
