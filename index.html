@@ -324,7 +324,7 @@ td{background:rgba(255,255,255,.03)}
 td:first-child{border-radius:12px 0 0 12px}
 td:last-child{border-radius:0 12px 12px 0}
 tr:hover td{background:rgba(244,114,182,.08)}
-td.chapter-name{text-align:left;font-weight:600;font-size:.9rem;color:#fdf2f8;white-space:normal;min-width:210px}
+td.chapter-name{text-align:left;font-weight:600;font-size:.95rem;color:#fdf2f8;white-space:normal;min-width:210px}
 
 input[type=checkbox]{appearance:none;width:23px;height:23px;border:2px solid var(--bio-accent);border-radius:50%;background-color:rgba(18,5,30,.4);cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);display:inline-flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
 input[type=checkbox]:hover{transform:scale(1.1);border-color:var(--bio-subtext)}
@@ -579,7 +579,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       </div>
       <div class="header-action-pill badge-tag-pill" tabindex="-1">✨ NEET ✨</div>
       <button type="button" class="header-action-pill" id="btn-messages-nav" onclick="openMessagesModal()" style="position:relative;">
-        💬 LIVE MESSAGE
+        💬 MESSAGE
         <span id="msg-red-dot" style="display:none;position:absolute;top:4px;right:6px;width:8px;height:8px;background:var(--danger);border-radius:50%;box-shadow:0 0 8px var(--danger);"></span>
       </button>
       <button type="button" class="header-action-pill" id="btn-notes-nav" onclick="openNotesModal()">💌 Notes</button>
@@ -763,23 +763,44 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       <!-- Messages rendered here -->
     </div>
 
-    <!-- Emoji Picker Toolbar -->
-    <div style="display:flex; gap:6px; padding:4px 2px; overflow-x:auto; font-size:1.25rem; align-items:center;">
-      <span style="font-size:0.75rem; font-weight:700; color:var(--bio-glow); margin-right:4px;">Emojis:</span>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('😊')">😊</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('👍')">👍</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('❤️')">❤️</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('🔥')">🔥</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('🌸')">🌸</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('🩺')">🩺</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('📚')">📚</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('✨')">✨</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('🚀')">🚀</button>
-      <button type="button" style="background:rgba(255,255,255,0.06); border:1px solid var(--glass-border); border-radius:8px; padding:4px 8px; cursor:pointer;" onclick="appendEmoji('💡')">💡</button>
-    </div>
-
     <div class="chat-input-deck" style="display:flex; gap:10px; flex-direction:row; align-items:center;">
       <input type="text" id="chat-input-text" placeholder="Type your secure message..." style="flex:1;" onkeydown="if(event.key==='Enter') sendChatMessage()">
+      
+      <!-- Emoji Picker Button & Popup on the right side corner of the message type box -->
+      <div style="position:relative; flex-shrink:0;">
+        <button type="button" class="btn btn-secondary" style="padding:10px 14px; font-size:1rem;" onclick="toggleEmojiPopup(event)" title="Insert Emoji">😀</button>
+        <div id="emoji-popup-box" style="display:none; position:absolute; bottom:125%; right:0; background:rgba(20,5,35,0.98); backdrop-filter:blur(16px); border:1.5px solid var(--bio-accent); border-radius:14px; padding:12px; width:290px; box-sizing:border-box; z-index:100030; box-shadow:0 10px 30px rgba(0,0,0,0.7); grid-template-columns:repeat(6, 1fr); gap:6px; text-align:center;">
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('😊')">😊</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('😂')">😂</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🥲')">🥲</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('😍')">😍</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🤩')">🤩</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('😎')">😎</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('👍')">👍</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('👎')">👎</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('❤️')">❤️</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('💖')">💖</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🔥')">🔥</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('✨')">✨</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🌸')">🌸</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🩺')">🩺</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('📚')">📚</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('💡')">💡</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🚀')">🚀</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('💯')">💯</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('⭐')">⭐</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🎯')">🎯</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🧠')">🧠</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('⚡')">⚡</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🧪')">🧪</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🌿')">🌿</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🏆')">🏆</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('💪')">💪</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('☕')">☕</button>
+          <button type="button" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:4px; border-radius:6px;" onclick="selectEmoji('🎉')">🎉</button>
+        </div>
+      </div>
+
       <button class="btn btn-primary" id="chat-send-btn" onclick="sendChatMessage()">Send 📤</button>
     </div>
   </div>
@@ -2135,7 +2156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('mt-date').value = new Date().toLocaleDateString('en-GB');
   });
   document.getElementById('btn-streak').addEventListener('click', openStreakModal);
-  document.getElementById('btn-close-streak').addEventListener('click', closeStreakModal);
   document.getElementById('btn-mark-today').addEventListener('click', markTodayStudied);
 });
 
@@ -2166,6 +2186,7 @@ function applyPayloadToDom(payload){
     ...Array.from(document.querySelectorAll(PAYLOAD_INPUT_SELECTOR)).map(i => i.id),
     ...Array.from(document.querySelectorAll('.date-badge-btn')).map(b => b.id)
   ];
+  const isViewer = document.body.classList.contains('sync-viewer-mode');
   for (const k of allTargets){
     if (payload[k] === undefined) continue;
     let val = payload[k];
@@ -2174,29 +2195,31 @@ function applyPayloadToDom(payload){
     if (el.type === 'checkbox'){
       val = (val === true || val === 'true') ? 'true' : 'false';
       el.checked = (val === 'true');
-      localStorage.setItem(k, val);
+      if (!isViewer) localStorage.setItem(k, val);
     } else if (el.classList.contains('date-badge-btn')){
       const textSpan = el.querySelector('.date-text-val');
       if (val && String(val).trim() !== ''){
         if (textSpan) textSpan.innerText = val;
-        localStorage.setItem(k, val);
+        if (!isViewer) localStorage.setItem(k, val);
       } else {
         if (textSpan) textSpan.innerText = 'Set Date';
-        localStorage.removeItem(k);
+        if (!isViewer) localStorage.removeItem(k);
       }
     } else {
       val = sanitizeInput(String(val));
       el.value = val;
-      localStorage.setItem(k, val);
+      if (!isViewer) localStorage.setItem(k, val);
     }
   }
-  if (payload['__custom_saved_notes']) localStorage.setItem('neet_custom_saved_notes', payload['__custom_saved_notes']);
-  if (payload['__mock_test_scores']) localStorage.setItem('neet_mock_test_scores', payload['__mock_test_scores']);
-  if (payload['__streak_dates']) localStorage.setItem('neet_streak_dates', payload['__streak_dates']);
+  if (!isViewer){
+    if (payload['__custom_saved_notes']) localStorage.setItem('neet_custom_saved_notes', payload['__custom_saved_notes']);
+    if (payload['__mock_test_scores']) localStorage.setItem('neet_mock_test_scores', payload['__mock_test_scores']);
+    if (payload['__streak_dates']) localStorage.setItem('neet_streak_dates', payload['__streak_dates']);
+  }
   if (payload['__theme_idx'] !== undefined){
     currentGlobalThemeIdx = parseInt(payload['__theme_idx'],10) || 0;
     applyThemeByIndex(currentGlobalThemeIdx);
-    localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
+    if (!isViewer) localStorage.setItem('neet_active_theme_idx', currentGlobalThemeIdx);
   }
   if (!isTimerRunning && payload['__timer_remaining'] !== undefined){
     if (payload['__timer_initial']) savedInitialSeconds = payload['__timer_initial'];
@@ -2370,11 +2393,32 @@ window.saveChatSenderName = function() {
     showCustomMessage('Please enter a valid display name.', 'error');
     return;
   }
-  const cleanName = sanitizeInput(name);
-  localStorage.setItem('neet_chat_sender_name', cleanName);
+  localStorage.setItem('neet_chat_sender_name', name);
   showCustomMessage('Chat screen name saved! ✨', 'success');
   renderChatMessages();
 };
+
+window.toggleEmojiPopup = function(event) {
+  event.stopPropagation();
+  const box = document.getElementById('emoji-popup-box');
+  if (!box) return;
+  box.style.display = box.style.display === 'grid' ? 'none' : 'grid';
+};
+
+window.selectEmoji = function(emoji) {
+  appendEmoji(emoji);
+  const box = document.getElementById('emoji-popup-box');
+  if (box) box.style.display = 'none';
+};
+
+document.addEventListener('click', (e) => {
+  const box = document.getElementById('emoji-popup-box');
+  if (box && box.style.display === 'grid') {
+    if (!e.target.closest('#emoji-popup-box') && !e.target.getAttribute('onclick')?.includes('toggleEmojiPopup')) {
+      box.style.display = 'none';
+    }
+  }
+});
 
 window.appendEmoji = function(emoji) {
   const input = document.getElementById('chat-input-text');
@@ -2422,7 +2466,6 @@ window.sendChatMessage = async function() {
   const text = input.value.trim();
   if (!text) return;
   
-  // Anti-Link / URL Security Filter
   const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([a-zA-Z0-9][-a-zA-Z0-9]*\.)+(com|org|net|edu|gov|mil|io|co|in|me|info|biz|us|uk|ca|au)\b/i;
   if (urlRegex.test(text)) {
     showCustomMessage('🛡️ Links and URLs are disabled in this secure chat.', 'error');
@@ -2441,8 +2484,8 @@ window.sendChatMessage = async function() {
   try {
     await addDoc(msgsRef, {
       senderUid: uid,
-      senderName: sanitizeInput(currentChatName),
-      text: sanitizeInput(text),
+      senderName: currentChatName,
+      text: text,
       time: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}),
       createdAt: serverTimestamp()
     });
@@ -2451,18 +2494,22 @@ window.sendChatMessage = async function() {
   }
 };
 
-window.startEditMessage = function(msgId, currentText) {
+window.startEditMessage = function(msgId) {
   const bubble = document.getElementById(`msg-bubble-${msgId}`);
   if (!bubble) return;
+  const msg = messagesList.find(m => m.id === msgId);
+  if (!msg) return;
   bubble.innerHTML = `
     <div style="display:flex; gap:6px; flex-direction:column;">
-      <textarea id="edit-input-${msgId}" style="width:100%; padding:6px; font-size:0.85rem; background:rgba(0,0,0,0.5); border:1px solid var(--bio-accent); border-radius:8px; color:#fff;" rows="2">${currentText}</textarea>
+      <textarea id="edit-input-${msgId}" style="width:100%; padding:6px; font-size:0.85rem; background:rgba(0,0,0,0.5); border:1px solid var(--bio-accent); border-radius:8px; color:#fff;" rows="2"></textarea>
       <div style="display:flex; gap:6px; justify-content:flex-end;">
         <button class="btn btn-primary" style="padding:4px 10px; font-size:0.75rem;" onclick="saveEditMessage('${msgId}')">Save</button>
         <button class="btn btn-secondary" style="padding:4px 10px; font-size:0.75rem;" onclick="renderChatMessages()">Cancel</button>
       </div>
     </div>
   `;
+  const editInput = document.getElementById(`edit-input-${msgId}`);
+  if (editInput) editInput.value = msg.text || '';
 };
 
 window.saveEditMessage = async function(msgId) {
@@ -2482,7 +2529,7 @@ window.saveEditMessage = async function(msgId) {
   const msgRef = doc(db, COLLECTION, chatCode, 'messages', msgId);
   try {
     await updateDoc(msgRef, {
-      text: sanitizeInput(newText)
+      text: newText
     });
     showCustomMessage('Message updated.', 'success');
   } catch(e) {
@@ -2551,16 +2598,18 @@ window.renderChatMessages = function() {
   container.innerHTML = visibleMessages.map(msg => {
     const isMe = msg.senderUid === currentUid;
     const timeStr = msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : (msg.time || 'Just now');
+    const safeName = escapeHtmlForChat(msg.senderName || 'Aspirant');
+    const safeText = escapeHtmlForChat(msg.text || '');
     return `
       <div style="display:flex; flex-direction:column; align-items:${isMe ? 'flex-end' : 'flex-start'}; width:100%;">
         <div style="font-size:0.72rem; color:var(--bio-accent); margin-bottom:2px; font-weight:700;">
-          👤 ${msg.senderName || 'Aspirant'} • ${timeStr}
+          👤 ${safeName} • ${timeStr}
         </div>
         <div id="msg-bubble-${msg.id}" style="background:${isMe ? 'rgba(236, 72, 153, 0.2)' : 'rgba(255, 255, 255, 0.08)'}; border:1px solid ${isMe ? 'var(--bio-accent)' : 'var(--glass-border)'}; border-radius:14px; padding:10px 14px; max-width:80%; word-break:break-word; font-size:0.9rem; position:relative;">
-          <div>${msg.text}</div>
+          <div>${safeText}</div>
           ${isMe ? `
             <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:6px; border-top:1px solid rgba(255,255,255,0.1); padding-top:4px;">
-              <button style="background:none; border:none; color:var(--bio-glow); font-size:0.75rem; cursor:pointer; font-weight:700;" onclick="startEditMessage('${msg.id}', \`${msg.text.replace(/\\/g, '\\\\').replace(/`/g, '\\`')}\`)">✏️ Edit</button>
+              <button style="background:none; border:none; color:var(--bio-glow); font-size:0.75rem; cursor:pointer; font-weight:700;" onclick="startEditMessage('${msg.id}')">✏️ Edit</button>
               <button style="background:none; border:none; color:var(--danger); font-size:0.75rem; cursor:pointer; font-weight:700;" onclick="deleteMessageForEveryone('${msg.id}')">🗑️ Delete for everyone</button>
             </div>
           ` : ''}
@@ -2569,6 +2618,12 @@ window.renderChatMessages = function() {
     `;
   }).join('');
 };
+
+function escapeHtmlForChat(str) {
+  return String(str == null ? '' : str).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
 
 function scrollToBottomChat() {
   const container = document.getElementById('messages-chat-box');
@@ -2766,33 +2821,43 @@ async function createShareableTracker(){
 }
 
 async function connectToCode(){
-  await waitForAuth();
-  const code = (codeInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g,'');
-  if (!code){ showCustomMessage('Enter a tracker code first.', 'error'); return; }
+  try {
+    await waitForAuth();
+    const code = (codeInput.value || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g,'');
+    if (!code){ showCustomMessage('Enter a tracker code first.', 'error'); return; }
 
-  const ref = doc(db, COLLECTION, code);
-  const snap = await getDoc(ref);
-  if (!snap.exists()){
-    showCustomMessage('No tracker found with that code.', 'error');
-    return;
+    const ref = doc(db, COLLECTION, code);
+    const snap = await getDoc(ref);
+    if (!snap.exists()){
+      showCustomMessage('No tracker found with that code.', 'error');
+      return;
+    }
+    const data = snap.data();
+    const isOwner = data.ownerUid === currentUid;
+
+    // Backup viewer's own local state before connecting as viewer
+    if (!isOwner && activeRole !== 'viewer') {
+      const localBackup = collectFullPayload();
+      localStorage.setItem('neet_viewer_original_local_progress', JSON.stringify(localBackup));
+    }
+
+    activeCode = code; activeRole = isOwner ? 'owner' : 'viewer';
+    localStorage.setItem(LS_CODE_KEY, activeCode);
+    localStorage.setItem(LS_ROLE_KEY, activeRole);
+
+    applyPayloadToDom(data.payload || {});
+    setSyncUI(activeRole, isOwner
+      ? `☁️ Synced as owner · ${codeSpan(activeCode)}`
+      : `✅ Connected · ${codeSpan(activeCode)}`);
+    showCustomMessage(isOwner ? 'Reconnected as owner ✨' : 'Connected — read-only view 👀', 'success');
+    attachLiveListener(code);
+    detachPresenceListener();
+    stopViewerPresence();
+    if (isOwner) attachPresenceListener(code); else startViewerPresence(code);
+    setupMessagesListener();
+  } catch(e) {
+    showCustomMessage('Connection failed: ' + e.message, 'error');
   }
-  const data = snap.data();
-  const isOwner = data.ownerUid === currentUid;
-
-  activeCode = code; activeRole = isOwner ? 'owner' : 'viewer';
-  localStorage.setItem(LS_CODE_KEY, activeCode);
-  localStorage.setItem(LS_ROLE_KEY, activeRole);
-
-  applyPayloadToDom(data.payload || {});
-  setSyncUI(activeRole, isOwner
-    ? `☁️ Synced as owner · ${codeSpan(activeCode)}`
-    : `✅ Connected · ${codeSpan(activeCode)}`);
-  showCustomMessage(isOwner ? 'Reconnected as owner ✨' : 'Connected — read-only view 👀', 'success');
-  attachLiveListener(code);
-  detachPresenceListener();
-  stopViewerPresence();
-  if (isOwner) attachPresenceListener(code); else startViewerPresence(code);
-  setupMessagesListener();
 }
 
 function attachLiveListener(code){
@@ -2853,10 +2918,23 @@ async function disconnectFromViewing(){
   activeRole = null; activeCode = null;
   localStorage.removeItem(LS_CODE_KEY);
   localStorage.removeItem(LS_ROLE_KEY);
-  showCustomMessage('🔌 Disconnected — back to your own local progress.', 'info');
+
+  // Restore viewer's own local progress backup
+  const backupJson = localStorage.getItem('neet_viewer_original_local_progress');
+  if (backupJson) {
+    try {
+      const backupPayload = JSON.parse(backupJson);
+      document.body.classList.remove('sync-viewer-mode');
+      applyPayloadToDom(backupPayload);
+      localStorage.removeItem('neet_viewer_original_local_progress');
+    } catch(e){}
+  }
+
+  setSyncUI(null, '🔌 Disconnected — local progress restored');
+  showCustomMessage('🔌 Disconnected — your local progress has been restored.', 'success');
   setTimeout(() => {
     window.location.href = window.location.origin + window.location.pathname;
-  }, 400);
+  }, 600);
 }
 
 function scheduleCloudPush(immediate){
@@ -2937,6 +3015,9 @@ btnCopyLink.addEventListener('click', () => {
   const urlCode = params.get('code');
 
   if (urlCode){
+    const localBackup = collectFullPayload();
+    localStorage.setItem('neet_viewer_original_local_progress', JSON.stringify(localBackup));
+
     codeInput.value = urlCode.toUpperCase();
     await connectToCode();
     setupMessagesListener();
