@@ -412,6 +412,31 @@ input[type=checkbox]:checked::after{content:'✓';font-size:13px;font-weight:800
 .note-card-time{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--bio-accent)}
 .note-del-btn{background:transparent;border:none;color:var(--danger);cursor:pointer;font-size:.82rem;font-weight:700}
 
+/* Mock Test — enhanced UI */
+.mt-stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(130px,100%),1fr));gap:10px;margin-bottom:16px}
+.mt-stat-item{background:rgba(255,255,255,.05);border:1.5px solid var(--glass-border);border-radius:14px;padding:12px 14px;text-align:center;display:flex;flex-direction:column;gap:3px}
+.mt-stat-value{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:800;color:var(--bio-accent)}
+.mt-stat-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted)}
+.mt-score-card{background:rgba(255,255,255,.05);border:1.5px solid var(--glass-border);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 4px 15px rgba(0,0,0,.25);transition:all .25s ease;position:relative;overflow:hidden}
+.mt-score-card:hover{transform:translateY(-3px);border-color:var(--bio-accent);box-shadow:var(--btn-glow)}
+.mt-score-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mt-score-name{font-weight:800;font-size:.98rem;color:#fff1f2}
+.mt-score-date{font-size:.72rem;color:var(--text-muted);font-weight:600;margin-top:2px}
+.mt-score-badge{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:1.15rem;padding:5px 12px;border-radius:12px;white-space:nowrap;flex-shrink:0}
+.mt-score-badge.grade-great{background:rgba(52,211,153,.18);color:#34d399;border:1.5px solid #34d399}
+.mt-score-badge.grade-good{background:rgba(56,189,248,.18);color:#38bdf8;border:1.5px solid #38bdf8}
+.mt-score-badge.grade-avg{background:rgba(251,191,36,.18);color:#fbbf24;border:1.5px solid #fbbf24}
+.mt-score-badge.grade-low{background:rgba(251,113,133,.18);color:#fb7185;border:1.5px solid #fb7185}
+.mt-subject-rows{display:flex;flex-direction:column;gap:7px}
+.mt-subject-row{display:grid;grid-template-columns:56px 1fr 54px;align-items:center;gap:8px}
+.mt-subject-tag{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)}
+.mt-subject-track{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+.mt-subject-fill{height:100%;border-radius:6px;transition:width .4s ease}
+.mt-subject-fill.phy{background:linear-gradient(90deg,#38bdf8,#818cf8)}
+.mt-subject-fill.chem{background:linear-gradient(90deg,#fbbf24,#f97316)}
+.mt-subject-fill.bio{background:linear-gradient(90deg,#34d399,#10b981)}
+.mt-subject-val{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;color:var(--bio-subtext);text-align:right}
+
 .calendar-modal-overlay{position:fixed;inset:0;background:rgba(10,2,18,.88);backdrop-filter:blur(14px);z-index:100010;display:flex;justify-content:center;align-items:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease;padding:18px}
 .calendar-modal-overlay.active{opacity:1;visibility:visible;pointer-events:auto}
 .custom-calendar-box{background:radial-gradient(circle at 50% 0%,#300a40 0%,#150324 100%);border:1.5px solid var(--bio-accent);border-radius:var(--radius);padding:20px;width:100%;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.8),var(--btn-glow);display:flex;flex-direction:column;gap:12px}
@@ -488,6 +513,9 @@ body.sync-viewer-mode #btn-mark-today{
   cursor:not-allowed!important;
 }
 body.sync-viewer-mode .sync-status-text{color:#38bdf8}
+body.sync-viewer-mode [onclick="openNotesModal()"]{
+  display:none!important;
+}
 .sync-status-text.connected-live{color:#34d399!important;font-weight:800}
 
 @media (max-width:420px){
@@ -579,7 +607,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
       </div>
       <div class="header-action-pill badge-tag-pill" tabindex="-1">✨ NEET ✨</div>
       <button type="button" class="header-action-pill" id="btn-messages-nav" onclick="openMessagesModal()" style="position:relative;">
-        💬 MESSAGE
+        💬 LIVE MESSAGE
         <span id="msg-red-dot" style="display:none;position:absolute;top:4px;right:6px;width:8px;height:8px;background:var(--danger);border-radius:50%;box-shadow:0 0 8px var(--danger);"></span>
       </button>
       <button type="button" class="header-action-pill" id="btn-notes-nav" onclick="openNotesModal()">💌 Notes</button>
@@ -960,6 +988,7 @@ body.sync-viewer-mode .sync-status-text{color:#38bdf8}
         <button class="btn btn-primary" onclick="saveMockTest()">💾 Save Score</button>
       </div>
     </div>
+    <div id="mock-test-stats-bar" class="mt-stats-bar" style="display:none;"></div>
     <div>
       <h3 style="font-size:1.1rem;font-weight:800;color:var(--bio-accent);margin-bottom:10px;">📚 Test History</h3>
       <div class="notes-grid" id="mock-test-grid-container"></div>
@@ -1227,6 +1256,10 @@ setInterval(rotateMotivationalQuote, 10000);
 
 /* 🌟 Custom Notes Hub */
 function openNotesModal(){
+  if (document.body.classList.contains('sync-viewer-mode')){
+    showCustomMessage('Notes are private to the tracker owner.', 'info');
+    return;
+  }
   renderCustomNotes();
   document.getElementById('custom-notes-modal').classList.add('active');
   document.documentElement.classList.add('no-scroll');
@@ -1323,7 +1356,7 @@ function saveMockTest(){
   ['mt-name','mt-date','mt-phy','mt-chem','mt-bio'].forEach(id => document.getElementById(id).value = '');
   renderMockTests();
   showCustomMessage('Test score saved! 📊', 'success');
-  scheduleCloudPush();
+  scheduleCloudPush(true);
 }
 function deleteMockTest(id){
   if (document.body.classList.contains('sync-viewer-mode')){
@@ -1334,32 +1367,73 @@ function deleteMockTest(id){
   localStorage.setItem('neet_mock_test_scores', JSON.stringify(tests));
   renderMockTests();
   showCustomMessage('Test entry removed.', 'info');
-  scheduleCloudPush();
+  scheduleCloudPush(true);
 }
 function renderMockTests(){
   const container = document.getElementById('mock-test-grid-container');
   const label = document.getElementById('mock-test-avg-label');
+  const statsBar = document.getElementById('mock-test-stats-bar');
   const tests = getMockTests();
   if (!tests.length){
     container.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:26px;">No tests logged yet. Add your first score above! 📝</div>';
     label.innerText = 'Log every full-length test to track your NEET trend.';
+    if (statsBar) statsBar.style.display = 'none';
     return;
   }
   const avg = Math.round(tests.reduce((a,t)=>a+t.total,0) / tests.length);
   const best = Math.max(...tests.map(t=>t.total));
+  const latest = tests[0].total;
   label.innerText = `${tests.length} tests logged · Average ${avg}/720 · Best ${best}/720`;
-  container.innerHTML = tests.map(t => `
-    <div class="note-card">
-      <div class="note-card-text">
-        <strong>${t.name}</strong><br>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--bio-accent);">${t.total}/720</span><br>
-        <span style="font-size:.78rem;color:var(--text-muted);">Phy ${t.phy}/180 · Chem ${t.chem}/180 · Bio ${t.bio}/360</span>
+  if (statsBar){
+    statsBar.style.display = 'grid';
+    statsBar.innerHTML = `
+      <div class="mt-stat-item"><div class="mt-stat-value">${tests.length}</div><div class="mt-stat-label">Tests Logged</div></div>
+      <div class="mt-stat-item"><div class="mt-stat-value">${avg}</div><div class="mt-stat-label">Average /720</div></div>
+      <div class="mt-stat-item"><div class="mt-stat-value">${best}</div><div class="mt-stat-label">Best /720</div></div>
+      <div class="mt-stat-item"><div class="mt-stat-value">${latest}</div><div class="mt-stat-label">Latest /720</div></div>
+    `;
+  }
+  container.innerHTML = tests.map(t => {
+    const pct = Math.round((t.total/720)*100);
+    let grade = 'grade-low';
+    if (pct >= 80) grade = 'grade-great';
+    else if (pct >= 65) grade = 'grade-good';
+    else if (pct >= 45) grade = 'grade-avg';
+    const phyPct = Math.round((t.phy/180)*100);
+    const chemPct = Math.round((t.chem/180)*100);
+    const bioPct = Math.round((t.bio/360)*100);
+    return `
+    <div class="mt-score-card">
+      <div class="mt-score-card-top">
+        <div>
+          <div class="mt-score-name">${t.name}</div>
+          <div class="mt-score-date">🗓️ ${t.date}</div>
+        </div>
+        <div class="mt-score-badge ${grade}">${t.total}/720</div>
+      </div>
+      <div class="mt-subject-rows">
+        <div class="mt-subject-row">
+          <span class="mt-subject-tag">PHY</span>
+          <div class="mt-subject-track"><div class="mt-subject-fill phy" style="width:${phyPct}%;"></div></div>
+          <span class="mt-subject-val">${t.phy}/180</span>
+        </div>
+        <div class="mt-subject-row">
+          <span class="mt-subject-tag">CHEM</span>
+          <div class="mt-subject-track"><div class="mt-subject-fill chem" style="width:${chemPct}%;"></div></div>
+          <span class="mt-subject-val">${t.chem}/180</span>
+        </div>
+        <div class="mt-subject-row">
+          <span class="mt-subject-tag">BIO</span>
+          <div class="mt-subject-track"><div class="mt-subject-fill bio" style="width:${bioPct}%;"></div></div>
+          <span class="mt-subject-val">${t.bio}/360</span>
+        </div>
       </div>
       <div class="note-card-footer">
-        <span class="note-card-time">${t.date}</span>
+        <span class="note-card-time">${pct}% score</span>
         <button class="note-del-btn" onclick="deleteMockTest('${t.id}')">🗑️ Delete</button>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 /* 🔥 Study Streak Tracker */
